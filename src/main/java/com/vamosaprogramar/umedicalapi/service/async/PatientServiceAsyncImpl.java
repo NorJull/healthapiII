@@ -284,15 +284,15 @@ public class PatientServiceAsyncImpl implements PatientServiceAsync {
 
 			processService.setFinishDate(processId, LocalDateTime.now());
 			
-			if(log.equals("")) {
+			if(log.equals("")) 
 				processService.setStatus(processId, 'T');//T:terminado
-			}else {
+			else 
 				processService.setStatus(processId, 'I');//I:Terminado con inconsistencias
-			}
 			
-			if (session.isOpen()) {
+			
+			if (session.isOpen()) 
 				session.close();
-		}
+		
 		
 		
 		}

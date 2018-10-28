@@ -36,7 +36,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -63,7 +63,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -88,7 +88,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -113,7 +113,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -138,7 +138,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -162,7 +162,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -189,7 +189,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -213,7 +213,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
@@ -239,7 +239,7 @@ public class ProcessDAOImpl implements ProcessDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
+			if (session.isOpen()) {
 				session.close();
 			}
 		}
