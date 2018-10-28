@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalTimeConverter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vamosaprogramar.umedicalapi.LocalDateConverter;
 
 @Entity
@@ -33,12 +34,12 @@ public class Schedule {
 	
 	@Column(name = "start_time_turn_one")
 	@Convert(converter = LocalTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "KK:mm a")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime  startTimeTurnOne;
 	
 	@Column(name = "start_time_turn_two")
 	@Convert(converter = LocalTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "KK:mm a")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	private LocalTime  startTimeTurnTwo;
 	
 	
@@ -48,6 +49,7 @@ public class Schedule {
 	@Column(name = "appointments_turn_two")
 	private int appointmentsTurnTwo;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "user_id")
 	private ApplicationUser user;
