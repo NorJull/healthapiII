@@ -8,12 +8,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -159,6 +161,10 @@ public class Patient {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "patients")
 	private List<Contract> contracts;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY ,mappedBy="patient",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Appointment> appointments; 
 	
 	
 	public Patient() {
@@ -471,6 +477,14 @@ public class Patient {
 		contracts.add(contract);
 	}
 
+	public void addAppointment(Appointment appointment) {
+		if(appointments==null) {
+			appointments = new ArrayList<>();
+		}
+		appointments.add(appointment);
+		appointment.setPatient(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", carnet=" + carnet + ", documentType=" + documentType + ", document=" + document

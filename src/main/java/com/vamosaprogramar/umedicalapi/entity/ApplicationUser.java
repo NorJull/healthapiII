@@ -75,6 +75,9 @@ public class ApplicationUser {
 	@OneToMany(mappedBy="user",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Schedule> schedules;
 	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY ,mappedBy="patient",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Appointment> appointments; 
 		
 
 	@JsonIgnore
@@ -270,7 +273,13 @@ public class ApplicationUser {
 			speciality.getUsers().remove(this);
 		}
 	}
-
+	public void addAppointment(Appointment appointment) {
+		if(appointments==null) {
+			appointments = new ArrayList<>();
+		}
+		appointments.add(appointment);
+		appointment.setApplicationUser(this);
+	}
 
 	@Override
 	public String toString() {
