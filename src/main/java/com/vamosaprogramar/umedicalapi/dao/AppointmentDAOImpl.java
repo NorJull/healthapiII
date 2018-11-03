@@ -6,9 +6,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
+import com.vamosaprogramar.umedicalapi.entity.Patient;
+import com.vamosaprogramar.umedicalapi.entity.Speciality;
 
+@Repository
 public class AppointmentDAOImpl implements AppointmentDAO {
 
 	@Autowired
@@ -77,7 +82,39 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
 	@Override
 	public void addAppointment(Appointment appointment) {
-		// TODO Auto-generated method stub
+		Session session = null;
+		try {
+			
+			session = sessionFactory.openSession();
+			
+			//Fijar especialidad
+			Speciality speciality = session.get(Speciality.class, appointment.getSpeciality().getId());
+			
+			appointment.setSpeciality(speciality);
+			
+			
+			//Fijar paciente
+			Patient patient = session.get(Patient.class, appointment.getPatient().getId());
+			
+			appointment.setPatient(patient);
+			
+			//Fijar Doctor
+			ApplicationUser applicationUser = session.get(ApplicationUser.class, appointment.getApplicationUser().getId());		
+					
+			appointment.setApplicationUser(applicationUser);
+			
+			session.save(appointment);
+			
+			session.getTransaction().commit();
+							
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session.isOpen()) {
+				session.close();
+			}
+			
+		}
 
 	}
 
