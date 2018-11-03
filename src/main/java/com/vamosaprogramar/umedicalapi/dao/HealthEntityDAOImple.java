@@ -37,7 +37,7 @@ public class HealthEntityDAOImple implements HealthEntityDAO {
 			
 			e.printStackTrace();
 		}finally {
-			if(session!=null) {
+			if(session.isOpen()) {
 				session.close();
 			}
 			
