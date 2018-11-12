@@ -86,8 +86,8 @@ public class PatientServiceAsyncImpl implements PatientServiceAsync {
 						throw new IncompleteRow();
 					}
 					
-					//Ir a base de datos y preguntar si existe un paciente con ese documento de identidad
-					Patient patient = patientDAO.getPatientByDocument(parts[2],session);
+					//Ir a base de datos y preguntar si existe un paciente con ese tipo de documento y documento de identidad
+					Patient patient = patientDAO.getPatientByDocumentAndDocumentType(parts[2],parts[1],session);
 					
 					if(patient==null) {
 						patient = new Patient();

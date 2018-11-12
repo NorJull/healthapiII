@@ -80,4 +80,9 @@ public class PatientServiceImpl implements PatientService {
 		return patientDAO.getPatients();
 	}
 
+	@Override
+	public Patient getPatientByDocumentAndDocumentType(String document, String documentType) {
+		return patientDAO.getPatientByDocumentAndDocumentType(document, documentType);
+	}
+
 }

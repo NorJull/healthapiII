@@ -22,6 +22,12 @@ public class PatientController {
 	@Autowired
 	PatientService patientService;
 	
+	@GetMapping("{document}/{documentType}")
+	public Patient getPatientByDocumentAndDocumentType(@PathVariable String document,@PathVariable String documentType){
+	
+		return patientService.getPatientByDocumentAndDocumentType(document,documentType);
+	}
+	
 	
 	@GetMapping()
 	public List<Patient> getPatients(){

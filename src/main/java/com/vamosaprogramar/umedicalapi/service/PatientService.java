@@ -13,4 +13,6 @@ public interface PatientService {
 	public Integer uploadPatientFile(MultipartFile patientFile);
 
 	public List<Patient> getPatients();
+
+	public Patient getPatientByDocumentAndDocumentType(String document, String documentType);
 }
