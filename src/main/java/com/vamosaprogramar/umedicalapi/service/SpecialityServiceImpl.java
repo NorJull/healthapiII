@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vamosaprogramar.umedicalapi.dao.ProcessDAO;
 import com.vamosaprogramar.umedicalapi.dao.SpecialityDAO;
+import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.entity.Process;
 import com.vamosaprogramar.umedicalapi.entity.Speciality;
@@ -94,6 +95,12 @@ public class SpecialityServiceImpl implements SpecialityService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<ApplicationUser> getApplicationUsers(int id) {
+		// TODO Auto-generated method stub
+		return specialityDAO.getApplicationUsers(id);
 	}
 
 	

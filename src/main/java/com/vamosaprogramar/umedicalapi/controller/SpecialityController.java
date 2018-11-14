@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.entity.Speciality;
 import com.vamosaprogramar.umedicalapi.service.SpecialityService;
@@ -41,6 +42,13 @@ public class SpecialityController {
 		
 		return specialityService.getProcedureTypes(id);
 	}
+	
+	@GetMapping("/{id}/users")
+	public List<ApplicationUser> geUsers(@PathVariable int id){
+		
+		return specialityService.getApplicationUsers(id);
+	}
+	
 	
 	@PostMapping()
 	public Integer addSpeciality(@RequestBody Speciality speciality) {

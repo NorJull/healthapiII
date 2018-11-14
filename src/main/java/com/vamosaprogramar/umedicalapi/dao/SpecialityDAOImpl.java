@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Contract;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.entity.Speciality;
@@ -171,6 +172,35 @@ public class SpecialityDAOImpl implements SpecialityDAO {
 		speciality.addProcedureType(procedureType);
 		
 	
+	}
+
+	@Override
+	public List<ApplicationUser> getApplicationUsers(int id) {
+		Session session = null;
+		
+		try {
+			
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Query theQuery = session.createQuery("SELECT p FROM ApplicationUser p JOIN p.specialities sp WHERE sp.id= :ID");
+			
+			theQuery.setParameter("ID", id);
+			
+			List<ApplicationUser> applicationUsers = theQuery.list();
+			
+			session.getTransaction().commit();
+			
+			return applicationUsers;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return null;
 	}
 
 }

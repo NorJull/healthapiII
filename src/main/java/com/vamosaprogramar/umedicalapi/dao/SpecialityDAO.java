@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.entity.Speciality;
 import com.vamosaprogramar.umedicalapi.exception.ProcedureTypeDoesNotExist;
@@ -21,5 +22,7 @@ public List<Speciality> getSpecialities();
 	public boolean specialityExist(int specialityId);
 
 	public void addProcedureType(int specialityId, String cup, Session session) throws ProcedureTypeDoesNotExist;
+
+	public List<ApplicationUser> getApplicationUsers(int id);
 	
 }
