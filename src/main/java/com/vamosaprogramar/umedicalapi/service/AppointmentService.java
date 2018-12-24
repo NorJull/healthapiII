@@ -11,5 +11,9 @@ public interface AppointmentService {
 	public Appointment getAppointment(int id);
 	
 	public void addAppointment(Appointment appointment);
+
+	public String getNumberOfAvailableAppointments(int specialityId, int doctorId, int year, int month);
+
+	public List<Appointment> getRegisteredAppointments(int specialityId, int doctorId, int year, int month);
 	
 }
