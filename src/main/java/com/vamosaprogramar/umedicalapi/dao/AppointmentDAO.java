@@ -16,4 +16,10 @@ public interface AppointmentDAO {
 	public List<Appointment> getRegisteredAppointmentsOfAllDoctors(int specialityId, LocalDate startDate, LocalDate finishDate);
 
 	public List<Appointment> getRegisteredAppointmentsOfOneDoctor(int specialityId, int doctorId, LocalDate startDate, LocalDate finishDate);
+
+	public List<Appointment> getAppointments(int specialityId, int doctorId, LocalDate dayDate);
+
+	public void toCancelAnAppointment(int id);
+
+	public List<Appointment> getAppointmentByPatient(int patientId);
 }

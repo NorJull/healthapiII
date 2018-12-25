@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,13 @@ public class AppointmentController {
 		return appointmentService.getAppointment(id);
 	}
 	
+	@GetMapping("/reschedule/{patientId}")
+	public List<Appointment> getAppointmentByPatient(@PathVariable int patientId) {
+				
+		return appointmentService.getAppointmentByPatient(patientId);
+	}
+	
+	
 	@GetMapping("{specialityId}/{doctorId}/{year}/{month}")
 	public String getNumberOfAvailableAppointments(@PathVariable int specialityId,@PathVariable int doctorId,@PathVariable int year, @PathVariable int month ) {
 		return appointmentService.getNumberOfAvailableAppointments(specialityId,doctorId,year,month);
@@ -44,9 +52,19 @@ public class AppointmentController {
 		return appointmentService. getRegisteredAppointments(specialityId,doctorId,year,month);
 	}
 	
+	@GetMapping("/{specialityId}/{doctorId}/{year}/{month}/{day}")
+	public List<Appointment> getAppointments(@PathVariable int specialityId,@PathVariable int doctorId,@PathVariable int year, @PathVariable int month, @PathVariable int day) {
+		return appointmentService. getAppointments(specialityId,doctorId,year,month,day);
+	}
+	
 	@PostMapping
 	public void addAppointment(@RequestBody Appointment appointment) {
 		appointmentService.addAppointment(appointment);
+	}
+	
+	@PutMapping("{id}")
+	public void toCancelAnAppointment(@PathVariable int id) {
+		appointmentService.toCancelAnAppointment(id);
 	}
 	
 }

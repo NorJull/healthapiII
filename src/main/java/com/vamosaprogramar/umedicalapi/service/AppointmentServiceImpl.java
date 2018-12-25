@@ -11,11 +11,11 @@ import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 
 @Service
-public class AppointmentServiceImpl implements AppointmentService{
+public class AppointmentServiceImpl implements AppointmentService {
 
 	@Autowired
 	private AppointmentDAO appointmentDAO;
-	
+
 	@Override
 	public List<Appointment> getAppointments() {
 		// TODO Auto-generated method stub
@@ -30,18 +30,18 @@ public class AppointmentServiceImpl implements AppointmentService{
 
 	@Override
 	public void addAppointment(Appointment appointment) {
-		
+
 		appointmentDAO.addAppointment(appointment);
-		
+
 	}
 
 	@Override
 	public String getNumberOfAvailableAppointments(int specialityId, int doctorId, int year, int month) {
-		
-		if(specialityId != 0 && doctorId != 0) {
-	//		appointmentDAO.getNumberOfAvailableAppointments(specialityId,doctorId);
+
+		if (specialityId != 0 && doctorId != 0) {
+			// appointmentDAO.getNumberOfAvailableAppointments(specialityId,doctorId);
 		}
-		
+
 		return null;
 	}
 
@@ -49,18 +49,41 @@ public class AppointmentServiceImpl implements AppointmentService{
 	public List<Appointment> getRegisteredAppointments(int specialityId, int doctorId, int year, int month) {
 		LocalDate startDate = LocalDate.of(year, month, 1);
 		LocalDate finishDate = startDate.plusMonths(1);
-		
-		if(doctorId == ALL_DOCTORS_ID) {
-			
-			
-			List<Appointment> appointments =	appointmentDAO.getRegisteredAppointmentsOfAllDoctors(specialityId, startDate, finishDate) ;
+
+		if (doctorId == ALL_DOCTORS_ID) {
+
+			List<Appointment> appointments = appointmentDAO.getRegisteredAppointmentsOfAllDoctors(specialityId,
+					startDate, finishDate);
 			return appointments;
-		}else {
-			List<Appointment> appointments = appointmentDAO.getRegisteredAppointmentsOfOneDoctor(specialityId, doctorId, startDate, finishDate) ;
+		} else {
+			List<Appointment> appointments = appointmentDAO.getRegisteredAppointmentsOfOneDoctor(specialityId, doctorId,
+					startDate, finishDate);
 			;
 			return appointments;
 		}
 
+	}
+
+	@Override
+	public List<Appointment> getAppointments(int specialityId, int doctorId, int year, int month, int day) {
+
+		LocalDate dayDate = LocalDate.of(year, month, day);
+
+		return appointmentDAO.getAppointments(specialityId, doctorId, dayDate);
+
+	}
+
+	@Override
+	public void toCancelAnAppointment(int id) {
+
+		appointmentDAO.toCancelAnAppointment(id);
+
+	}
+
+	@Override
+	public List<Appointment> getAppointmentByPatient(int patientId) {
+		
+		return appointmentDAO.getAppointmentByPatient(patientId);
 	}
 
 }
