@@ -22,49 +22,51 @@ import com.vamosaprogramar.umedicalapi.service.AppointmentService;
 public class AppointmentController {
 
 	@Autowired
-	private AppointmentService appointmentService; 
-	
+	private AppointmentService appointmentService;
+
 	@GetMapping
-	public List<Appointment> getAppointments(){
+	public List<Appointment> getAppointments() {
 		return appointmentService.getAppointments();
 	}
-	
+
 	@GetMapping("{id}")
 	public Appointment getAppointment(@PathVariable int id) {
-				
+
 		return appointmentService.getAppointment(id);
 	}
-	
+
 	@GetMapping("/reschedule/{patientId}")
 	public List<Appointment> getAppointmentByPatient(@PathVariable int patientId) {
-				
+
 		return appointmentService.getAppointmentByPatient(patientId);
 	}
-	
-	
+
 	@GetMapping("{specialityId}/{doctorId}/{year}/{month}")
-	public String getNumberOfAvailableAppointments(@PathVariable int specialityId,@PathVariable int doctorId,@PathVariable int year, @PathVariable int month ) {
-		return appointmentService.getNumberOfAvailableAppointments(specialityId,doctorId,year,month);
+	public String getNumberOfAvailableAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
+			@PathVariable int year, @PathVariable int month) {
+		return appointmentService.getNumberOfAvailableAppointments(specialityId, doctorId, year, month);
 	}
-	
+
 	@GetMapping("registeredAppointments/{specialityId}/{doctorId}/{year}/{month}")
-	public List<Appointment> getRegisteredAppointments(@PathVariable int specialityId,@PathVariable int doctorId,@PathVariable int year, @PathVariable int month ) {
-		return appointmentService. getRegisteredAppointments(specialityId,doctorId,year,month);
+	public List<Appointment> getRegisteredAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
+			@PathVariable int year, @PathVariable int month) {
+		return appointmentService.getRegisteredAppointments(specialityId, doctorId, year, month);
 	}
-	
+
 	@GetMapping("/{specialityId}/{doctorId}/{year}/{month}/{day}")
-	public List<Appointment> getAppointments(@PathVariable int specialityId,@PathVariable int doctorId,@PathVariable int year, @PathVariable int month, @PathVariable int day) {
-		return appointmentService. getAppointments(specialityId,doctorId,year,month,day);
+	public List<Appointment> getAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
+			@PathVariable int year, @PathVariable int month, @PathVariable int day) {
+		return appointmentService.getAppointments(specialityId, doctorId, year, month, day);
 	}
-	
+
 	@PostMapping
 	public void addAppointment(@RequestBody Appointment appointment) {
 		appointmentService.addAppointment(appointment);
 	}
-	
+
 	@PutMapping("{id}")
 	public void toCancelAnAppointment(@PathVariable int id) {
 		appointmentService.toCancelAnAppointment(id);
 	}
-	
+
 }
