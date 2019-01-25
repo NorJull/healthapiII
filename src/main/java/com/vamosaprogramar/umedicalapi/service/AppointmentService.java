@@ -1,6 +1,7 @@
 package com.vamosaprogramar.umedicalapi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 
@@ -12,7 +13,7 @@ public interface AppointmentService {
 	
 	public void addAppointment(Appointment appointment);
 
-	public String getNumberOfAvailableAppointments(int specialityId, int doctorId, int year, int month);
+	public Map<Integer, Integer> getNumberOfAvailableAppointments(int specialityId, int doctorId, int year, int month);
 
 	public List<Appointment> getRegisteredAppointments(int specialityId, int doctorId, int year, int month);
 

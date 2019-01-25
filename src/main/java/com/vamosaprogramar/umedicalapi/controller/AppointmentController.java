@@ -1,6 +1,7 @@
 package com.vamosaprogramar.umedicalapi.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,7 @@ public class AppointmentController {
 	}
 
 	@GetMapping("{specialityId}/{doctorId}/{year}/{month}")
-	public String getNumberOfAvailableAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
+	public Map<Integer, Integer> getNumberOfAvailableAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
 			@PathVariable int year, @PathVariable int month) {
 		return appointmentService.getNumberOfAvailableAppointments(specialityId, doctorId, year, month);
 	}
