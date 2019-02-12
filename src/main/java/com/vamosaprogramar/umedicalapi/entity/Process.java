@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalDateTimeConverter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATA_TIME_FORMAT;
 
 
 @Entity
@@ -34,13 +35,13 @@ public class Process {
 	
 	@Column(name="start_date")
 	@Convert(converter = LocalDateTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATA_TIME_FORMAT)
 	private LocalDateTime startDateTime;
 	
 	
 	@Column(name="finish_date")
 	@Convert(converter = LocalDateTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATA_TIME_FORMAT)
 	private LocalDateTime finishDateTime;
 
 	@Column(name="total_rows")

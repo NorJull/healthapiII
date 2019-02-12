@@ -47,6 +47,7 @@ public class AppointmentController {
 			@PathVariable int year, @PathVariable int month) {
 		return appointmentService.getNumberOfAvailableAppointments(specialityId, doctorId, year, month);
 	}
+	
 
 	@GetMapping("registeredAppointments/{specialityId}/{doctorId}/{year}/{month}")
 	public List<Appointment> getRegisteredAppointments(@PathVariable int specialityId, @PathVariable int doctorId,

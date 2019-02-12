@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService{
 		ApplicationUser auxiliaryUser = new ApplicationUser(user.getUsername(), user.getPassword());
 		auxiliaryUser.setDocument(user.getDocument());
 		auxiliaryUser.setProfessionalCard(user.getProfessionalCard());
-		auxiliaryUser.setUserType(user.getUserType());
 		auxiliaryUser.setSpecialities(user.getSpecialities());
 		auxiliaryUser.setPhoneNumber(user.getPhoneNumber());
 		auxiliaryUser.setEmail(user.getEmail());
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService{
 		auxiliaryUser.setName2(user.getName2());
 		auxiliaryUser.setLastName1(user.getLastName1());
 		auxiliaryUser.setLastName2(user.getLastName2());
-		auxiliaryUser.setUserType(user.getUserType());
+
 		
 		System.out.println("Prueba::::::::::::"+auxiliaryUser);
 		

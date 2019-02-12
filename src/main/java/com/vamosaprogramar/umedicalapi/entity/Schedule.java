@@ -1,6 +1,5 @@
 package com.vamosaprogramar.umedicalapi.entity;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -18,8 +17,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalTi
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.vamosaprogramar.umedicalapi.LocalDateConverter;
-
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.TIME_FORMAT;
 @Entity
 @Table(name="schedule")
 public class Schedule {
@@ -34,12 +32,12 @@ public class Schedule {
 	
 	@Column(name = "start_time_turn_one")
 	@Convert(converter = LocalTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = TIME_FORMAT)
 	private LocalTime  startTimeTurnOne;
 	
 	@Column(name = "start_time_turn_two")
 	@Convert(converter = LocalTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = TIME_FORMAT)
 	private LocalTime  startTimeTurnTwo;
 	
 	

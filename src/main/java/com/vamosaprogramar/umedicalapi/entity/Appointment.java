@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalTimeConverter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.TIME_FORMAT;
 import com.vamosaprogramar.umedicalapi.LocalDateConverter;
 
 @Entity
@@ -30,12 +32,12 @@ public class Appointment {
 	
 	@Column(name="date_")
 	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
 	private LocalDate date;
 	
 	@Column(name = "time_")
 	@Convert(converter = LocalTimeConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = TIME_FORMAT)
 	private LocalTime  time;
 	
 	@Column(name = "state")

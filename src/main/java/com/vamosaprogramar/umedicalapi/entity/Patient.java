@@ -17,7 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vamosaprogramar.umedicalapi.LocalDateConverter;
@@ -63,7 +63,7 @@ public class Patient {
 	// Fecha de nacimiento
 	@Column(name = "birth_date")
 	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
 	private LocalDate birthDate;
 
 	// Edad
@@ -119,7 +119,7 @@ public class Patient {
 	// Fecha de afiliación
 	@Column(name = "membership_date")
 	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
 	private LocalDate membershipDate;
 
 	// Número de telefono

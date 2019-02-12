@@ -192,7 +192,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 			session.beginTransaction();
 
 			Query theQuery = session.createQuery(
-					"from Appointment where speciality.id =:specialityID and status=:status and applicationUser.id =:doctorID and date >=:startDate and date <:finishDate");
+					"from Appointment where speciality.id =:specialityID and state=:state and applicationUser.id =:doctorID and date >=:startDate and date <:finishDate");
 
 			theQuery.setParameter("specialityID", specialityId);
 			theQuery.setParameter("state", APPOINTMENT_STATE_SCHEDULED);
@@ -274,7 +274,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
 	@Override
 	public List<Appointment> getAppointmentByPatient(int patientId) {
-		
+
 		Session session = null;
 		try {
 
@@ -282,10 +282,9 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
 			session.beginTransaction();
 
-			Query theQuery = session.createQuery(
-					"from Appointment where patient.id =:patientID");
+			Query theQuery = session.createQuery("from Appointment where patient.id =:patientID");
 
-			theQuery.setParameter("patientID", patientId); 
+			theQuery.setParameter("patientID", patientId);
 
 			List<Appointment> appointments = theQuery.list();
 

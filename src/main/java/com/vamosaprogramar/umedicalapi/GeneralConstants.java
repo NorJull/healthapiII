@@ -16,6 +16,13 @@ public class GeneralConstants {
 	public static final int FRIDAY = 5;
 	public static final int SATURDAY = 6;
 	public static final int SUNDAY = 7;
+	
+	//Formato de fecha 
+	public static final String DATE_FORMAT = "dd/MM/yyyy";
 
-
+	//Formato de hora
+	public static final String TIME_FORMAT = "HH:mm";
+	
+	//Formato fecha y hora
+	public static final String DATA_TIME_FORMAT = "dd/MM/yyyy hh:mm:ss";
 }

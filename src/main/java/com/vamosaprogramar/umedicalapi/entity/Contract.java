@@ -19,7 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -76,13 +76,13 @@ public class Contract {
 	
 	@Column(name="start_date")
 	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
 	private LocalDate startDate;
 	
 	
 	@Column(name="finish_date")
 	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
 	private LocalDate finishDate;
 	
 	@Column(name = "value")
