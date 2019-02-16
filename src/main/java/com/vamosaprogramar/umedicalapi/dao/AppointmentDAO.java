@@ -22,4 +22,6 @@ public interface AppointmentDAO {
 	public void toCancelAnAppointment(int id);
 
 	public List<Appointment> getAppointmentByPatient(int patientId);
+
+	public List<Appointment> getAppointmentByPatientByState(int patientId, String state);
 }

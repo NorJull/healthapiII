@@ -16,6 +16,8 @@ import static com.vamosaprogramar.umedicalapi.GeneralConstants.THURSDAY;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.FRIDAY;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.SATURDAY;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.SUNDAY;
+
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_SCHEDULED;
 import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.dao.ScheduleDAO;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
@@ -59,18 +61,21 @@ public class AppointmentServiceImpl implements AppointmentService {
 		List<Schedule> schedules;
 		List<Appointment> appointments;
 
+		System.out.println("PASO 1");
 		if (doctorId == ALL_DOCTORS_ID) {
+			System.out.println("PASO 1.1");
 			schedules = scheduleDAO.getScheduleOfOneSpeciality(specialityId);
 
 			appointments = appointmentDAO.getRegisteredAppointmentsOfAllDoctors(specialityId, startDate, finishDate);
 
 		} else {
+			System.out.println("PASO 1.2");
 			schedules = scheduleDAO.getScheduleByDoctorAndSpeciality(specialityId, doctorId);
 
 			appointments = appointmentDAO.getRegisteredAppointmentsOfOneDoctor(specialityId, doctorId, startDate,
 					finishDate);
 		}
-
+		System.out.println("PASO 2");
 		// Contendra el número de citas que puede atender el doctor en los dias de la
 		// semana
 		Map<Integer, Integer> mapSchedule = new HashMap<>();
@@ -88,11 +93,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 			mapSchedule.put(schedule.getWeekDay(),
 					value + schedule.getAppointmentsTurnOne() + schedule.getAppointmentsTurnTwo());
 		}
-
+		System.out.println("PASO 3");
 		// Contendra el número de citas disponibles que el doctor tiene en cada día del
 		// mes
 		Map<Integer, Integer> mapAppointments = new HashMap<>();
 
+		System.out.println("******************************111111111111*************************************");
+		System.out.println(mapAppointments);
+		
 		LocalDate localDate = LocalDate.of(year, month, 1);
 		int dayOfWeek;
 		for (int i = 1; i <= getFinishDayOfTheMonth(year, month); i++) {
@@ -126,6 +134,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 			localDate = localDate.plusDays(1);
 		}
 
+		System.out.println("***************************2222222222222222****************************************");
+		System.out.println(mapAppointments);
+		
 		for (Appointment appointment : appointments) {
 
 			day = appointment.getDate().getDayOfMonth();
@@ -135,7 +146,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 			mapAppointments.put(day, value - 1);
 
 		}
-
+		System.out.println("*************************33333333333333333333333******************************************");
+		System.out.println(mapAppointments);
+		
 		return mapAppointments;
 	}
 
@@ -178,6 +191,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> getAppointmentByPatient(int patientId) {
 
 		return appointmentDAO.getAppointmentByPatient(patientId);
+	}
+
+	@Override
+	public List<Appointment> getRegisteredAppointmentsPerPatient(int patientId) {
+		return appointmentDAO.getAppointmentByPatientByState(patientId, APPOINTMENT_STATE_SCHEDULED);
 	}
 
 }
