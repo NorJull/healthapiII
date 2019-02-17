@@ -17,12 +17,12 @@ public interface AppointmentService {
 
 	public List<Appointment> getRegisteredAppointments(int specialityId, int doctorId, int year, int month);
 
-	public List<Appointment> getAppointments(int specialityId, int doctorId, int year, int month, int day);
-
 	public void toCancelAnAppointment(int id);
 
 	public List<Appointment> getAppointmentByPatient(int patientId);
 
 	public List<Appointment> getRegisteredAppointmentsPerPatient(int patientId);
+
+	List<Appointment> getRegisteredAppointmentsOfTheDay(int specialityId, int doctorId, int year, int month, int day);
 	
 }

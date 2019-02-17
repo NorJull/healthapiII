@@ -57,15 +57,15 @@ public class AppointmentController {
 		return appointmentService.getRegisteredAppointments(specialityId, doctorId, year, month);
 	}
 
-	@GetMapping("registeredAppointmentsPerPatient/")
+	@GetMapping("registeredAppointmentsPerPatient/{patientId}")
 	public List<Appointment> getRegisteredAppointmentsPerPatient(@PathVariable int patientId) {
 		return appointmentService.getRegisteredAppointmentsPerPatient(patientId);
 	}
 	
-	@GetMapping("/{specialityId}/{doctorId}/{year}/{month}/{day}")
-	public List<Appointment> getAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
+	@GetMapping("registeredAppointments/{specialityId}/{doctorId}/{year}/{month}/{day}")
+	public List<Appointment> getRegisteredAppointmentsOfTheDay(@PathVariable int specialityId, @PathVariable int doctorId,
 			@PathVariable int year, @PathVariable int month, @PathVariable int day) {
-		return appointmentService.getAppointments(specialityId, doctorId, year, month, day);
+		return appointmentService.getRegisteredAppointmentsOfTheDay(specialityId, doctorId, year, month, day);
 	}
 
 	@PostMapping
@@ -73,7 +73,7 @@ public class AppointmentController {
 		appointmentService.addAppointment(appointment);
 	}
 
-	@PutMapping("{id}")
+	@PutMapping("toCancel/{id}")
 	public void toCancelAnAppointment(@PathVariable int id) {
 		appointmentService.toCancelAnAppointment(id);
 	}

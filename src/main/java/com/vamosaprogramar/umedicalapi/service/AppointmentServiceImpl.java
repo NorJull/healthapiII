@@ -172,11 +172,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<Appointment> getAppointments(int specialityId, int doctorId, int year, int month, int day) {
+	public List<Appointment> getRegisteredAppointmentsOfTheDay(int specialityId, int doctorId, int year, int month, int day) {
 
 		LocalDate dayDate = LocalDate.of(year, month, day);
 
-		return appointmentDAO.getAppointments(specialityId, doctorId, dayDate);
+		return appointmentDAO.getRegisteredAppointmentsOfTheDay(specialityId, doctorId, dayDate);
 
 	}
 

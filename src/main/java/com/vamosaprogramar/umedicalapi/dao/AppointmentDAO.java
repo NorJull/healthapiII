@@ -17,11 +17,12 @@ public interface AppointmentDAO {
 
 	public List<Appointment> getRegisteredAppointmentsOfOneDoctor(int specialityId, int doctorId, LocalDate startDate, LocalDate finishDate);
 
-	public List<Appointment> getAppointments(int specialityId, int doctorId, LocalDate dayDate);
 
 	public void toCancelAnAppointment(int id);
 
 	public List<Appointment> getAppointmentByPatient(int patientId);
 
 	public List<Appointment> getAppointmentByPatientByState(int patientId, String state);
+
+	public List<Appointment> getRegisteredAppointmentsOfTheDay(int specialityId, int doctorId, LocalDate dayDate);
 }
