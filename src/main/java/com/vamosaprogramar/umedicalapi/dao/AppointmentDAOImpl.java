@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_SCHEDULED;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_CANCELED;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
@@ -332,4 +333,64 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 		return null;
 	}
 
+	@Override
+	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayAllDoctors(LocalDate today) {
+		Session session = null;
+		try {
+
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+
+			Query theQuery = session.createQuery("from Appointment where state =:state and date =:dayDate ORDER BY time ASC");
+
+			theQuery.setParameter("state", APPOINTMENT_STATE_SCHEDULED);
+			theQuery.setParameter("dayDate", today);
+			
+			List<Appointment> appointments = theQuery.list();
+
+			return appointments;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+
+		}
+		return null;
+	}
+
+	@Override
+	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId) {
+		Session session = null;
+		try {
+
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+
+			Query theQuery = session.createQuery("from Appointment where state =:state and applicationUser.id =:doctorID and date =:dayDate ORDER BY time ASC");
+
+			theQuery.setParameter("state", APPOINTMENT_STATE_SCHEDULED);
+			theQuery.setParameter("doctorID", doctorId);
+			theQuery.setParameter("dayDate", today);
+			
+			List<Appointment> appointments = theQuery.list();
+
+			return appointments;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+
+		}
+		return null;
+	}
+
+	
 }

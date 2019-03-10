@@ -32,7 +32,6 @@ public class AppointmentController {
 
 	@GetMapping("{id}")
 	public Appointment getAppointment(@PathVariable int id) {
-
 		return appointmentService.getAppointment(id);
 	}
 
@@ -41,7 +40,10 @@ public class AppointmentController {
 
 		return appointmentService.getAppointmentByPatient(patientId);
 	}
-
+	@GetMapping("registeredAppointmentsOfTheCurrentDay/{doctorId}")
+	public List<Appointment> getRegisteredAppoinmentsOfTheCurrentDay(@PathVariable int doctorId){
+		return appointmentService.registeredAppointmentsOfTheCurrentDay(doctorId);
+	}
 	@GetMapping("{specialityId}/{doctorId}/{year}/{month}")
 	public Map<Integer, Integer> getNumberOfAvailableAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
 			@PathVariable int year, @PathVariable int month) {
@@ -50,7 +52,6 @@ public class AppointmentController {
 	
 	}
 	
-
 	@GetMapping("registeredAppointments/{specialityId}/{doctorId}/{year}/{month}")
 	public List<Appointment> getRegisteredAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
 			@PathVariable int year, @PathVariable int month) {

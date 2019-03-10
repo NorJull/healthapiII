@@ -25,4 +25,7 @@ public class GeneralConstants {
 	
 	//Formato fecha y hora
 	public static final String DATA_TIME_FORMAT = "dd/MM/yyyy hh:mm:ss";
+	
+	//ZoneId de Colombia
+	public static final String COLOMBIA_TIME_ZONE_ID = "America/Bogota";
 }

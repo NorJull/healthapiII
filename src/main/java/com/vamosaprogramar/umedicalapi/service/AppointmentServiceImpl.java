@@ -1,6 +1,8 @@
 package com.vamosaprogramar.umedicalapi.service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,9 @@ import static com.vamosaprogramar.umedicalapi.GeneralConstants.SATURDAY;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.SUNDAY;
 
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_SCHEDULED;
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.COLOMBIA_TIME_ZONE_ID;
+
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.dao.ScheduleDAO;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
@@ -61,21 +66,19 @@ public class AppointmentServiceImpl implements AppointmentService {
 		List<Schedule> schedules;
 		List<Appointment> appointments;
 
-		System.out.println("PASO 1");
+		
 		if (doctorId == ALL_DOCTORS_ID) {
-			System.out.println("PASO 1.1");
 			schedules = scheduleDAO.getScheduleOfOneSpeciality(specialityId);
 
 			appointments = appointmentDAO.getRegisteredAppointmentsOfAllDoctors(specialityId, startDate, finishDate);
 
 		} else {
-			System.out.println("PASO 1.2");
 			schedules = scheduleDAO.getScheduleByDoctorAndSpeciality(specialityId, doctorId);
 
 			appointments = appointmentDAO.getRegisteredAppointmentsOfOneDoctor(specialityId, doctorId, startDate,
 					finishDate);
 		}
-		System.out.println("PASO 2");
+
 		// Contendra el número de citas que puede atender el doctor en los dias de la
 		// semana
 		Map<Integer, Integer> mapSchedule = new HashMap<>();
@@ -93,13 +96,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 			mapSchedule.put(schedule.getWeekDay(),
 					value + schedule.getAppointmentsTurnOne() + schedule.getAppointmentsTurnTwo());
 		}
-		System.out.println("PASO 3");
+
 		// Contendra el número de citas disponibles que el doctor tiene en cada día del
 		// mes
 		Map<Integer, Integer> mapAppointments = new HashMap<>();
 
-		System.out.println("******************************111111111111*************************************");
-		System.out.println(mapAppointments);
 		
 		LocalDate localDate = LocalDate.of(year, month, 1);
 		int dayOfWeek;
@@ -134,8 +135,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 			localDate = localDate.plusDays(1);
 		}
 
-		System.out.println("***************************2222222222222222****************************************");
-		System.out.println(mapAppointments);
 		
 		for (Appointment appointment : appointments) {
 
@@ -146,9 +145,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 			mapAppointments.put(day, value - 1);
 
 		}
-		System.out.println("*************************33333333333333333333333******************************************");
-		System.out.println(mapAppointments);
-		
 		return mapAppointments;
 	}
 
@@ -165,7 +161,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		} else {
 			List<Appointment> appointments = appointmentDAO.getRegisteredAppointmentsOfOneDoctor(specialityId, doctorId,
 					startDate, finishDate);
-			;
+			
 			return appointments;
 		}
 
@@ -196,6 +192,20 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<Appointment> getRegisteredAppointmentsPerPatient(int patientId) {
 		return appointmentDAO.getAppointmentByPatientByState(patientId, APPOINTMENT_STATE_SCHEDULED);
+	}
+
+	@Override
+	public List<Appointment> registeredAppointmentsOfTheCurrentDay(int doctorId) {
+		
+		ZonedDateTime todayWithZone = ZonedDateTime.now(ZoneId.of(COLOMBIA_TIME_ZONE_ID));
+		
+		LocalDate today = LocalDate.of(todayWithZone.getYear(), todayWithZone.getMonth(), todayWithZone.getDayOfMonth());
+		System.out.println("#########################################################################");
+		System.out.println(today);
+		if(doctorId == ALL_DOCTORS_ID)
+			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayAllDoctors(today);
+		else
+			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayPerDoctor(today,doctorId);
 	}
 
 }
