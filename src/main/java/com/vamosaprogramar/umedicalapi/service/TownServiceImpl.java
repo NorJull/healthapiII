@@ -17,14 +17,17 @@ public class TownServiceImpl implements TownService {
 	
 	@Override
 	public List<Town> getTowns() {
-
 		return townDAO.getTowns();
 	}
 
 	@Override
 	public Town getTown(int id) {
-		// TODO Auto-generated method stub
 		return townDAO.getTown(id);
+	}
+
+	@Override
+	public List<Town> getTownsPerDepartament(int departamentId) {
+		return townDAO.getTownsPerDepartament(departamentId);
 	}
 
 }

@@ -30,4 +30,8 @@ public class TownController {
 		return townService.getTown(id);
 	}
 	
+	@GetMapping("townsPerDepartament/{departamentId}")
+	public List<Town> getTownsPerDepartament(@PathVariable int departamentId) {
+		return townService.getTownsPerDepartament(departamentId);
+	}
 }

@@ -46,7 +46,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public Appointment getAppointment(int id) {
-		// TODO Auto-generated method stub
 		return appointmentDAO.getAppointment(id);
 	}
 

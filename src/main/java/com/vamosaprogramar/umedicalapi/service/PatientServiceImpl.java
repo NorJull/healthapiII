@@ -85,4 +85,9 @@ public class PatientServiceImpl implements PatientService {
 		return patientDAO.getPatientByDocumentAndDocumentType(document, documentType);
 	}
 
+	@Override
+	public void addParticularPatient(Patient patient) {
+		patientDAO.addParticularPatient(patient);
+	}
+
 }

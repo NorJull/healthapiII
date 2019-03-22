@@ -15,4 +15,6 @@ public interface PatientService {
 	public List<Patient> getPatients();
 
 	public Patient getPatientByDocumentAndDocumentType(String document, String documentType);
+
+	public void addParticularPatient(Patient patient);
 }

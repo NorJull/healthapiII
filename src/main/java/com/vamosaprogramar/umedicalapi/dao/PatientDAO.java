@@ -17,6 +17,8 @@ public interface PatientDAO {
 	public void updatePatient(Patient patient, Session session);
 
 	public List<Patient> getPatients();
+
+	public void addParticularPatient(Patient patient);
 	
 	
 }

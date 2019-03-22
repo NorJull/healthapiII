@@ -8,4 +8,6 @@ public interface TownService {
 	public List<Town> getTowns();
 	
 	public Town getTown(int id);
+
+	public List<Town> getTownsPerDepartament(int departamentId);
 }

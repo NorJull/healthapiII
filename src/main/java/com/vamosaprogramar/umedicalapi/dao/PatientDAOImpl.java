@@ -48,7 +48,7 @@ public class PatientDAOImpl implements PatientDAO {
 		}
 
 		session.save(patient);
-	}
+	} 
 
 	@Override
 	public void updatePatient(Patient patient, Session session) {
@@ -119,6 +119,41 @@ public class PatientDAOImpl implements PatientDAO {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void addParticularPatient(Patient patient) {
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+			
+			if (patient.getDepartament() != null) {
+
+				Departament departament = session.get(Departament.class, patient.getDepartament().getId());
+
+				patient.setDepartament(departament);
+			}
+
+			if (patient.getTown() != null) {
+				Town town = session.get(Town.class, patient.getTown().getId());
+
+				patient.setTown(town);
+			}
+
+			session.save(patient);
+			
+			session.getTransaction().commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+		}
+		
 	}
 
 }
