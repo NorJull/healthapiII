@@ -30,75 +30,68 @@ import com.vamosaprogramar.umedicalapi.service.ContractService;
 @RestController
 @RequestMapping("contracts")
 public class ContractController {
-	
+
 	@Autowired
 	private ContractService contractService;
-	
 
 	@GetMapping()
-	public List<Contract> getContracts(){
-					
+	public List<Contract> getContracts() {
+
 		return contractService.getContracts();
 	}
-	
 
 	@GetMapping("{id}")
 	public Contract getContract(@PathVariable int id) {
-		
-		Contract c = contractService.getContract(id);;
 
+		Contract c = contractService.getContract(id);
 		return c;
 	}
-	
-	
+
 	@GetMapping("/{id}/procedureTypes")
-	public List<ProcedureType> getProcedureTypes(@PathVariable int id){
-		
+	public List<ProcedureType> getProcedureTypes(@PathVariable int id) {
+
 		return contractService.getProcedureTypes(id);
 	}
-	
+
 	@GetMapping("/{id}/patients")
-	public List<Patient> getPatients(@PathVariable int id){
-					
+	public List<Patient> getPatients(@PathVariable int id) {
+
 		return contractService.getPatients(id);
 	}
-	
-	
+
 	@PostMapping()
-	public Integer addContract(@RequestBody Contract contract){
-				
+	public Integer addContract(@RequestBody Contract contract) {
+
 		return contractService.addContract(contract);
 	}
-	
-	
+
 	@PostMapping(path = "/{id}/procedureTypes/uploadFile", consumes = { "multipart/form-data" })
-	public Integer uploadProcedureTypesFile(@RequestParam("file") MultipartFile procedureTypesFile,@PathVariable int id){
-		
-			//contract procedures
-		if(procedureTypesFile.isEmpty()) {
-			
+	public Integer uploadProcedureTypesFile(@RequestParam("file") MultipartFile procedureTypesFile,
+			@PathVariable int id) {
+
+		// contract procedures
+		if (procedureTypesFile.isEmpty()) {
+
 			return null;
 		}
-		
-		Integer processId = contractService.uploadContractFile(procedureTypesFile,id);
-		
+
+		Integer processId = contractService.uploadContractFile(procedureTypesFile, id);
+
 		return processId;
 	}
-	
+
 	@PostMapping(path = "/{id}/patients/uploadFile", consumes = { "multipart/form-data" })
-	public Integer uploadPatientsFile(@RequestParam("file") MultipartFile PatientsFile,@PathVariable int id){
-		
-		//contract procedures
-		if(PatientsFile.isEmpty()) {
-			
+	public Integer uploadPatientsFile(@RequestParam("file") MultipartFile PatientsFile, @PathVariable int id) {
+
+		// contract procedures
+		if (PatientsFile.isEmpty()) {
+
 			return null;
 		}
-		
-	    Integer processId = contractService.uploadPatientsFile(PatientsFile,id);
-		
+
+		Integer processId = contractService.uploadPatientsFile(PatientsFile, id);
+
 		return processId;
 	}
-	
-	
-	
+
 }
