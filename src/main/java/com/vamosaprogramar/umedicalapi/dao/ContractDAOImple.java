@@ -228,21 +228,22 @@ public class ContractDAOImple implements ContractDAO {
 	}
 
 	@Override
-	public void addPatient(int contractId, String line, Session session) throws PatientDoesNotExist {
+	public int addPatient(int contractId, String document, String documentType, Session session) throws PatientDoesNotExist {
 
-		Query theQuery = session.createQuery("From Patient where document= :patientDocument");
+		Query theQuery = session.createQuery("From Patient where document= :patientDocument and documentType= :documentType");
 
-		theQuery.setParameter("patientDocument", line.trim());
+		theQuery.setParameter("patientDocument", document);
+		theQuery.setParameter("documentType", documentType);
 
 		Patient patient = (Patient) theQuery.uniqueResult();
 
 		if (patient == null) {
-			throw new PatientDoesNotExist(line.trim());
+			throw new PatientDoesNotExist(document,documentType);
 		}
 
-		Contract contract = session.get(Contract.class, contractId);
-
-		contract.addPatient(patient);
+		patient.setContractId(contractId);
+		
+		return patient.getId();
 
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.ContractDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcessDAO;
 import com.vamosaprogramar.umedicalapi.entity.Contract;
@@ -112,18 +113,16 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	@Override
-	public Integer uploadPatientsFile(MultipartFile patientsFile, int id) {
-		
-		String uploadFolder = ".//src//main//resources//myFiles//";
-		
+	public Integer uploadPatientsFile(MultipartFile patientsFile, int contractId) {
+				
 		try{
 			byte[] bytes = patientsFile.getBytes();	
 
-			Path path = Paths.get(uploadFolder + patientsFile.getOriginalFilename() );
+			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + patientsFile.getOriginalFilename() );
 			
 			Files.write(path, bytes);
 			
-			FileReader fileReader = new FileReader(uploadFolder + patientsFile.getOriginalFilename());
+			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + patientsFile.getOriginalFilename());
 			
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			bufferedReader.mark(100000);
@@ -138,11 +137,11 @@ public class ContractServiceImpl implements ContractService {
 			bufferedReader.reset();
 			
 			
-			Process process = new  Process(1, "PACIENTES DE UN CONTRATO", 'E', LocalDateTime.now(), null, totalRows,0, 0, null);
+			Process process = new  Process(1, GeneralConstants.PACIENTES_DE_UN_CONTRATO, GeneralConstants.EJECUCION, LocalDateTime.now(), null, totalRows,0, 0, null);
 			
 			Integer processId = processDAO.addProcess(process);
 			
-			contractServiceAsyn.addPatients(bufferedReader,id, processId, totalRows);
+			contractServiceAsyn.addPatients(bufferedReader,contractId, processId, totalRows);
 			
 			return processId;
 			

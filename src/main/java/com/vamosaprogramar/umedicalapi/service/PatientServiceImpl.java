@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcessDAO;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
@@ -34,17 +35,15 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public Integer uploadPatientFile(MultipartFile patientFile) {
 		
-		String uploadFolder = ".//src//main//resources//myFiles//";
-		
 		try {
 			
 			byte[] bytes = patientFile.getBytes();
 			
-			Path path = Paths.get(uploadFolder + patientFile.getOriginalFilename());
+			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + patientFile.getOriginalFilename());
 			
 			Files.write(path,bytes);
 			
-			FileReader fileReader = new FileReader(uploadFolder + patientFile.getOriginalFilename());
+			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + patientFile.getOriginalFilename());
 			
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			bufferedReader.mark(100000);
@@ -57,7 +56,7 @@ public class PatientServiceImpl implements PatientService {
 			}
 			bufferedReader.reset();
 			
-			Process process = new Process(1, "SUBIDA DE PACIENTES", 'E', LocalDateTime.now(), null, totalRows,0, 0, null);
+			Process process = new Process(1, GeneralConstants.SUBIDA_DE_PACIENTES, 'E', LocalDateTime.now(), null, totalRows,0, 0, null);
 			
 			Integer processId = processDAO.addProcess(process);
 			

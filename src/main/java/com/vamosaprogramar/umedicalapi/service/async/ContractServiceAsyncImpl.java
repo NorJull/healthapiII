@@ -1,8 +1,14 @@
 package com.vamosaprogramar.umedicalapi.service.async;
 
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.COLOMBIA_TIME_ZONE_ID;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.regex.Pattern;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,8 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.ContractDAO;
+import com.vamosaprogramar.umedicalapi.dao.ContractHistoryDAO;
+import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
+import com.vamosaprogramar.umedicalapi.entity.ContractHistory;
 import com.vamosaprogramar.umedicalapi.exception.ContractDoesNotExist;
+import com.vamosaprogramar.umedicalapi.exception.IncompleteRow;
 import com.vamosaprogramar.umedicalapi.exception.PatientDoesNotExist;
 import com.vamosaprogramar.umedicalapi.exception.ProcedureTypeDoesNotExist;
 import com.vamosaprogramar.umedicalapi.service.ProcessService;
@@ -24,6 +35,12 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 
 	@Autowired
 	private ContractDAO contractDAO;
+
+	@Autowired
+	private ContractHistoryDAO contractHistoryDAO;
+
+	@Autowired
+	private PatientDAO patientDAO;
 
 	@Autowired
 	private ProcessService processService;
@@ -126,7 +143,17 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 				throw new ContractDoesNotExist();
 			}
 
+			// Desasociar a todos los pacientes del contrato
+			ZonedDateTime todayWithZone = ZonedDateTime.now(ZoneId.of(COLOMBIA_TIME_ZONE_ID));
+			LocalDate today = todayWithZone.toLocalDate();
+
+			contractHistoryDAO.dissociatePatients(contractId, today);
+			patientDAO.dissociatePatientsFromContract(contractId);
+
 			String line = bufferedReader.readLine();
+			String[] parts;
+			String document;
+			String documentType;
 
 			while (line != null) {
 
@@ -141,13 +168,26 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 
 				}
 
+				parts = line.split(Pattern.quote(";"));
+
 				try {
+					// Validación 1: Registro incompleto
+					if (parts.length != 2) {
+						throw new IncompleteRow();
+					}
+					document = parts[0];
+					documentType = parts[1];
 
-					 contractDAO.addPatient(contractId, line.trim(), session);
+					int patientId = contractDAO.addPatient(contractId, document.trim(), documentType.trim(), session);
+					ContractHistory contractHistory = new ContractHistory(contractId, patientId, today, null);
+					contractHistoryDAO.addContractHistory(contractHistory, session);
 
-				}catch (PatientDoesNotExist e) {
+				} catch (IncompleteRow e) {
+					log = log + "\n" + "Line " + currentRow + ">>... :" + e.getMessage();
+
+				} catch (PatientDoesNotExist e) {
 					log = log + "\n" + "Line " + currentRow + ">>" + line + " :" + e.getMessage();
-				} 
+				}
 
 				currentRow++;
 
@@ -172,9 +212,9 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 			processService.setFinishDate(processId, LocalDateTime.now());
 
 			if (log.equals("")) {
-				processService.setStatus(processId, 'T');// T:terminado
+				processService.setStatus(processId, GeneralConstants.TERMINADO);
 			} else {
-				processService.setStatus(processId, 'I');// I:Terminado con inconsistencias
+				processService.setStatus(processId, GeneralConstants.TERMINADO_CON_INCONSISTENCIAS);
 			}
 
 			if (session.isOpen()) {

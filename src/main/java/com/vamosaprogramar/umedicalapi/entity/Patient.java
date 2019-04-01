@@ -166,6 +166,8 @@ public class Patient {
 	@OneToMany(fetch = FetchType.LAZY ,mappedBy="patient",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Appointment> appointments; 
 	
+	@Column(name ="contract_id")
+	private Integer contractId;
 	
 	public Patient() {
 
@@ -459,8 +461,14 @@ public class Patient {
 		this.category = category;
 	}
 	
-	
-	
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+
 	public List<Contract> getContracts() {
 		return contracts;
 	}
@@ -484,6 +492,7 @@ public class Patient {
 		appointments.add(appointment);
 		appointment.setPatient(this);
 	}
+	
 	
 	@Override
 	public String toString() {

@@ -156,4 +156,33 @@ public class PatientDAOImpl implements PatientDAO {
 		
 	}
 
+	@Override
+	public void dissociatePatientsFromContract(int contractId) {
+		
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+			
+			Query theQuery = session.createQuery("update ContractHistory set contractId = :contractNull where contractId = :contractId");
+			
+			theQuery.setParameter("contractNull", null);
+			theQuery.setParameter("contractId", contractId);
+			
+			theQuery.executeUpdate();
+			
+			session.getTransaction().commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+		}
+		
+		
+	}
+
 }

@@ -74,8 +74,6 @@ public class PatientServiceAsyncImpl implements PatientServiceAsync {
 					session.beginTransaction();
 				}
 				
-				System.out.println(line);
-				
 				parts = line.split(Pattern.quote(";"));
 				
 				

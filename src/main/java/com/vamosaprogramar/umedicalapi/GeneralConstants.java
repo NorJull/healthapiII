@@ -28,4 +28,17 @@ public class GeneralConstants {
 	
 	//ZoneId de Colombia
 	public static final String COLOMBIA_TIME_ZONE_ID = "America/Bogota";
+	
+	//Folder donde se suben los documentos
+	public static final String UPLOAD_FOLDER = ".//src//main//resources//myFiles//";
+	
+	//Tipos de procesos
+	public static final String SUBIDA_DE_PACIENTES = "SUBIDA DE PACIENTES";
+	
+	public static final String PACIENTES_DE_UN_CONTRATO = "PACIENTES DE UN CONTRATO";
+	
+	//Estados de los procesos
+	public static final char EJECUCION = 'E';
+	public static final char TERMINADO = 'T';
+	public static final char TERMINADO_CON_INCONSISTENCIAS = 'I';
 }

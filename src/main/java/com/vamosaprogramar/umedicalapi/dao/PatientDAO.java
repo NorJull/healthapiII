@@ -1,5 +1,6 @@
 package com.vamosaprogramar.umedicalapi.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -19,6 +20,8 @@ public interface PatientDAO {
 	public List<Patient> getPatients();
 
 	public void addParticularPatient(Patient patient);
+	
+	public void dissociatePatientsFromContract(int contractId);
 	
 	
 }

@@ -198,9 +198,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 		
 		ZonedDateTime todayWithZone = ZonedDateTime.now(ZoneId.of(COLOMBIA_TIME_ZONE_ID));
 		
-		LocalDate today = LocalDate.of(todayWithZone.getYear(), todayWithZone.getMonth(), todayWithZone.getDayOfMonth());
-		System.out.println("#########################################################################");
-		System.out.println(today);
+		LocalDate today = todayWithZone.toLocalDate();
+
 		if(doctorId == ALL_DOCTORS_ID)
 			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayAllDoctors(today);
 		else
