@@ -24,7 +24,7 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 			session.beginTransaction();
 			
 			
-			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where contractId = :contractId and finishDate= :finishDateNull");
+			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where contractId = :contractId and finishDate is null");
 			
 			theQuery.setParameter("finishDate", finishDate);
 			theQuery.setParameter("contractId", contractId);
@@ -53,7 +53,7 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 	@Override
 	public void dissociatePatientFromContract(int patientId, LocalDate finishDate, Session session) {
 					
-			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where patientId = :patientId and finishDate= :finishDateNull");
+			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where patientId = :patientId and finishDate is null");
 			
 			theQuery.setParameter("finishDate", finishDate);
 			theQuery.setParameter("patientId", patientId);
