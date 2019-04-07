@@ -28,7 +28,6 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 			
 			theQuery.setParameter("finishDate", finishDate);
 			theQuery.setParameter("contractId", contractId);
-			theQuery.setParameter("finishDateNull", null);
 			
 			theQuery.executeUpdate();
 			
@@ -57,7 +56,6 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 			
 			theQuery.setParameter("finishDate", finishDate);
 			theQuery.setParameter("patientId", patientId);
-			theQuery.setParameter("finishDateNull", null);
 			
 			theQuery.executeUpdate();		
 	
