@@ -6,9 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.vamosaprogramar.umedicalapi.entity.ContractHistory;
 
+@Repository
 public class ContractHistoryDAOImple implements ContractHistoryDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,10 +24,11 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 			session.beginTransaction();
 			
 			
-			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where contractId = :contractId");
+			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where contractId = :contractId and finishDate= :finishDateNull");
 			
 			theQuery.setParameter("finishDate", finishDate);
 			theQuery.setParameter("contractId", contractId);
+			theQuery.setParameter("finishDateNull", null);
 			
 			theQuery.executeUpdate();
 			
@@ -45,6 +48,19 @@ public class ContractHistoryDAOImple implements ContractHistoryDAO {
 	public void addContractHistory(ContractHistory contractHistory, Session session) {
 		session.save(contractHistory);
 		
+	}
+
+	@Override
+	public void dissociatePatientFromContract(int patientId, LocalDate finishDate, Session session) {
+					
+			Query theQuery = session.createQuery("update ContractHistory set finishDate = :finishDate where patientId = :patientId and finishDate= :finishDateNull");
+			
+			theQuery.setParameter("finishDate", finishDate);
+			theQuery.setParameter("patientId", patientId);
+			theQuery.setParameter("finishDateNull", null);
+			
+			theQuery.executeUpdate();		
+	
 	}
 
 }

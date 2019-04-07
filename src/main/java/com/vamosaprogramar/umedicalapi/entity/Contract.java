@@ -53,17 +53,7 @@ public class Contract {
         inverseJoinColumns = { @JoinColumn(name = "procedure_type_id") }
     )
 	private List<ProcedureType> procedureTypes;
-	
-	
-	@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "contract_patient", 
-        joinColumns = { @JoinColumn(name = "contract_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "patient_id") }
-    )
-	private List<Patient> patients;
-	
+		
 	@Column(name = "description")
 	private String description;
 	
@@ -240,27 +230,6 @@ public class Contract {
 		
 	}
 	
-	public void addPatient(Patient patient) {
-		
-		if(patients==null) {
-			patients = new ArrayList<Patient>();
-		}
-		patients.add(patient);
-		
-		patient.addContract(this);
-		
-	}
-
-	public List<Patient> getPatients() {
-		return patients;
-	}
-
-
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
-	}
-
-
 	@Override
 	public String toString() {
 		return "Contract [id=" + id + ", healthEntity=" + healthEntity + ", contractType=" + contractType + ", value="

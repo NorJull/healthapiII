@@ -47,8 +47,6 @@ public class ContractHistory {
 		
 	}
 
-	
-
 	public ContractHistory(int contractId, int patientId, LocalDate startDate, LocalDate finishDate) {
 
 		this.contractId = contractId;
@@ -56,11 +54,6 @@ public class ContractHistory {
 		this.startDate = startDate;
 		this.finishDate = finishDate;
 	}
-
-
-
-
-
 
 	public int getId() {
 		return id;

@@ -177,8 +177,9 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 					}
 					document = parts[0];
 					documentType = parts[1];
-
+					
 					int patientId = contractDAO.addPatient(contractId, document.trim(), documentType.trim(), session);
+					contractHistoryDAO.dissociatePatientFromContract(patientId, today, session);
 					ContractHistory contractHistory = new ContractHistory(contractId, patientId, today, null);
 					contractHistoryDAO.addContractHistory(contractHistory, session);
 

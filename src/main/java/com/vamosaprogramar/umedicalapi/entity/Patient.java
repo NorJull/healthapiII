@@ -159,10 +159,6 @@ public class Patient {
 	private String category;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "patients")
-	private List<Contract> contracts;
-	
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY ,mappedBy="patient",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Appointment> appointments; 
 	
@@ -467,22 +463,6 @@ public class Patient {
 
 	public void setContractId(Integer contractId) {
 		this.contractId = contractId;
-	}
-
-	public List<Contract> getContracts() {
-		return contracts;
-	}
-
-	public void setContracts(List<Contract> contracts) {
-		this.contracts = contracts;
-	}
-
-	public void addContract(Contract contract) {
-		
-		if(contracts==null) {
-			contracts = new ArrayList<Contract>();
-		}
-		contracts.add(contract);
 	}
 
 	public void addAppointment(Appointment appointment) {

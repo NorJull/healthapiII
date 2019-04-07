@@ -165,7 +165,7 @@ public class PatientDAOImpl implements PatientDAO {
 
 			session.beginTransaction();
 			
-			Query theQuery = session.createQuery("update ContractHistory set contractId = :contractNull where contractId = :contractId");
+			Query theQuery = session.createQuery("update Patient set contractId = :contractNull where contractId = :contractId");
 			
 			theQuery.setParameter("contractNull", null);
 			theQuery.setParameter("contractId", contractId);

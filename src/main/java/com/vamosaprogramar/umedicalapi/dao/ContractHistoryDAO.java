@@ -11,4 +11,6 @@ public interface ContractHistoryDAO {
 	public void dissociatePatients(int contractId, LocalDate finishDate);
 
 	public void addContractHistory(ContractHistory contractHistory, Session session);
+
+	public void dissociatePatientFromContract(int patientId, LocalDate finishDate, Session session);
 }
