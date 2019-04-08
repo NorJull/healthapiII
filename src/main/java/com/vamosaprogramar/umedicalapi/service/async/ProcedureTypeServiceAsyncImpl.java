@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.ProcedureTypeDAO;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.exception.DuplicateProcedureType;
@@ -92,9 +93,9 @@ public class ProcedureTypeServiceAsyncImpl implements ProcedureTypeServiceAsync 
 			processService.setFinishDate(processId, LocalDateTime.now());
 			
 			if(log.equals("")) {
-				processService.setStatus(processId, 'T');//T:terminado
+				processService.setStatus(processId, GeneralConstants.TERMINADO);
 			}else {
-				processService.setStatus(processId, 'I');//I:Terminado con inconsistencias
+				processService.setStatus(processId, GeneralConstants.TERMINADO_CON_INCONSISTENCIAS);
 			}
 			
 			if (session.isOpen()) {

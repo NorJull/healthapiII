@@ -14,73 +14,68 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.ProcedureTypeDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcessDAO;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
 import com.vamosaprogramar.umedicalapi.entity.Process;
 import com.vamosaprogramar.umedicalapi.service.async.ProcedureTypeServiceAsync;
+
 @Service
 public class ProcedureTypeServiceImpl implements ProcedureTypeService {
 
 	@Autowired
 	private ProcedureTypeDAO procedureTypeDAO;
-	
+
 	@Autowired
 	private ProcessDAO processDAO;
-	
+
 	@Autowired
 	private ProcedureTypeServiceAsync procedureTypeServiceAsync;
 
 	@Override
-	public Integer uploadProcedureTypeFile(MultipartFile procedureTypeFile){
+	public Integer uploadProcedureTypeFile(MultipartFile procedureTypeFile) {
 
-		
-		
-		 
 		try {
-			System.out.println(">>>>>>>>>>>>>>>>>>"+1);
-			String uploadFolder = ".//src//main//resources//myFiles//";
-			
+
 			byte[] bytes = procedureTypeFile.getBytes();
-			System.out.println(">>>>>>>>>>>>>>>>>>"+2);
-			Path path = Paths.get(uploadFolder + procedureTypeFile.getOriginalFilename());
-			System.out.println(">>>>>>>>>>>>>>>>>>"+3);
+
+			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + procedureTypeFile.getOriginalFilename());
+
 			Files.write(path, bytes);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+4);
-			FileReader fileReader = new FileReader(uploadFolder + procedureTypeFile.getOriginalFilename());
+
+			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + procedureTypeFile.getOriginalFilename());
 
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+5);
-			//Contar las lineas a procesar
+
+			// Contar las lineas a procesar
 			bufferedReader.mark(100000);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+6);
+
 			String line = bufferedReader.readLine();
 			int totalRows = 0;
-			System.out.println(">>>>>>>>>>>>>>>>>>"+7);
-			while(line!=null) {
+
+			while (line != null) {
 				totalRows++;
 				line = bufferedReader.readLine();
 			}
-			
+
 			bufferedReader.reset();
-			System.out.println(">>>>>>>>>>>>>>>>>>"+8);
-			//Crear el proceso
-			Process process = new Process(1, "PROCEDIMIENTOS", 'E', LocalDateTime.now(), null, totalRows, 0, 0, null);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+9);
-		
+
+			// Crear el proceso
+			Process process = new Process(1, GeneralConstants.SUBIDA_DE_PROCEDIMIENTOS, GeneralConstants.EJECUCION, LocalDateTime.now(), null, totalRows, 0, 0, null);
+
 			Integer processId = processDAO.addProcess(process);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+10);
+
 			procedureTypeServiceAsync.addProcedureTypes(bufferedReader, processId, totalRows);
-			System.out.println(">>>>>>>>>>>>>>>>>>"+11);
+
 			return processId;
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		
-		
+		}
+
 		return null;
-			
+
 	}
 
 	@Override

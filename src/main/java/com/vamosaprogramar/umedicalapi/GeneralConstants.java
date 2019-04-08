@@ -37,6 +37,10 @@ public class GeneralConstants {
 	
 	public static final String PACIENTES_DE_UN_CONTRATO = "PACIENTES DE UN CONTRATO";
 	
+	public static final String PROCEDIMIENTOS_DE_UN_CONTRATO = "PROCEDIMIENTOS DE UN CONTRATO";
+	
+	public static final String SUBIDA_DE_PROCEDIMIENTOS = "SUBIDA DE PROCEDIMIENTOS";	
+	
 	//Estados de los procesos
 	public static final char EJECUCION = 'E';
 	public static final char TERMINADO = 'T';

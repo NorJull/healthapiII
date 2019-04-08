@@ -65,7 +65,7 @@ public class ContractController {
 			return null;
 		}
 
-		Integer processId = contractService.uploadContractFile(procedureTypesFile, id);
+		Integer processId = contractService.uploadProcedureTypesFile(procedureTypesFile, id);
 
 		return processId;
 	}

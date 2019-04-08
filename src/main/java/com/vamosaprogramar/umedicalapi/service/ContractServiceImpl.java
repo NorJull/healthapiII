@@ -53,19 +53,16 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	@Override
-	public Integer uploadContractFile(MultipartFile contractFile, int id){
-		
-			
-		String uploadFolder = ".//src//main//resources//myFiles//";
-		
+	public Integer uploadProcedureTypesFile(MultipartFile contractFile, int contractId){
+				
 		try{
 			byte[] bytes = contractFile.getBytes();	
 
-			Path path = Paths.get(uploadFolder + contractFile.getOriginalFilename() );
+			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + contractFile.getOriginalFilename() );
 			
 			Files.write(path, bytes);
 			
-			FileReader fileReader = new FileReader(uploadFolder + contractFile.getOriginalFilename());
+			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + contractFile.getOriginalFilename());
 			
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			bufferedReader.mark(100000);
@@ -80,11 +77,11 @@ public class ContractServiceImpl implements ContractService {
 			bufferedReader.reset();
 			
 			
-			Process process = new  Process(1, "PROCEDIMIENTOS DE UN CONTRATO", 'E', LocalDateTime.now(), null, totalRows,0, 0, null);
+			Process process = new  Process(1, GeneralConstants.PROCEDIMIENTOS_DE_UN_CONTRATO, GeneralConstants.EJECUCION, LocalDateTime.now(), null, totalRows,0, 0, null);
 			
 			Integer processId = processDAO.addProcess(process);
 			
-			contractServiceAsyn.addProcedureTypes(bufferedReader,id, processId, totalRows);
+			contractServiceAsyn.addProcedureTypes(bufferedReader,contractId, processId, totalRows);
 			
 			return processId;
 			
@@ -92,11 +89,7 @@ public class ContractServiceImpl implements ContractService {
 			e.printStackTrace();
 		}	
 
-			
-
 		return null;
-	
-			
 		
 	}
 

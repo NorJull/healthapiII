@@ -17,13 +17,13 @@ public interface ContractService {
 
 	public Integer addContract(Contract contract);
 
-	public Integer uploadContractFile(MultipartFile contractFile, int id);
+	public Integer uploadProcedureTypesFile(MultipartFile contractFile, int contractId);
 
 	public List<Contract> getContractsByHealthEntity(int healthEntityId);
 
 	public List<ProcedureType> getProcedureTypes(int contractId);
 
-	public Integer uploadPatientsFile(MultipartFile patientsFile, int id);
+	public Integer uploadPatientsFile(MultipartFile patientsFile, int contractId);
 
 	public List<Patient> getPatients(int id);
 	

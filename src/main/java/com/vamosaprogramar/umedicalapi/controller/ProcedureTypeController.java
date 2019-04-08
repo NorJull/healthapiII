@@ -41,7 +41,7 @@ public class ProcedureTypeController {
 	
 
 	@PostMapping(path = "/uploadFile", consumes = { "multipart/form-data" })
-	public Integer uploadContractFile(@RequestParam("file") MultipartFile procedureTypeFile){
+	public Integer uploadProcedureTypesFile(@RequestParam("file") MultipartFile procedureTypeFile){
 
 		
 		if(procedureTypeFile.isEmpty()) {

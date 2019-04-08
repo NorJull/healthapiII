@@ -30,6 +30,8 @@ public interface ContractDAO {
 	public int addPatient(int contractId, String document, String documentType, Session session) throws PatientDoesNotExist;
 
 	public List<Patient> getPatients(int id);
+
+	public  void disassociateProceduresTypes(int contractId);
 	
 	
 	

@@ -64,6 +64,10 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 			if (!contractDAO.contractExist(contractId)) {
 				throw new ContractDoesNotExist();
 			}
+			
+			//Desasociar todos los ProcedureTypes del contrato
+			contractDAO.disassociateProceduresTypes(contractId);
+
 
 			String line = bufferedReader.readLine();
 
@@ -112,9 +116,9 @@ public class ContractServiceAsyncImpl implements ContractServiceAsync {
 			processService.setFinishDate(processId, LocalDateTime.now());
 
 			if (log.equals("")) {
-				processService.setStatus(processId, 'T');// T:terminado
+				processService.setStatus(processId, GeneralConstants.TERMINADO);
 			} else {
-				processService.setStatus(processId, 'I');// I:Terminado con inconsistencias
+				processService.setStatus(processId, GeneralConstants.TERMINADO_CON_INCONSISTENCIAS); 
 			}
 
 			if (session.isOpen()) {

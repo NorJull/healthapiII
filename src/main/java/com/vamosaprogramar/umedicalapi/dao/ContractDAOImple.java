@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.ProjectionList;
@@ -255,7 +256,7 @@ public class ContractDAOImple implements ContractDAO {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query theQuery = session.createQuery("SELECT p FROM Patient p JOIN p.contracts cs WHERE cs.id= :ID");
+			Query theQuery = session.createQuery("From Patient where contractId = :ID");
 			
 			theQuery.setParameter("ID", id);
 						
@@ -274,6 +275,31 @@ public class ContractDAOImple implements ContractDAO {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void disassociateProceduresTypes(int contractId) {
+		Session session = null;
+		
+
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			SQLQuery sqlQuery = session.createSQLQuery("DELETE FROM contract_procedure_type cpt WHERE cpt.contract_id = :contractId");
+			sqlQuery.setParameter("contractId", contractId);
+			
+			sqlQuery.executeUpdate();
+			
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
 	}
 
 }
