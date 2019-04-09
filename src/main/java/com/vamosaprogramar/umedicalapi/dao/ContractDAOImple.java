@@ -302,4 +302,32 @@ public class ContractDAOImple implements ContractDAO {
 
 	}
 
+	@Override
+	public void updateContract(Contract contract) {
+		Session session = null;
+		
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Contract persistentContract = session.get(Contract.class, contract.getId());
+			if(persistentContract != null) {
+			persistentContract.setDescription(contract.getDescription());
+			persistentContract.setStartDate(contract.getStartDate());
+			persistentContract.setFinishDate(contract.getFinishDate());
+			persistentContract.setManualPercent(contract.getManualPercent());
+			persistentContract.setValue(contract.getValue());
+			}
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+
+		
+	}
+
 }

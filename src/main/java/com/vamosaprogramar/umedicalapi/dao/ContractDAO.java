@@ -32,6 +32,8 @@ public interface ContractDAO {
 	public List<Patient> getPatients(int id);
 
 	public  void disassociateProceduresTypes(int contractId);
+
+	public void updateContract(Contract contract);
 	
 	
 	

@@ -154,4 +154,9 @@ public class ContractServiceImpl implements ContractService {
 		return contractDAO.getPatients(id);
 	}
 
+	@Override
+	public void updateContract(Contract contract) {
+		contractDAO.updateContract(contract);		
+	}
+
 }

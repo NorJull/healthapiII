@@ -26,6 +26,8 @@ public interface ContractService {
 	public Integer uploadPatientsFile(MultipartFile patientsFile, int contractId);
 
 	public List<Patient> getPatients(int id);
+
+	public void updateContract(Contract contract);
 	
 	
 
