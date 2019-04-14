@@ -21,7 +21,7 @@ import com.vamosaprogramar.umedicalapi.service.PatientService;
 public class PatientController {
 	
 	@Autowired
-	PatientService patientService;
+	private PatientService patientService;
 	
 	@GetMapping("{document}/{documentType}")
 	public Patient getPatientByDocumentAndDocumentType(@PathVariable String document,@PathVariable String documentType){
