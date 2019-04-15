@@ -174,7 +174,7 @@ public class AIEPI {
 	@Column(name = "wet_skin")
 	private String wetSkin;
 
-	@Column(name = "bleeding evidence")
+	@Column(name = "bleeding_evidence")
 	private String bleedingEvidence;
 
 	@Column(name = "exanthema")

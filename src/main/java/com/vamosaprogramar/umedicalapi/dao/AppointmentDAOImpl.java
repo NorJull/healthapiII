@@ -38,8 +38,6 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
 			List<Appointment> appointments = theQuery.list();
 
-			session.getTransaction().commit();
-
 			return appointments;
 
 		} catch (Exception e) {

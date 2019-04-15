@@ -10,23 +10,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vamosaprogramar.umedicalapi.entity.MedicalRecord;
-import com.vamosaprogramar.umedicalapi.service.MedicalRecordService;
+import com.vamosaprogramar.umedicalapi.entity.AIEPI;
+import com.vamosaprogramar.umedicalapi.service.AIEPIService;
 
 @RestController
-@RequestMapping("medicalRecords")
-public class MedicalRecordController {
+@RequestMapping("AIEPIs")
+public class AIEPIController {
 
 	@Autowired
-	private MedicalRecordService medicalRecordService;
+	private AIEPIService aiepiService;
 	
 	@GetMapping("/patients/{patientId}")
-	public List<MedicalRecord> getMedicalRecordsByPatient(@PathVariable int patientId){
-		return medicalRecordService.getMedicalRecordsByPatient(patientId);
+	public List<AIEPI> getAIEPIsByPatient(@PathVariable int patientId){
+		return aiepiService.getAIEPIsByPatient(patientId);
 	}
 	
 	@PostMapping()
-	public void addMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-		medicalRecordService.addMedicalRecord(medicalRecord);
+	public void addAIEPI(@RequestBody AIEPI aiepi) {
+		aiepiService.addAIEPI(aiepi);
 	}
+	
+	
 }
