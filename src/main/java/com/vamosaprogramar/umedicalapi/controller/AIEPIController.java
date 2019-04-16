@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vamosaprogramar.umedicalapi.entity.AIEPI;
+import com.vamosaprogramar.umedicalapi.entity.result.AIEPIResult;
 import com.vamosaprogramar.umedicalapi.service.AIEPIService;
 
 @RestController
@@ -21,8 +22,13 @@ public class AIEPIController {
 	private AIEPIService aiepiService;
 	
 	@GetMapping("/patients/{patientId}")
-	public List<AIEPI> getAIEPIsByPatient(@PathVariable int patientId){
+	public List<AIEPIResult> getAIEPIsByPatient(@PathVariable int patientId){
 		return aiepiService.getAIEPIsByPatient(patientId);
+	}
+	
+	@GetMapping("{id}")
+	public AIEPI getAIEPI(@PathVariable int id) {
+		return aiepiService.getAIEPI(id);
 	}
 	
 	@PostMapping()

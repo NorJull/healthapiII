@@ -26,9 +26,9 @@ public class MedicalRecordController {
 		return medicalRecordService.getMedicalRecordsByPatient(patientId);
 	}
 	
-	@GetMapping("{Id}")
-	public MedicalRecord getMedicalRecord(@PathVariable int Id){
-		return medicalRecordService.getMedicalRecord(Id);
+	@GetMapping("{id}")
+	public MedicalRecord getMedicalRecord(@PathVariable int id){
+		return medicalRecordService.getMedicalRecord(id);
 	}
 	
 	@PostMapping()
