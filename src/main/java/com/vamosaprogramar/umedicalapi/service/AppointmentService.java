@@ -25,6 +25,6 @@ public interface AppointmentService {
 
 	List<Appointment> getRegisteredAppointmentsOfTheDay(int specialityId, int doctorId, int year, int month, int day);
 
-	public List<Appointment> registeredAppointmentsOfTheCurrentDay(int doctorId);
+	public List<Appointment> registeredAppointmentsOfTheCurrentDay(int doctorId, int specialityId);
 	
 }

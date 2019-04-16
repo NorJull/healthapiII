@@ -361,7 +361,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 	}
 
 	@Override
-	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId) {
+	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId, int specialityId) {
 		Session session = null;
 		try {
 
@@ -369,10 +369,11 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 
 			session.beginTransaction();
 
-			Query theQuery = session.createQuery("from Appointment where state =:state and applicationUser.id =:doctorID and date =:dayDate ORDER BY time ASC");
+			Query theQuery = session.createQuery("from Appointment where state =:state and applicationUser.id =:doctorID and speciality.id =:specialityId and date =:dayDate ORDER BY time ASC");
 
 			theQuery.setParameter("state", APPOINTMENT_STATE_SCHEDULED);
 			theQuery.setParameter("doctorID", doctorId);
+			theQuery.setParameter("specialityId", specialityId);
 			theQuery.setParameter("dayDate", today);
 			
 			List<Appointment> appointments = theQuery.list();

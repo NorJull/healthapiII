@@ -28,5 +28,5 @@ public interface AppointmentDAO {
 
 	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayAllDoctors(LocalDate today);
 
-	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId);
+	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId, int specialityId);
 }

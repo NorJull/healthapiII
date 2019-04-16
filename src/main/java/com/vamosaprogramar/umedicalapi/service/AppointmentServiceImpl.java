@@ -194,7 +194,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<Appointment> registeredAppointmentsOfTheCurrentDay(int doctorId) {
+	public List<Appointment> registeredAppointmentsOfTheCurrentDay(int doctorId, int specialityId) {
 		
 		ZonedDateTime todayWithZone = ZonedDateTime.now(ZoneId.of(COLOMBIA_TIME_ZONE_ID));
 		
@@ -203,7 +203,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		if(doctorId == ALL_DOCTORS_ID)
 			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayAllDoctors(today);
 		else
-			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayPerDoctor(today,doctorId);
+			return appointmentDAO.getRegisteredAppointmentsOfTheCurrentDayPerDoctor(today, doctorId, specialityId);
 	}
 
 }

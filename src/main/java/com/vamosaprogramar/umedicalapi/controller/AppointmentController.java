@@ -40,10 +40,11 @@ public class AppointmentController {
 
 		return appointmentService.getAppointmentByPatient(patientId);
 	}
-	@GetMapping("registeredAppointmentsOfTheCurrentDay/{doctorId}")
-	public List<Appointment> getRegisteredAppoinmentsOfTheCurrentDay(@PathVariable int doctorId){
-		return appointmentService.registeredAppointmentsOfTheCurrentDay(doctorId);
+	@GetMapping("registeredAppointmentsOfTheCurrentDay/{doctorId}/{specialityId}")
+	public List<Appointment> getRegisteredAppoinmentsOfTheCurrentDay(@PathVariable int doctorId, @PathVariable int specialityId){
+		return appointmentService.registeredAppointmentsOfTheCurrentDay(doctorId, specialityId);
 	}
+	
 	@GetMapping("{specialityId}/{doctorId}/{year}/{month}")
 	public Map<Integer, Integer> getNumberOfAvailableAppointments(@PathVariable int specialityId, @PathVariable int doctorId,
 			@PathVariable int year, @PathVariable int month) {
