@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.vamosaprogramar.umedicalapi.dao.MedicalRecordDAO;
 import com.vamosaprogramar.umedicalapi.entity.MedicalRecord;
+import com.vamosaprogramar.umedicalapi.entity.result.MedicalRecordResult;
 
 @Service
 public class MedicalRecordServiceImpl implements MedicalRecordService {
@@ -15,13 +16,19 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 	private MedicalRecordDAO medicalRecordDAO;
 	
 	@Override
-	public List<MedicalRecord> getMedicalRecordsByPatient(int patientId) {
+	public List<MedicalRecordResult> getMedicalRecordsByPatient(int patientId) {
 		return medicalRecordDAO.getMedicalRecordsByPatient(patientId);
 	}
 
 	@Override
 	public void addMedicalRecord(MedicalRecord medicalRecord) {
 		medicalRecordDAO.addMedicalRecord(medicalRecord);	
+	}
+
+	@Override
+	public MedicalRecord getMedicalRecord(int id) {
+	
+		return medicalRecordDAO.getMedicalRecord(id);
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vamosaprogramar.umedicalapi.entity.MedicalRecord;
+import com.vamosaprogramar.umedicalapi.entity.result.MedicalRecordResult;
 import com.vamosaprogramar.umedicalapi.service.MedicalRecordService;
 
 @RestController
@@ -21,8 +22,13 @@ public class MedicalRecordController {
 	private MedicalRecordService medicalRecordService;
 	
 	@GetMapping("/patients/{patientId}")
-	public List<MedicalRecord> getMedicalRecordsByPatient(@PathVariable int patientId){
+	public List<MedicalRecordResult> getMedicalRecordsByPatient(@PathVariable int patientId){
 		return medicalRecordService.getMedicalRecordsByPatient(patientId);
+	}
+	
+	@GetMapping("{Id}")
+	public MedicalRecord getMedicalRecord(@PathVariable int Id){
+		return medicalRecordService.getMedicalRecord(Id);
 	}
 	
 	@PostMapping()

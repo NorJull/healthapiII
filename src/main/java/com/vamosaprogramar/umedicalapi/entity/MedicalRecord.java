@@ -1,11 +1,23 @@
 package com.vamosaprogramar.umedicalapi.entity;
 
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
+import static com.vamosaprogramar.umedicalapi.GeneralConstants.TIME_FORMAT;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalTimeConverter;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.vamosaprogramar.umedicalapi.LocalDateConverter;
 
 @Entity
 @Table(name = "medical_record")
@@ -18,7 +30,20 @@ public class MedicalRecord {
 
 	@Column(name = "patient_id")
 	private int patientId;
+	
+	@Column(name="date_")
+	@Convert(converter = LocalDateConverter.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+	private LocalDate date;
+	
+	@Column(name = "time_")
+	@Convert(converter = LocalTimeConverter.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = TIME_FORMAT)
+	private LocalTime  time;
 
+	@Column(name = "particular")
+	private String particular;
+	
 	@Column(name = "patient_document_type")
 	private String patientDocumentType;
 
@@ -597,6 +622,30 @@ public class MedicalRecord {
 
 	public void setObservations(String observations) {
 		this.observations = observations;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	public String getParticular() {
+		return particular;
+	}
+
+	public void setParticular(String particular) {
+		this.particular = particular;
 	}
 
 	

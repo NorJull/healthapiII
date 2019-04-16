@@ -45,4 +45,10 @@ public class GeneralConstants {
 	public static final char EJECUCION = 'E';
 	public static final char TERMINADO = 'T';
 	public static final char TERMINADO_CON_INCONSISTENCIAS = 'I';
+	
+	//Procedimiento particular o no
+	public static final char PARTICULAR = 'S';
+	public static final char NO_PARTICULAR = 'N';
+	
+	
 }
