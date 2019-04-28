@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vamosaprogramar.umedicalapi.dao.ScheduleDAO;
-import com.vamosaprogramar.umedicalapi.dao.SpecialityDAO;
+import com.vamosaprogramar.umedicalapi.dao.EspecialidadDAO;
 import com.vamosaprogramar.umedicalapi.dao.UserDAO;
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Schedule;
-import com.vamosaprogramar.umedicalapi.entity.Speciality;
+import com.vamosaprogramar.umedicalapi.entity.Especialidad;
 import com.vamosaprogramar.umedicalapi.exception.ScheduleException;
 import com.vamosaprogramar.umedicalapi.exception.SpecialityDoesNotExist;
 import com.vamosaprogramar.umedicalapi.exception.UserDoesNotExist;
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
 	private ScheduleDAO scheduleDAO;
 	
 	@Autowired
-	private SpecialityDAO specialityDAO;
+	private EspecialidadDAO specialityDAO;
 	
 	
 	@Override
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService{
 				if(schedule.getSpeciality()==null)
 					throw new SpecialityDoesNotExist();
 				
-				Speciality speciality = specialityDAO.getSpeciality(schedule.getSpeciality().getId());
+				Especialidad speciality = specialityDAO.obtenerEspecialidad(schedule.getSpeciality().getId());
 														
 				if(speciality==null)
 					throw new SpecialityDoesNotExist();

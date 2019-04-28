@@ -16,7 +16,7 @@ import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
-import com.vamosaprogramar.umedicalapi.entity.Speciality;
+import com.vamosaprogramar.umedicalapi.entity.Especialidad;
 
 @Repository
 public class AppointmentDAOImpl implements AppointmentDAO {
@@ -88,7 +88,7 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 			session = sessionFactory.openSession();
 
 			// Fijar especialidad
-			Speciality speciality = session.get(Speciality.class, appointment.getSpeciality().getId());
+			Especialidad speciality = session.get(Especialidad.class, appointment.getSpeciality().getId());
 
 			appointment.setSpeciality(speciality);
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Schedule;
-import com.vamosaprogramar.umedicalapi.entity.Speciality;
+import com.vamosaprogramar.umedicalapi.entity.Especialidad;
 import com.vamosaprogramar.umedicalapi.exception.SpecialityDoesNotExist;
 import com.vamosaprogramar.umedicalapi.exception.UserDoesNotExist;
 
@@ -73,13 +73,13 @@ public class UserDAOImpl implements UserDAO {
 			
 			if(user.getSpecialities()!=null) {
 								
-				Iterator<Speciality> it= user.getSpecialities().iterator();
+				Iterator<Especialidad> it= user.getSpecialities().iterator();
 				
-				List<Speciality> aux = new ArrayList<>();
+				List<Especialidad> aux = new ArrayList<>();
 				
 				while(it.hasNext()) {
 				
-					Speciality s = session.get(Speciality.class, it.next().getId());
+					Especialidad s = session.get(Especialidad.class, it.next().getId());
 					aux.add(s);
 				}
 				user.setSpecialities(aux);
@@ -168,7 +168,7 @@ public class UserDAOImpl implements UserDAO {
 
 			session.beginTransaction();
 
-			Speciality speciality = session.get(Speciality.class, schedule.getSpeciality().getId());
+			Especialidad speciality = session.get(Especialidad.class, schedule.getSpeciality().getId());
 
 			ApplicationUser user = session.get(ApplicationUser.class, id);
 
@@ -210,7 +210,7 @@ public class UserDAOImpl implements UserDAO {
 
 			if (schedule.getSpeciality() != null) {
 
-				Speciality speciality = session.get(Speciality.class, schedule.getSpeciality().getId());
+				Especialidad speciality = session.get(Especialidad.class, schedule.getSpeciality().getId());
 				temporalSchedule.setSpeciality(speciality);
 			}
 

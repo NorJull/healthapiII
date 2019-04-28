@@ -63,7 +63,7 @@ public class ApplicationUser {
 			CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "applicationuser_speciality", joinColumns = {
 			@JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "speciality_id") })
-	private List<Speciality> specialities;
+	private List<Especialidad> specialities;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
@@ -172,11 +172,11 @@ public class ApplicationUser {
 		this.password = password;
 	}
 
-	public List<Speciality> getSpecialities() {
+	public List<Especialidad> getSpecialities() {
 		return specialities;
 	}
 
-	public void setSpecialities(List<Speciality> specialities) {
+	public void setSpecialities(List<Especialidad> specialities) {
 		this.specialities = specialities;
 	}
 
@@ -215,22 +215,22 @@ public class ApplicationUser {
 		schedule.setUser(this);
 	}
 
-	public void addSpeciality(Speciality speciality) {
+	public void addSpeciality(Especialidad speciality) {
 		if (specialities == null) {
-			specialities = new ArrayList<Speciality>();
+			specialities = new ArrayList<Especialidad>();
 		}
 		specialities.add(speciality);
 
 		speciality.addUser(this);
 	}
 
-	public void removeSpeciality(Speciality speciality) {
-		if (speciality == null) {
-			specialities = new ArrayList<Speciality>();
+	public void removeSpeciality(Especialidad especialidad) {
+		if (especialidad == null) {
+			specialities = new ArrayList<Especialidad>();
 		}
 
-		if (specialities.remove(speciality)) {
-			speciality.getUsers().remove(this);
+		if (specialities.remove(especialidad)) {
+			especialidad.getUsuarios().remove(this);
 		}
 	}
 

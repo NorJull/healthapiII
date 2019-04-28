@@ -41,6 +41,12 @@ public class GeneralConstants {
 	
 	public static final String SUBIDA_DE_PROCEDIMIENTOS = "SUBIDA DE PROCEDIMIENTOS";	
 	
+	public static final String PROCEDIMIENTOS_DE_UNA_ESPECIALIDAD = "PROCEDIMIENTOS DE UNA ESPECIALIDAD";
+	
+	public static final String SUBIDA_DE_MUNUAL_TARIFARIO = "SUBIDA DE MANUAL TARIFARIO";	
+	
+	
+	
 	//Estados de los procesos
 	public static final char EJECUCION = 'E';
 	public static final char TERMINADO = 'T';

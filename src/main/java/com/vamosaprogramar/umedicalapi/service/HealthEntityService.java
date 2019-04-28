@@ -2,7 +2,7 @@ package com.vamosaprogramar.umedicalapi.service;
 
 import java.util.List;
 
-import com.vamosaprogramar.umedicalapi.entity.Contract;
+import com.vamosaprogramar.umedicalapi.entity.Contrato;
 import com.vamosaprogramar.umedicalapi.entity.HealthEntity;
 
 public interface HealthEntityService {
@@ -17,7 +17,7 @@ public interface HealthEntityService {
 	
 	public void deleteHealthEnity(int id);
 
-	public List<Contract> getContractsByHealthEntity(int healthEntityId);
+	public List<Contrato> getContractsByHealthEntity(int healthEntityId);
 	
 	
 }

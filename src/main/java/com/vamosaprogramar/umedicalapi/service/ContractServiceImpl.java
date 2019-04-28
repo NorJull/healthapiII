@@ -14,55 +14,55 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vamosaprogramar.umedicalapi.GeneralConstants;
-import com.vamosaprogramar.umedicalapi.dao.ContractDAO;
+import com.vamosaprogramar.umedicalapi.dao.ContratoDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcessDAO;
-import com.vamosaprogramar.umedicalapi.entity.Contract;
+import com.vamosaprogramar.umedicalapi.entity.Contrato;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
-import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
+import com.vamosaprogramar.umedicalapi.entity.TipoProcedimiento;
 import com.vamosaprogramar.umedicalapi.entity.Process;
-import com.vamosaprogramar.umedicalapi.service.async.ContractServiceAsync;
+import com.vamosaprogramar.umedicalapi.service.async.ServicioContratoAsync;
 
 @Service
-public class ContractServiceImpl implements ContractService {
+public class ContractServiceImpl implements ServicioContrato {
 
 	@Autowired
-	private ContractDAO contractDAO;
+	private ContratoDAO contratoDAO;
 	
 	@Autowired
 	private ProcessDAO processDAO;
 	
 	@Autowired
-	private ContractServiceAsync contractServiceAsyn;
+	private ServicioContratoAsync servicioContratoAsync;
 	
 	@Override
-	public List<Contract> getContracts() {
+	public List<Contrato> obtenerContratos() {
 		
-		return contractDAO.getContracts();
+		return contratoDAO.obtenerContratos();
 	}
 
 	@Override
-	public Contract getContract(int id) {
+	public Contrato obtenerContrato(int id) {
 	
-		return contractDAO.getContract(id);
+		return contratoDAO.obtenerContrato(id);
 	}
 
 	@Override
-	public Integer addContract(Contract contract) {
+	public Integer crearContrato(Contrato contract) {
 
-		return contractDAO.addContract(contract);
+		return contratoDAO.crearContrato(contract);
 	}
 
 	@Override
-	public Integer uploadProcedureTypesFile(MultipartFile contractFile, int contractId){
+	public Integer subirArchivoTiposProcedimientos(MultipartFile archivoTiposProcedimientos, int contratoId){
 				
 		try{
-			byte[] bytes = contractFile.getBytes();	
+			byte[] bytes = archivoTiposProcedimientos.getBytes();	
 
-			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + contractFile.getOriginalFilename() );
+			Path path = Paths.get(GeneralConstants.UPLOAD_FOLDER + archivoTiposProcedimientos.getOriginalFilename() );
 			
 			Files.write(path, bytes);
 			
-			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + contractFile.getOriginalFilename());
+			FileReader fileReader = new FileReader(GeneralConstants.UPLOAD_FOLDER + archivoTiposProcedimientos.getOriginalFilename());
 			
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			bufferedReader.mark(100000);
@@ -81,7 +81,7 @@ public class ContractServiceImpl implements ContractService {
 			
 			Integer processId = processDAO.addProcess(process);
 			
-			contractServiceAsyn.addProcedureTypes(bufferedReader,contractId, processId, totalRows);
+			servicioContratoAsync.asociarTiposProcedimientos(bufferedReader,contratoId, processId, totalRows);
 			
 			return processId;
 			
@@ -94,15 +94,15 @@ public class ContractServiceImpl implements ContractService {
 	}
 
 	@Override
-	public List<Contract> getContractsByHealthEntity(int healthEntityId) {
+	public List<Contrato> obtenerContratosPorEntidad(int healthEntityId) {
 		
-		return contractDAO.getContractsByHealthEntity(healthEntityId);
+		return contratoDAO.obtenerContratosPorEntidad(healthEntityId);
 	}
 
 	@Override
-	public List<ProcedureType> getProcedureTypes(int contractId) {
+	public List<TipoProcedimiento> obtenerTiposProcedimientos(int contractId) {
 		
-		return contractDAO.getProcedureTypes(contractId);
+		return contratoDAO.obtenerTiposProcedimientos(contractId);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class ContractServiceImpl implements ContractService {
 			
 			Integer processId = processDAO.addProcess(process);
 			
-			contractServiceAsyn.addPatients(bufferedReader,contractId, processId, totalRows);
+			servicioContratoAsync.addPatients(bufferedReader,contractId, processId, totalRows);
 			
 			return processId;
 			
@@ -151,12 +151,12 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public List<Patient> getPatients(int id) {
 		
-		return contractDAO.getPatients(id);
+		return contratoDAO.getPatients(id);
 	}
 
 	@Override
-	public void updateContract(Contract contract) {
-		contractDAO.updateContract(contract);		
+	public void actualizarContrato(Contrato contract) {
+		contratoDAO.updateContract(contract);		
 	}
 
 }

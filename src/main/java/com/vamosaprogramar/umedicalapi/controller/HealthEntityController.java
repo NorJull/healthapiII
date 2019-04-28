@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vamosaprogramar.umedicalapi.entity.Contract;
+import com.vamosaprogramar.umedicalapi.entity.Contrato;
 import com.vamosaprogramar.umedicalapi.entity.HealthEntity;
 import com.vamosaprogramar.umedicalapi.service.HealthEntityService;
 
@@ -32,7 +32,7 @@ public class HealthEntityController {
 	}
 	
 	@GetMapping("{healthEntityId}/contracts")
-	public List<Contract> getContractsByHealthEntity(@PathVariable int healthEntityId){
+	public List<Contrato> getContractsByHealthEntity(@PathVariable int healthEntityId){
 		return healthEntityService.getContractsByHealthEntity(healthEntityId);
 	}
 	

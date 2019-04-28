@@ -54,7 +54,7 @@ public class Schedule {
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "specialty_id")
-	private Speciality speciality;
+	private Especialidad speciality;
 
 	public Schedule() {
 		
@@ -118,11 +118,11 @@ public class Schedule {
 		this.user = user;
 	}
 
-	public Speciality getSpeciality() {
+	public Especialidad getSpeciality() {
 		return speciality;
 	}
 
-	public void setSpeciality(Speciality speciality) {
+	public void setSpeciality(Especialidad speciality) {
 		this.speciality = speciality;
 	}
 

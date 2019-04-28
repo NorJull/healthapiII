@@ -9,10 +9,10 @@ import org.hibernate.validator.internal.constraintvalidators.bv.MaxValidatorForN
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.vamosaprogramar.umedicalapi.entity.ProcedureRate;
+import com.vamosaprogramar.umedicalapi.entity.TarifaProcedimiento;
 import com.vamosaprogramar.umedicalapi.entity.ProcedureRateId;
-import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
-import com.vamosaprogramar.umedicalapi.entity.RateManual;
+import com.vamosaprogramar.umedicalapi.entity.TipoProcedimiento;
+import com.vamosaprogramar.umedicalapi.entity.ManualTarifario;
 import com.vamosaprogramar.umedicalapi.exception.DuplicateProcedureRate;
 import com.vamosaprogramar.umedicalapi.exception.ProcedureTypeDoesNotExist;
 
@@ -24,16 +24,16 @@ public class ProcedureRateDAOImpl implements ProcedureRateDAO {
 	
 
 	@Override
-	public List<ProcedureRate> getProcedureRates() {
+	public List<TarifaProcedimiento> getProcedureRates() {
 		Session session=null;
 		
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query theQuery = session.createQuery("From ProcedureRate");
+			Query theQuery = session.createQuery("From TarifaProcedimiento");
 			
-			List<ProcedureRate> procedureRates = theQuery.list();
+			List<TarifaProcedimiento> procedureRates = theQuery.list();
 			
 			session.getTransaction().commit();
 			
@@ -50,35 +50,35 @@ public class ProcedureRateDAOImpl implements ProcedureRateDAO {
 	}
 
 	@Override
-	public void addProcedureRate(ProcedureRate procedureRate, Session session) throws ProcedureTypeDoesNotExist, DuplicateProcedureRate {
+	public void addProcedureRate(TarifaProcedimiento tarifaProcedimiento, Session session) throws ProcedureTypeDoesNotExist, DuplicateProcedureRate {
 
 		
-		RateManual rateManual = session.get(RateManual.class, procedureRate.getId().getRateManual().getId()); 
+		ManualTarifario rateManual = session.get(ManualTarifario.class, tarifaProcedimiento.getId().getRateManual().getId()); 
 
-		Query procedureTypeQuery  = session.createQuery("From ProcedureType where cup=:cupId"); 
+		Query tipoProcedimientoQuery  = session.createQuery("From TipoProcedimiento where cup=:cupId"); 
 
-		procedureTypeQuery.setParameter("cupId", procedureRate.getId().getProcedureType().getCup());
+		tipoProcedimientoQuery.setParameter("cupId", tarifaProcedimiento.getId().getProcedureType().getCup());
 	
-		ProcedureType procedureType = (ProcedureType) procedureTypeQuery.uniqueResult();
+		TipoProcedimiento tipoProcedimiento = (TipoProcedimiento) tipoProcedimientoQuery.uniqueResult();
 		
 		//Valida si el procedimiento existe.
-		if(procedureType == null) {
-			throw new ProcedureTypeDoesNotExist(procedureRate.getId().getProcedureType().getCup());
+		if(tipoProcedimiento == null) {
+			throw new ProcedureTypeDoesNotExist(tarifaProcedimiento.getId().getProcedureType().getCup());
 		}
 						
-		procedureRate.getId().setProcedureType(procedureType);
-		procedureRate.getId().setRateManual(rateManual);
+		tarifaProcedimiento.getId().setProcedureType(tipoProcedimiento);
+		tarifaProcedimiento.getId().setRateManual(rateManual);
 		
 		
 		
-		ProcedureRate procedureRateValid = session.get(ProcedureRate.class, procedureRate.getId());
+		TarifaProcedimiento procedureRateValid = session.get(TarifaProcedimiento.class, tarifaProcedimiento.getId());
 		//Valida si ya hay un registro para este manual con ese procedimiento
 		if(procedureRateValid != null) {
 			throw new DuplicateProcedureRate();
 		}
 			
 		
-		session.save(procedureRate);
+		session.save(tarifaProcedimiento);
 		
 
 	}
@@ -86,15 +86,15 @@ public class ProcedureRateDAOImpl implements ProcedureRateDAO {
 	@Override
 	public boolean procedureRateExist(int manualId,String cup, Session session) {
 		
-		RateManual rateManual = session.get(RateManual.class, manualId); 
+		ManualTarifario rateManual = session.get(ManualTarifario.class, manualId); 
 		
-		Query procedureTypeQuery  = session.createQuery("From ProcedureType where cup=:cupId"); 
+		Query procedureTypeQuery  = session.createQuery("From TipoProcedimiento where cup=:cupId"); 
 		procedureTypeQuery.setParameter("cupId", cup);
-		ProcedureType procedureType = (ProcedureType) procedureTypeQuery.uniqueResult();
+		TipoProcedimiento procedureType = (TipoProcedimiento) procedureTypeQuery.uniqueResult();
 		
 		ProcedureRateId procedureRateId = new ProcedureRateId(rateManual, procedureType);
 		
-		ProcedureRate procedureRate = session.get(ProcedureRate.class, procedureRateId);
+		TarifaProcedimiento procedureRate = session.get(TarifaProcedimiento.class, procedureRateId);
 		
 		if(procedureRate == null)
 			return false;
@@ -103,21 +103,21 @@ public class ProcedureRateDAOImpl implements ProcedureRateDAO {
 	}
 
 	@Override
-	public List<ProcedureRate> getProcedureRatesByManual(int manualId) {
+	public List<TarifaProcedimiento> getProcedureRatesByManual(int manualId) {
 		Session session=null;
 		
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query theQuery = session.createQuery("From ProcedureRate a where a.id.rateManual.id=:value");
+			Query theQuery = session.createQuery("From TarifaProcedimiento a where a.id.rateManual.id=:value");
 			theQuery.setParameter("value", manualId);
 			
-			List<ProcedureRate> procedureRates = theQuery.list();
+			List<TarifaProcedimiento> tarifaProcedimientos = theQuery.list();
 			
 			session.getTransaction().commit();
 			
-			return procedureRates;
+			return tarifaProcedimientos;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

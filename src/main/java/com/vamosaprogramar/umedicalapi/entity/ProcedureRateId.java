@@ -21,40 +21,40 @@ public class ProcedureRateId implements Serializable {
 	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name= "rate_manual_id")
-	private RateManual rateManual;
+	private ManualTarifario rateManual;
 	
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name= "procedure_type_id")
-	private ProcedureType procedureType;
+	private TipoProcedimiento procedureType;
 
 	public ProcedureRateId() {
 
 	}
 	
 	
-	public ProcedureRateId(RateManual rateManual, ProcedureType procedureType) {
+	public ProcedureRateId(ManualTarifario rateManual, TipoProcedimiento procedureType) {
 		super();
 		this.rateManual = rateManual;
 		this.procedureType = procedureType;
 	}
 
 
-	public RateManual getRateManual() {
+	public ManualTarifario getRateManual() {
 		return rateManual;
 	}
 
 
-	public void setRateManual(RateManual rateManual) {
+	public void setRateManual(ManualTarifario rateManual) {
 		this.rateManual = rateManual;
 	}
 
 
-	public ProcedureType getProcedureType() {
+	public TipoProcedimiento getProcedureType() {
 		return procedureType;
 	}
 
 
-	public void setProcedureType(ProcedureType procedureType) {
+	public void setProcedureType(TipoProcedimiento procedureType) {
 		this.procedureType = procedureType;
 	}
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
 import com.vamosaprogramar.umedicalapi.entity.Departament;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
-import com.vamosaprogramar.umedicalapi.entity.ProcedureType;
+import com.vamosaprogramar.umedicalapi.entity.TipoProcedimiento;
 import com.vamosaprogramar.umedicalapi.entity.Town;
 import com.vamosaprogramar.umedicalapi.exception.IncompleteRow;
 import com.vamosaprogramar.umedicalapi.service.ProcessService;
@@ -57,7 +57,7 @@ public class PatientServiceAsyncImpl implements PatientServiceAsync {
 			String line = bufferedReader.readLine();
 			String[] parts;
 			
-			ProcedureType procedureType;
+			TipoProcedimiento procedureType;
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
 			

@@ -21,7 +21,7 @@ public class Procedure {
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "procedure_type_id")
-	private ProcedureType procedureType;
+	private TipoProcedimiento procedureType;
 	
 	@Column(name ="patient_id")
 	private int patientId;
@@ -47,11 +47,11 @@ public class Procedure {
 		this.id = id;
 	}
 
-	public ProcedureType getProcedureType() {
+	public TipoProcedimiento getProcedureType() {
 		return procedureType;
 	}
 
-	public void setProcedureType(ProcedureType procedureType) {
+	public void setProcedureType(TipoProcedimiento procedureType) {
 		this.procedureType = procedureType;
 	}
 

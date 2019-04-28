@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 import com.vamosaprogramar.umedicalapi.entity.Patient;
-import com.vamosaprogramar.umedicalapi.entity.Speciality;
+import com.vamosaprogramar.umedicalapi.entity.Especialidad;
 import com.vamosaprogramar.umedicalapi.service.AppointmentService;
 
 @RestController

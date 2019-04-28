@@ -39,7 +39,7 @@ public class HealthEntity {
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER ,mappedBy="healthEntity",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	private List<Contract> contracts; 
+	private List<Contrato> contracts; 
 	
 	
 
@@ -89,18 +89,18 @@ public class HealthEntity {
 	}
 	
 	
-	public List<Contract> getContracts() {
+	public List<Contrato> getContracts() {
 		return contracts;
 	}
 
-	public void setContracts(List<Contract> contracts) {
+	public void setContracts(List<Contrato> contracts) {
 		this.contracts = contracts;
 	}
 
-	public void addContract(Contract tempContract) {
+	public void addContract(Contrato tempContract) {
 		
 		if(contracts == null) {
-			contracts = new ArrayList<Contract>();
+			contracts = new ArrayList<Contrato>();
 		}
 		
 		contracts.add(tempContract);

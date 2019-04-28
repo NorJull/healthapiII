@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vamosaprogramar.umedicalapi.dao.HealthEntityDAO;
-import com.vamosaprogramar.umedicalapi.entity.Contract;
+import com.vamosaprogramar.umedicalapi.entity.Contrato;
 import com.vamosaprogramar.umedicalapi.entity.HealthEntity;
 
 @Service
@@ -16,7 +16,7 @@ public class HealthEntityServiceImpl implements HealthEntityService {
 	private HealthEntityDAO healthEntityDAO;
 	
 	@Autowired
-	private ContractService contractService;
+	private ServicioContrato contractService;
 	
 	@Override
 	public List<HealthEntity> getHealthEntities() {
@@ -48,9 +48,9 @@ public class HealthEntityServiceImpl implements HealthEntityService {
 	}
 
 	@Override
-	public List<Contract> getContractsByHealthEntity(int healthEntityId) {
+	public List<Contrato> getContractsByHealthEntity(int healthEntityId) {
 		
-		return contractService.getContractsByHealthEntity(healthEntityId);
+		return contractService.obtenerContratosPorEntidad(healthEntityId);
 	}
 
 }
