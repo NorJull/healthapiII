@@ -27,8 +27,8 @@ public class Especialidad {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "descripcion")
-	private String descripcion;
+	@Column(name = "cargo")
+	private String cargo;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -62,13 +62,13 @@ public class Especialidad {
 	public Especialidad(int id, String descripcion) {
 
 		this.id = id;
-		this.descripcion = descripcion;
+		this.cargo = descripcion;
 	}
 
-	public Especialidad(int id, String descripcion, String nombre) {
+	public Especialidad(int id, String cargo, String nombre) {
 		super();
 		this.id = id;
-		this.descripcion = descripcion;
+		this.cargo = cargo;
 		this.nombre = nombre;
 	}
 
@@ -80,12 +80,12 @@ public class Especialidad {
 		this.id = id;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public String getNombre() {
