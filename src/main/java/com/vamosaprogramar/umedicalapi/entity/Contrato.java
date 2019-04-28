@@ -78,7 +78,6 @@ public class Contrato {
 	private double porcentajeManualTarifario;
 	
 	
-	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(
         name = "contrato_tipo_procedimeinto", 
@@ -243,29 +242,6 @@ public class Contrato {
 		this.porcentajeManualTarifario = porcentajeManualTarifario;
 	}
 
-
-
-	public List<TipoProcedimiento> getTiposProcedimientos() {
-		return tiposProcedimientos;
-	}
-
-
-
-	public void setTiposProcedimientos(List<TipoProcedimiento> tiposProcedimientos) {
-		this.tiposProcedimientos = tiposProcedimientos;
-	}
-
-
-
-	public List<TipoProcedimiento> getProcedureTypes() {
-		return tiposProcedimientos;
-	}
-
-
-	public void setProcedureTypes(List<TipoProcedimiento> procedureTypes) {
-		this.tiposProcedimientos = procedureTypes;
-	}
-	
 	
 	public void addProcedureType(TipoProcedimiento procedureType) {
 		

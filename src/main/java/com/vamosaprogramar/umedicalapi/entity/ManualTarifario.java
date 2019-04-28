@@ -67,14 +67,6 @@ public class ManualTarifario {
 		this.descripcion = descripcion;
 	}
 
-	public List<Contrato> getContratos() {
-		return contratos;
-	}
-
-	public void setContratos(List<Contrato> contratos) {
-		this.contratos = contratos;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

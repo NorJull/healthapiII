@@ -21,7 +21,7 @@ import com.vamosaprogramar.umedicalapi.exception.PatientDoesNotExist;
 import com.vamosaprogramar.umedicalapi.exception.ProcedureTypeDoesNotExist;
 
 @Repository
-public class ContractDAOImple implements ContratoDAO {
+public class ContratoDAOImple implements ContratoDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
