@@ -10,17 +10,17 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.vamosaprogramar.umedicalapi.entity.MedicalRecord;
-import com.vamosaprogramar.umedicalapi.entity.result.MedicalRecordResult;
+import com.vamosaprogramar.umedicalapi.entity.RegistroHistoriaClinica;
+import com.vamosaprogramar.umedicalapi.entity.result.RegistroHistoriaClinicaResult;
 
 @Repository
-public class MedicalRecordDAOImpl implements MedicalRecordDAO {
+public class RegistroHistoriaClinicaDAOImpl implements RegistroHistoriaClinicaDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<MedicalRecordResult> getMedicalRecordsByPatient(int patientId) {
+	public List<RegistroHistoriaClinicaResult> obtenerRegistroHistoriaClinicasPorPaciente(int pacienteId) {
 		Session session = null;
 
 		try {
@@ -28,14 +28,14 @@ public class MedicalRecordDAOImpl implements MedicalRecordDAO {
 			session.beginTransaction();
 
 			Query theQuery = session.createQuery(
-					"select mr.id as id, mr.patientId as patientId, mr.date as date, mr.time as time, mr.particular as particular, mr.consultationReason as consultationReason from MedicalRecord mr where mr.patientId = :patientId");
-			theQuery.setParameter("patientId", patientId);
+					"select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.esParticular as esParticular, mr.motivoConsulta as motivoConsulta from RegistroHistoriaClinica mr where mr.pacienteId = :pacienteId");
+			theQuery.setParameter("pacienteId", pacienteId);
 
-			theQuery.setResultTransformer(Transformers.aliasToBean(MedicalRecordResult.class));
+			theQuery.setResultTransformer(Transformers.aliasToBean(RegistroHistoriaClinicaResult.class));
 
-			List<MedicalRecordResult> medicalRecordResults = theQuery.list();
+			List<RegistroHistoriaClinicaResult> registroHistoriaClinicaResults = theQuery.list();
 
-			return medicalRecordResults;
+			return registroHistoriaClinicaResults;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,14 +49,14 @@ public class MedicalRecordDAOImpl implements MedicalRecordDAO {
 	}
 
 	@Override
-	public void addMedicalRecord(MedicalRecord medicalRecord) {
+	public void crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		Session session = null;
 
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-
-			session.save(medicalRecord);
+			
+			session.save(registroHistoriaClinica);
 
 			session.getTransaction().commit();
 
@@ -72,16 +72,16 @@ public class MedicalRecordDAOImpl implements MedicalRecordDAO {
 	}
 
 	@Override
-	public MedicalRecord getMedicalRecord(int id) {
+	public RegistroHistoriaClinica obtenerRegistroHistoriaClinica(int id) {
 		Session session = null;
 
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 
-			MedicalRecord medicalRecord = (MedicalRecord) session.get(MedicalRecord.class, id);
+			RegistroHistoriaClinica registroHistoriaClinica = (RegistroHistoriaClinica) session.get(RegistroHistoriaClinica.class, id);
 
-			return medicalRecord;
+			return registroHistoriaClinica;
 
 		} catch (Exception e) {
 			e.printStackTrace();
