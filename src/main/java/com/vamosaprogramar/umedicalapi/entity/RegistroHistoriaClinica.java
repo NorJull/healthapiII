@@ -86,13 +86,13 @@ public class RegistroHistoriaClinica {
 	private int unidadMedidaEdad;
 	
 	@Column(name = "sexo")
-	private char sexo;
+	private String sexo;
 	
 	@Column(name = "zona")
-	private char zona;
+	private String zona;
 	
 	@Column(name = "es_particular")
-	private char esParticular;
+	private String esParticular;
 	
 	@Column(name = "telefono_acompanante")
 	private String telefonoAcompanante;
@@ -357,27 +357,27 @@ public class RegistroHistoriaClinica {
 		this.unidadMedidaEdad = unidadMedidaEdad;
 	}
 
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-	public char getZona() {
+	public String getZona() {
 		return zona;
 	}
 
-	public void setZona(char zona) {
+	public void setZona(String zona) {
 		this.zona = zona;
 	}
 
-	public char getEsParticular() {
+	public String getEsParticular() {
 		return esParticular;
 	}
 
-	public void setEsParticular(char esParticular) {
+	public void setEsParticular(String esParticular) {
 		this.esParticular = esParticular;
 	}
 
