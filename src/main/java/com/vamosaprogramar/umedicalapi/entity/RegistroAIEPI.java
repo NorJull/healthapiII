@@ -110,6 +110,7 @@ public class RegistroAIEPI {
 	
 	@Column(name = "motivo_consulta")
 	private String motivoConsulta;
+	
 	@Column(name = "codigo_diagnostico_principal")
 	private String codigoDiagnosticoPrincipal;
 	
@@ -363,8 +364,7 @@ public class RegistroAIEPI {
 	@JsonIgnore
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
-	private List<RemisionAIEPI> remisionesAIEPIs;
-
+	private List<RemisionAIEPI> remisionAIEPIs;
 
 
 	public RegistroAIEPI() {
@@ -1644,16 +1644,18 @@ public class RegistroAIEPI {
 
 
 
-	public List<RemisionAIEPI> getRemisionesAIEPIs() {
-		return remisionesAIEPIs;
+	public List<RemisionAIEPI> getRemisionAIEPIs() {
+		return remisionAIEPIs;
 	}
 
 
 
-	public void setRemisionesAIEPIs(List<RemisionAIEPI> remisionesAIEPIs) {
-		this.remisionesAIEPIs = remisionesAIEPIs;
+	public void setRemisionAIEPIs(List<RemisionAIEPI> remisionAIEPIs) {
+		this.remisionAIEPIs = remisionAIEPIs;
 	}
 
 	
+
+
 	
 }

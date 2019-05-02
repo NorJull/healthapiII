@@ -24,13 +24,11 @@ public class DepartamentController {
 		return "Hello Nor";
 	}
 	
-	//@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping()
 	public List<Departament> getDepartaments(){
 		return departamentService.getDepartaments();
 	}
 	
-	//@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("{id}")
 	public Departament getDepartament(@PathVariable int id) {
 		return departamentService.getDepartament(id);

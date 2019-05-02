@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class RegistroAIEPIResult {
 
-private int id;
+	private int id;
 	
 	private int pacienteId;
 	

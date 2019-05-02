@@ -35,8 +35,8 @@ public class RemisionAIEPI {
 	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "registro_aiepi_id")
-	private RemisionAIEPI remisionAIEPI;
+	@JoinColumn(name = "registro_aiepi_id")	
+	private RegistroAIEPI registroAIEPI;
 	
 	public RemisionAIEPI() {
 		
@@ -82,14 +82,14 @@ public class RemisionAIEPI {
 		this.descripcion = descripcion;
 	}
 
-	public RemisionAIEPI getRemisionAIEPI() {
-		return remisionAIEPI;
+	public RegistroAIEPI getRegistroAIEPI() {
+		return registroAIEPI;
 	}
 
-	public void setRemisionAIEPI(RemisionAIEPI remisionAIEPI) {
-		this.remisionAIEPI = remisionAIEPI;
+	public void setRegistroAIEPI(RegistroAIEPI registroAIEPI) {
+		this.registroAIEPI = registroAIEPI;
 	}
 
-	
+
 	
 }
