@@ -17,7 +17,7 @@ import com.vamosaprogramar.umedicalapi.entity.Patient;
 import com.vamosaprogramar.umedicalapi.service.PatientService;
 
 @RestController
-@RequestMapping("patients")
+@RequestMapping("pacientes")
 public class PatientController {
 	
 	@Autowired

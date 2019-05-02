@@ -9,17 +9,17 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.vamosaprogramar.umedicalapi.entity.AIEPI;
-import com.vamosaprogramar.umedicalapi.entity.result.AIEPIResult;
+import com.vamosaprogramar.umedicalapi.entity.RegistroAIEPI;
+import com.vamosaprogramar.umedicalapi.entity.result.RegistroAIEPIResult;
 
 @Repository
-public class AIEPIDAOImpl implements AIEPIDAO {
+public class RegistroAIEPIDAOImpl implements RegistroAIEPIDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<AIEPIResult> getAIEPIsByPatient(int patientId) {
+	public List<RegistroAIEPIResult> obtenerResgitrosAIEPIsPorPaciente(int pacienteId) {
 		Session session = null;
 
 		try {
@@ -28,15 +28,15 @@ public class AIEPIDAOImpl implements AIEPIDAO {
 			session.beginTransaction();
 
 			Query theQuery = session.createQuery(
-					"select mr.id as id, mr.patientId as patientId, mr.date as date, mr.time as time, mr.particular as particular, mr.consultationReason as consultationReason from AIEPI mr where mr.patientId = :patientId");
+					"select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.esParticular as esParticular, mr.motivoConsulta as motivoConsulta from RegistroAIEPI mr where mr.pacienteId = :pacienteId");
 
-			theQuery.setParameter("patientId", patientId);
+			theQuery.setParameter("pacienteId", pacienteId);
 
-			theQuery.setResultTransformer(Transformers.aliasToBean(AIEPIResult.class));
+			theQuery.setResultTransformer(Transformers.aliasToBean(RegistroAIEPIResult.class));
 
-			List<AIEPIResult> aiepiResults = theQuery.list();
+			List<RegistroAIEPIResult> registroAIEPIResults = theQuery.list();
 
-			return aiepiResults;
+			return registroAIEPIResults;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class AIEPIDAOImpl implements AIEPIDAO {
 	}
 
 	@Override
-	public void addAIEPI(AIEPI aiepi) {
+	public void crearRegistroAIEPI(RegistroAIEPI registroAIEPI) {
 		Session session = null;
 
 		try {
@@ -58,7 +58,7 @@ public class AIEPIDAOImpl implements AIEPIDAO {
 
 			session.beginTransaction();
 
-			session.save(aiepi);
+			session.save(registroAIEPI);
 
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -73,7 +73,7 @@ public class AIEPIDAOImpl implements AIEPIDAO {
 	}
 
 	@Override
-	public AIEPI getAIEPI(int id) {
+	public RegistroAIEPI getRegistroAIEPI(int id) {
 		Session session = null;
 
 		try {
@@ -81,9 +81,9 @@ public class AIEPIDAOImpl implements AIEPIDAO {
 
 			session.beginTransaction();
 
-			AIEPI aiepi = session.get(AIEPI.class, id);
+			RegistroAIEPI registroAIEPI = session.get(RegistroAIEPI.class, id);
 
-			return aiepi;
+			return registroAIEPI;
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -44,7 +44,7 @@ public class ControladorContrato {
 		return servicioContrato.obtenerTiposProcedimientos(id);
 	}
 
-	@GetMapping("/{id}/patients")
+	@GetMapping("/{id}/pacientes")
 	public List<Patient> obtenerPacientes(@PathVariable int id) {
 
 		return servicioContrato.getPatients(id);
@@ -68,7 +68,8 @@ public class ControladorContrato {
 		
 	}
 
-	@PostMapping(path = "/{id}/patients/subirArchivo", consumes = { "multipart/form-data" })
+
+	@PostMapping(path = "/{id}/pacientes/uploadFile", consumes = { "multipart/form-data" })
 	public Integer uploadPatientsFile(@RequestParam("file") MultipartFile PatientsFile, @PathVariable int id) {
 
 		// contract procedures
