@@ -68,7 +68,7 @@ public class ControladorContrato {
 		
 	}
 
-	@PostMapping(path = "/{id}/patients/uploadFile", consumes = { "multipart/form-data" })
+	@PostMapping(path = "/{id}/patients/subirArchivo", consumes = { "multipart/form-data" })
 	public Integer uploadPatientsFile(@RequestParam("file") MultipartFile PatientsFile, @PathVariable int id) {
 
 		// contract procedures

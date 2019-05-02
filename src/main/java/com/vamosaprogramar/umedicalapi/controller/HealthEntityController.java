@@ -31,7 +31,7 @@ public class HealthEntityController {
 		return healthEntityService.getHealthEntities();
 	}
 	
-	@GetMapping("{healthEntityId}/contracts")
+	@GetMapping("{healthEntityId}/contratos")
 	public List<Contrato> getContractsByHealthEntity(@PathVariable int healthEntityId){
 		return healthEntityService.getContractsByHealthEntity(healthEntityId);
 	}

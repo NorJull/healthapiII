@@ -37,7 +37,7 @@ public class PatientController {
 	}
 	
 	
-	@PostMapping(path = "/uploadFile", consumes = { "multipart/form-data" })
+	@PostMapping(path = "/subirArchivo", consumes = { "multipart/form-data" })
 	public Integer uploadPatientsFile(@RequestParam("file") MultipartFile patientFile){
 		
 		//contract procedures

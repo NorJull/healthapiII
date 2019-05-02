@@ -43,7 +43,7 @@ public class EspecialidadControlador {
 		return servicioEspecialidad.obtenerTiposProcedimientos(id);
 	}
 	
-	@GetMapping("/{id}/usuarios")
+	@GetMapping("/{id}/users")
 	public List<ApplicationUser> geUsers(@PathVariable int id){
 		
 		return servicioEspecialidad.obtenerUsuarios(id);
