@@ -205,22 +205,18 @@ public class RegistroHistoriaClinica {
 	@Column(name = "codigo_diagnostico_relacionado_3")
 	private String codigoDiagnosticoRelacionado3;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<Procedimiento> procedimientos;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<ProcedimientoOrdenado> procedimientosOrdenados;
-	
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<Medicamento> medicamentos;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH })
 	private List<Remision> remisiones;
