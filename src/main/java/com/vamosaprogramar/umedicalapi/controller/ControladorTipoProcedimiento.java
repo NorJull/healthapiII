@@ -32,6 +32,15 @@ public class ControladorTipoProcedimiento {
 		return servicioTipoProcedimiento.getProceduresType();
 	}
 	
+	@GetMapping("/codigoConcepto/{codigoConcepto}")
+	public List<TipoProcedimiento> getTiposProcedimientosPorConcepto(@PathVariable String codigoConcepto){
+		return servicioTipoProcedimiento.getProceduresType(codigoConcepto);
+	}
+	
+	@GetMapping("/codigoConcepto/{codigoConcepto}/genero/{genero}")
+	public List<TipoProcedimiento> getTiposProcedimientosPorConcepto(@PathVariable String codigoConcepto,@PathVariable String genero){
+		return servicioTipoProcedimiento.getProceduresType(codigoConcepto, genero);
+	}
 	
 	@GetMapping("{id}")
 	public TipoProcedimiento getProcedureType(@PathVariable int id) {

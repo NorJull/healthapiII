@@ -142,4 +142,68 @@ public class TipoProcedimientoDAOImpl implements TipoProcedimientoDAO {
 		session.save(tipoProcedimiento);
 	}
 
+	@Override
+	public List<TipoProcedimiento> getTiposProcedimientos(String codigoConcepto, String genero) {
+		Session session = null;
+		
+		try {
+		
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Query theQuery = session.createQuery("from TipoProcedimiento where codigoConcepto=:codigoConcepto and (genero=:genero or genero=:generoU)");
+			
+			theQuery.setParameter("codigoConcepto", codigoConcepto);
+			theQuery.setParameter("genero", genero);
+			theQuery.setParameter("generoU", "U");
+			
+			List<TipoProcedimiento> tiposProcedimientos = theQuery.list();
+						
+			session.getTransaction().commit();
+			
+			return tiposProcedimientos;
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null) {
+				session.close();
+			}
+			
+		}
+		
+		
+		return null;
+	}
+
+	public List<TipoProcedimiento> getTiposProcedimientos(String codigoConcepto) {
+		Session session = null;
+		
+		try {
+		
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Query theQuery = session.createQuery("from TipoProcedimiento where codigoConcepto=:codigoConcepto");
+			
+			theQuery.setParameter("codigoConcepto", codigoConcepto);
+			
+			List<TipoProcedimiento> tiposProcedimientos = theQuery.list();
+						
+			session.getTransaction().commit();
+			
+			return tiposProcedimientos;
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session!=null) {
+				session.close();
+			}
+			
+		}
+		
+		
+		return null;
+	}
 }

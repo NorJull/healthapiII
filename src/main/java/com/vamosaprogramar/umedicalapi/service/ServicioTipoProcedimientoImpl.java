@@ -94,4 +94,14 @@ public class ServicioTipoProcedimientoImpl implements ServicioTipoProcedimiento 
 
 	}
 
+	@Override
+	public List<TipoProcedimiento> getProceduresType(String codigoConcepto, String genero) {
+		return procedureTypeDAO.getTiposProcedimientos(codigoConcepto, genero);
+	}
+
+	@Override
+	public List<TipoProcedimiento> getProceduresType(String codigoConcepto) {
+		return procedureTypeDAO.getTiposProcedimientos(codigoConcepto);
+	}
+
 }

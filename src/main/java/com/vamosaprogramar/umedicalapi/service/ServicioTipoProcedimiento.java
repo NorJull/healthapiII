@@ -15,6 +15,10 @@ public interface ServicioTipoProcedimiento {
 	public TipoProcedimiento getProceduresType(int id);
 
 	public void updateProcedureType(TipoProcedimiento procedureType, int id);
+
+	public List<TipoProcedimiento> getProceduresType(String codigoConcepto, String genero);
+
+	public List<TipoProcedimiento> getProceduresType(String codigoConcepto);
 	
 	
 }

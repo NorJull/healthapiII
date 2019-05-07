@@ -18,5 +18,9 @@ public interface TipoProcedimientoDAO {
 	public void actualizarTipoProcedimiento(TipoProcedimiento tipoProcedimiento, int id);
 
 	public void crearTipoProcedimiento(TipoProcedimiento tipoProcedimiento, Session session) throws DuplicateProcedureType;
+
+	public List<TipoProcedimiento> getTiposProcedimientos(String codigoConcepto, String genero);
+
+	public List<TipoProcedimiento> getTiposProcedimientos(String codigoConcepto);
 	
 }
