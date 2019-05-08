@@ -40,10 +40,10 @@ public class ProcedimientoOrdenadoAIEPI {
 	private String cup;
 
 	@Column(name = "ambito_realizacion")
-	private char ambitoRealizacion;
+	private String ambitoRealizacion;
 
 	@Column(name = "finalidad")
-	private char finalidad;
+	private String finalidad;
 
 	@Column(name = "codigo_diagnostico_principal")
 	private String codigoDiagnosticoPrincipal;
@@ -92,19 +92,19 @@ public class ProcedimientoOrdenadoAIEPI {
 		this.cup = cup;
 	}
 
-	public char getAmbitoRealizacion() {
+	public String getAmbitoRealizacion() {
 		return ambitoRealizacion;
 	}
 
-	public void setAmbitoRealizacion(char ambitoRealizacion) {
+	public void setAmbitoRealizacion(String ambitoRealizacion) {
 		this.ambitoRealizacion = ambitoRealizacion;
 	}
 
-	public char getFinalidad() {
+	public String getFinalidad() {
 		return finalidad;
 	}
 
-	public void setFinalidad(char finalidad) {
+	public void setFinalidad(String finalidad) {
 		this.finalidad = finalidad;
 	}
 
@@ -131,6 +131,8 @@ public class ProcedimientoOrdenadoAIEPI {
 	public void setRegistroAIEPI(RegistroAIEPI registroAIEPI) {
 		this.registroAIEPI = registroAIEPI;
 	}
+
+
 
 	
 }

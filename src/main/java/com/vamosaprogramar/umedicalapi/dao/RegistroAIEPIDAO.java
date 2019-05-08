@@ -9,7 +9,7 @@ public interface RegistroAIEPIDAO {
 
 	List<RegistroAIEPIResult> obtenerResgitrosAIEPIsPorPaciente(int patientId);
 
-	void crearRegistroAIEPI(RegistroAIEPI registroAIEPI);
+	Integer crearRegistroAIEPI(RegistroAIEPI registroAIEPI);
 
 	RegistroAIEPI getRegistroAIEPI(int id);
 

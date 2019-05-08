@@ -50,7 +50,7 @@ public class RegistroAIEPIDAOImpl implements RegistroAIEPIDAO {
 	}
 
 	@Override
-	public void crearRegistroAIEPI(RegistroAIEPI registroAIEPI) {
+	public Integer crearRegistroAIEPI(RegistroAIEPI registroAIEPI) {
 		Session session = null;
 
 		try {
@@ -58,16 +58,18 @@ public class RegistroAIEPIDAOImpl implements RegistroAIEPIDAO {
 
 			session.beginTransaction();
 
-			session.save(registroAIEPI);
+			Integer id = (Integer) session.save(registroAIEPI);
 
 			session.getTransaction().commit();
+			
+			return id;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session.isOpen()) {
 				session.close();
 			}
-
+			return null;
 		}
 
 	}

@@ -43,13 +43,13 @@ public class ProcedimientoAIEPI {
 	private String nombreProcedimiento;
 
 	@Column(name = "ambito_realizacion")
-	private char ambitoRealizacion;
+	private String ambitoRealizacion;
 
 	@Column(name = "finalidad")
-	private char finalidad;
+	private String finalidad;
 	
 	@Column(name = "persona_que_atiende")
-	private char personaQueAtiende;
+	private String personaQueAtiende;
 	
 	@Column(name = "codigo_diagnostico_principal")
 	private String codigoDiagnosticoPrincipal;
@@ -115,27 +115,27 @@ public class ProcedimientoAIEPI {
 		this.nombreProcedimiento = nombreProcedimiento;
 	}
 
-	public char getAmbitoRealizacion() {
+	public String getAmbitoRealizacion() {
 		return ambitoRealizacion;
 	}
 
-	public void setAmbitoRealizacion(char ambitoRealizacion) {
+	public void setAmbitoRealizacion(String ambitoRealizacion) {
 		this.ambitoRealizacion = ambitoRealizacion;
 	}
 
-	public char getFinalidad() {
+	public String getFinalidad() {
 		return finalidad;
 	}
 
-	public void setFinalidad(char finalidad) {
+	public void setFinalidad(String finalidad) {
 		this.finalidad = finalidad;
 	}
 
-	public char getPersonaQueAtiende() {
+	public String getPersonaQueAtiende() {
 		return personaQueAtiende;
 	}
 
-	public void setPersonaQueAtiende(char personaQueAtiende) {
+	public void setPersonaQueAtiende(String personaQueAtiende) {
 		this.personaQueAtiende = personaQueAtiende;
 	}
 
