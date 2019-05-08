@@ -5,12 +5,14 @@ import static com.vamosaprogramar.umedicalapi.GeneralConstants.TIME_FORMAT;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -206,19 +208,19 @@ public class RegistroHistoriaClinica {
 	private String codigoDiagnosticoRelacionado3;
 	
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<Procedimiento> procedimientos;
 	
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoOrdenado> procedimientosOrdenados;
 
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<Medicamento> medicamentos;
 	
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<Remision> remisiones;
 	
 	public RegistroHistoriaClinica() {
@@ -674,6 +676,8 @@ public class RegistroHistoriaClinica {
 	}
 
 	public List<Procedimiento> getProcedimientos() {
+		if(procedimientos == null)
+			procedimientos = new ArrayList<Procedimiento>();
 		return procedimientos;
 	}
 
@@ -682,6 +686,8 @@ public class RegistroHistoriaClinica {
 	}
 
 	public List<ProcedimientoOrdenado> getProcedimientosOrdenados() {
+		if(procedimientosOrdenados == null)
+			procedimientosOrdenados = new ArrayList<ProcedimientoOrdenado>();
 		return procedimientosOrdenados;
 	}
 
@@ -690,6 +696,8 @@ public class RegistroHistoriaClinica {
 	}
 
 	public List<Medicamento> getMedicamentos() {
+		if(medicamentos == null)
+			medicamentos = new ArrayList<Medicamento>();
 		return medicamentos;
 	}
 
@@ -698,6 +706,8 @@ public class RegistroHistoriaClinica {
 	}
 
 	public List<Remision> getRemisiones() {
+		if(remisiones == null)
+			remisiones = new ArrayList<Remision>();
 		return remisiones;
 	}
 

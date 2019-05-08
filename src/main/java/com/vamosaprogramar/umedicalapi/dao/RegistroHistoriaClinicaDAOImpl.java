@@ -49,17 +49,17 @@ public class RegistroHistoriaClinicaDAOImpl implements RegistroHistoriaClinicaDA
 	}
 
 	@Override
-	public void crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
+	public Integer crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		Session session = null;
 
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			session.save(registroHistoriaClinica);
+			Integer id = (Integer) session.save(registroHistoriaClinica);
 
 			session.getTransaction().commit();
-
+			return id;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -68,7 +68,7 @@ public class RegistroHistoriaClinicaDAOImpl implements RegistroHistoriaClinicaDA
 			}
 
 		}
-
+		return null;
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface RegistroHistoriaClinicaDAO {
 
 	List<RegistroHistoriaClinicaResult> obtenerRegistroHistoriaClinicasPorPaciente(int patientId);
 
-	void crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica);
+	Integer crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica);
 
 	RegistroHistoriaClinica obtenerRegistroHistoriaClinica(int id);
 

@@ -43,13 +43,13 @@ public class Procedimiento {
 	private String nombreProcedimiento;
 
 	@Column(name = "ambito_realizacion")
-	private char ambitoRealizacion;
+	private String ambitoRealizacion;
 
 	@Column(name = "finalidad")
-	private char finalidad;
+	private String finalidad;
 	
 	@Column(name = "persona_que_atiende")
-	private char personaQueAtiende;
+	private String personaQueAtiende;
 	
 	@Column(name = "codigo_diagnostico_principal")
 	private String codigoDiagnosticoPrincipal;
@@ -115,27 +115,27 @@ public class Procedimiento {
 		this.nombreProcedimiento = nombreProcedimiento;
 	}
 
-	public char getAmbitoRealizacion() {
+	public String getAmbitoRealizacion() {
 		return ambitoRealizacion;
 	}
 
-	public void setAmbitoRealizacion(char ambitoRealizacion) {
+	public void setAmbitoRealizacion(String ambitoRealizacion) {
 		this.ambitoRealizacion = ambitoRealizacion;
 	}
 
-	public char getFinalidad() {
+	public String getFinalidad() {
 		return finalidad;
 	}
 
-	public void setFinalidad(char finalidad) {
+	public void setFinalidad(String finalidad) {
 		this.finalidad = finalidad;
 	}
 
-	public char getPersonaQueAtiende() {
+	public String getPersonaQueAtiende() {
 		return personaQueAtiende;
 	}
 
-	public void setPersonaQueAtiende(char personaQueAtiende) {
+	public void setPersonaQueAtiende(String personaQueAtiende) {
 		this.personaQueAtiende = personaQueAtiende;
 	}
 
@@ -185,6 +185,16 @@ public class Procedimiento {
 
 	public void setRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		this.registroHistoriaClinica = registroHistoriaClinica;
+	}
+
+	@Override
+	public String toString() {
+		return "Procedimiento [id=" + id + ", fecha=" + fecha + ", numeroAutorizacion=" + numeroAutorizacion + ", cup="
+				+ cup + ", nombreProcedimiento=" + nombreProcedimiento + ", ambitoRealizacion=" + ambitoRealizacion
+				+ ", finalidad=" + finalidad + ", personaQueAtiende=" + personaQueAtiende
+				+ ", codigoDiagnosticoPrincipal=" + codigoDiagnosticoPrincipal + ", codigoDiagnosticoRelacionado="
+				+ codigoDiagnosticoRelacionado + ", codigoDiagnosticoComplicacion=" + codigoDiagnosticoComplicacion
+				+ ", formaRealizacion=" + formaRealizacion + ", valor=" + valor + "]";
 	}
 	
 		

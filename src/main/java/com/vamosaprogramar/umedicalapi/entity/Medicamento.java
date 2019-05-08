@@ -100,6 +100,12 @@ public class Medicamento {
 	public void setRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		this.registroHistoriaClinica = registroHistoriaClinica;
 	}
+
+	@Override
+	public String toString() {
+		return "Medicamento [id=" + id + ", medicina=" + medicina + ", concentracion=" + concentracion
+				+ ", presentacion=" + presentacion + ", unidades=" + unidades + ", posologia=" + posologia + "]";
+	}
 	
 	
 }
