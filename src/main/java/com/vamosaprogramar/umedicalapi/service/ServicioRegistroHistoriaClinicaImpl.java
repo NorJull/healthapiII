@@ -40,10 +40,10 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 	@Override
 	public void crearRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		
-		List<Procedimiento> procedimientos = null;
-		List<ProcedimientoOrdenado> procedimientosOrdenados = null;
-		List<Remision> remisiones = null;
-		List<Medicamento> medicamentos = null;
+		List<Procedimiento> procedimientos = new ArrayList<>();
+		List<ProcedimientoOrdenado> procedimientosOrdenados = new ArrayList<>();
+		List<Remision> remisiones = new ArrayList<>();
+		List<Medicamento> medicamentos = new ArrayList<>();
 		
 		//Clonar las listas
 		

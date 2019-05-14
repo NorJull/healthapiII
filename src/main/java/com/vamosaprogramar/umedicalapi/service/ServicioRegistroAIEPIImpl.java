@@ -40,10 +40,10 @@ public class ServicioRegistroAIEPIImpl implements ServicioRegistroAIEPI {
 
 	@Override
 	public void crearRegistroAIEPI(RegistroAIEPI registroAIEPI) {
-		List<ProcedimientoAIEPI> procedimientoAIEPIs = null;
-		List<ProcedimientoOrdenadoAIEPI> procedimientoOrdenadoAIEPIs = null;
-		List<RemisionAIEPI> remisionAIEPIs = null;
-		List<MedicamentoAIEPI> medicamentoAIEPIs = null;
+		List<ProcedimientoAIEPI> procedimientoAIEPIs = new ArrayList<>();
+		List<ProcedimientoOrdenadoAIEPI> procedimientoOrdenadoAIEPIs =  new ArrayList<>();
+		List<RemisionAIEPI> remisionAIEPIs = new ArrayList<>();
+		List<MedicamentoAIEPI> medicamentoAIEPIs = new ArrayList<>();
 		
 		//Clonar las listas
 		if(registroAIEPI.getProcedimientosAIEPIs() != null)

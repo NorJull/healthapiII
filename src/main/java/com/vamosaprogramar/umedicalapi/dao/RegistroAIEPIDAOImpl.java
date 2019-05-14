@@ -69,9 +69,9 @@ public class RegistroAIEPIDAOImpl implements RegistroAIEPIDAO {
 			if (session.isOpen()) {
 				session.close();
 			}
-			return null;
+			
 		}
-
+		return null;
 	}
 
 	@Override

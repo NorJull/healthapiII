@@ -22,7 +22,7 @@ public class ControladorRegistroAIEPI {
 	private ServicioRegistroAIEPI servicioRegistroAIEPI;
 	
 	@GetMapping("/pacientes/{pacienteId}")
-	public List<RegistroAIEPIResult> getAIEPIsByPatient(@PathVariable int pacienteId){
+	public List<RegistroAIEPIResult> obtenerRegistroSAIEPIsPorPaciente(@PathVariable int pacienteId){
 		return servicioRegistroAIEPI.obtenerRegistroSAIEPIsPorPaciente(pacienteId);
 	}
 	

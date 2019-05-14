@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -346,24 +347,20 @@ public class RegistroAIEPI {
 	private String recomendacionesBuenTrato;
 	
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoAIEPI> procedimientosAIEPIs;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoOrdenadoAIEPI> procedimientosOrdenadoAIEPIs;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<MedicamentoAIEPI> medicamentosAIEPIs;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<RemisionAIEPI> remisionAIEPIs;
 
 
