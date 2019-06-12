@@ -1628,7 +1628,6 @@ public class RegistroAIEPI {
 	}
 
 
-
 	public List<MedicamentoAIEPI> getMedicamentosAIEPIs() {
 		return medicamentosAIEPIs;
 	}
@@ -1640,19 +1639,14 @@ public class RegistroAIEPI {
 	}
 
 
-
 	public List<RemisionAIEPI> getRemisionAIEPIs() {
 		return remisionAIEPIs;
 	}
-
 
 
 	public void setRemisionAIEPIs(List<RemisionAIEPI> remisionAIEPIs) {
 		this.remisionAIEPIs = remisionAIEPIs;
 	}
 
-	
 
-
-	
 }
