@@ -92,7 +92,6 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 
 	@Override
 	public RegistroHistoriaClinica obtenerRegistroHistoriaClinica(int id) {
-	
 		return medicalRecordDAO.obtenerRegistroHistoriaClinica(id);
 	}
 
