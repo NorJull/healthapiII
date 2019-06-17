@@ -29,4 +29,9 @@ public class ControladorRegistroOdontologia {
 	public void crearRegistroOdontologia(@RequestBody RegistroOdontologia registroOdontologia) {
 		servicioRegistroOdontologia.crearRegistroHistoriaClinica(registroOdontologia);
 	}
+	
+	@GetMapping("/odontograma/{pacienteId}")
+	public String obtenerOdontograma(@PathVariable int pacienteId) {
+		return servicioRegistroOdontologia.obtenerOdontograma(pacienteId);
+	}
 }

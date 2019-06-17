@@ -185,4 +185,30 @@ public class PatientDAOImpl implements PatientDAO {
 		
 	}
 
+	@Override
+	public String obtenerOdontograma(int pacienteId) {
+		Session session = null;
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			Query theQuery = session.createQuery("select odontograma from Patient where id=:patientId");
+			
+			theQuery.setParameter("patientId", pacienteId);
+			
+			String odontograma = (String) theQuery.uniqueResult();
+			
+			return odontograma;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+		}
+		
+		return null;
+	}
+
 }

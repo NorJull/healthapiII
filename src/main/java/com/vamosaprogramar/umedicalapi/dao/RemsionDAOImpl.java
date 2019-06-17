@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.vamosaprogramar.umedicalapi.entity.RegistroHistoriaClinica;
 import com.vamosaprogramar.umedicalapi.entity.Remision;
 @Repository
-public class remsionDAOImpl implements RemisionDAO {
+public class RemsionDAOImpl implements RemisionDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;

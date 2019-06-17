@@ -1,6 +1,11 @@
 package com.vamosaprogramar.umedicalapi.service;
 
+import com.vamosaprogramar.umedicalapi.dao.MedicamentoOdontologiaDAO;
+import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
+import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOdontologiaDAO;
+import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOrdenadoOdontologiaDAO;
 import com.vamosaprogramar.umedicalapi.dao.RegistroOdontologiaDAO;
+import com.vamosaprogramar.umedicalapi.dao.RemisionOdontologiaDAO;
 import com.vamosaprogramar.umedicalapi.entity.*;
 import com.vamosaprogramar.umedicalapi.entity.result.RegistroOdontologiaResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +19,22 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
 
     @Autowired
     private RegistroOdontologiaDAO registroOdontologiaDAO;
+    
+    @Autowired
+    private MedicamentoOdontologiaDAO medicamentoOdontologiaDAO;
 
+    @Autowired
+    private ProcedimientoOdontologiaDAO procedimientoOdontologiaDAO;
 
+    @Autowired
+    private ProcedimientoOrdenadoOdontologiaDAO procedimientoOrdenadoOdontologiaDAO;
+    
+    @Autowired
+    private RemisionOdontologiaDAO remisionOdontologiaDAO;
+    
+    @Autowired
+    private PatientDAO patientDAO;
+    
     @Override
     public List<RegistroOdontologiaResult> obtenerRegistroOdontologiaResultPorPaciente(int pacienteId) {
         return registroOdontologiaDAO.obtenerRegistroOdontologiaResultPorPaciente(pacienteId);
@@ -41,10 +60,45 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
 
         if(registroOdontologia.getMedicamentoOdontologias() != null)
             medicamentoOdontologias = new ArrayList<MedicamentoOdontologia> (registroOdontologia.getMedicamentoOdontologias());
+        
+        //Poner en null las listas originales
+        registroOdontologia.setProcedimientoOdontologias(null);
+        registroOdontologia.setProcedimientoOrdenadoOdontologias(null);
+        registroOdontologia.setMedicamentoOdontologias(null);
+        registroOdontologia.setRemisionOdontologias(null);
+        
+        //Guardar registro Odontologia
+        Integer registroOdontologiaId = registroOdontologiaDAO.crearRegistroOdontologia(registroOdontologia);
+        
+		//Guardar procedimientos, procedimintos ordenados, remisiones y medicamentos
+        
+
+		for (ProcedimientoOdontologia procedimientoOdontologia : procedimientoOdontologias) {
+			procedimientoOdontologiaDAO.crearProcedimientoOdontologia(procedimientoOdontologia, registroOdontologiaId);
+		}
+		
+		for (ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia : procedimientosOrdenadoOdontologias) {
+			procedimientoOrdenadoOdontologiaDAO.crearProcedimientoOrdenadoOdontologia(procedimientoOrdenadoOdontologia, registroOdontologiaId);
+		}
+		
+		for (RemisionOdontologia remisionOdontologia : remisionOdontologias) {
+			remisionOdontologiaDAO.crearRemisionOdontologia(remisionOdontologia, registroOdontologiaId);
+		}
+		
+		for (MedicamentoOdontologia medicamentoOdontologia : medicamentoOdontologias) {
+			medicamentoOdontologiaDAO.crearMedicamentoOdontologia(medicamentoOdontologia, registroOdontologiaId);
+		}
+		
+       
     }
 
     @Override
     public RegistroOdontologia obtenerRegistroOdontologia(int id) {
         return registroOdontologiaDAO.obtenerRegistroOdontologia(id);
     }
+
+	@Override
+	public String obtenerOdontograma(int pacienteId) {
+		return patientDAO.obtenerOdontograma(pacienteId);
+	}
 }

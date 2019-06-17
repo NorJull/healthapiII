@@ -263,9 +263,6 @@ public class RegistroOdontologia {
 	@Column(name = "codigo_diagnostico_relacionado3")
 	private String codigoDiagnosticoRelacionado3;
 
-	@Column(name = "odontograma")
-	private String odontograma;
-
 	@OneToMany(mappedBy = "registroOdontologia", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 	CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoOdontologia> procedimientoOdontologias;
@@ -915,14 +912,6 @@ public class RegistroOdontologia {
 
 	public void setCodigoDiagnosticoRelacionado3(String codigoDiagnosticoRelacionado3) {
 		this.codigoDiagnosticoRelacionado3 = codigoDiagnosticoRelacionado3;
-	}
-
-	public String getOdontograma() {
-		return odontograma;
-	}
-
-	public void setOdontograma(String odontograma) {
-		this.odontograma = odontograma;
 	}
 
 	public List<ProcedimientoOdontologia> getProcedimientoOdontologias() {

@@ -12,4 +12,6 @@ public interface ServicioRegistroOdontologia {
     void crearRegistroHistoriaClinica(RegistroOdontologia registroOdontologia);
 
     RegistroOdontologia obtenerRegistroOdontologia(int id);
+
+	String obtenerOdontograma(int pacienteId);
 }

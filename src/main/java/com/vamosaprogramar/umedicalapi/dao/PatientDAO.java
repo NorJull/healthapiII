@@ -22,6 +22,8 @@ public interface PatientDAO {
 	public void addParticularPatient(Patient patient);
 	
 	public void dissociatePatientsFromContract(int contractId);
+
+	public String obtenerOdontograma(int pacienteId);
 	
 	
 }

@@ -162,8 +162,11 @@ public class Patient {
 	@OneToMany(fetch = FetchType.LAZY ,mappedBy="patient",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Appointment> appointments; 
 	
-	@Column(name ="contract_id")
-	private Integer contractId;
+	@Column(name = "contractId")
+	private Integer contractId;	
+
+	@Column(name = "odontograma")
+	private String odontograma;
 	
 	public Patient() {
 
@@ -463,6 +466,14 @@ public class Patient {
 
 	public void setContractId(Integer contractId) {
 		this.contractId = contractId;
+	}
+	
+	public String getOdontograma() {
+		return odontograma;
+	}
+
+	public void setOdontograma(String odontograma) {
+		this.odontograma = odontograma;
 	}
 
 	public void addAppointment(Appointment appointment) {
