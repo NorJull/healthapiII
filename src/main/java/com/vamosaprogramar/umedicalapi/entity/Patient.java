@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.vamosaprogramar.umedicalapi.LocalDateConverter;
 
 @Entity
@@ -165,8 +166,8 @@ public class Patient {
 	@Column(name = "contractId")
 	private Integer contractId;	
 
-	@Column(name = "odontograma")
-	private String odontograma;
+	@Column(name = "odontograma")	
+	private JsonNode odontograma;
 	
 	public Patient() {
 
@@ -469,10 +470,10 @@ public class Patient {
 	}
 	
 	public String getOdontograma() {
-		return odontograma;
+		return odontograma.toString();
 	}
 
-	public void setOdontograma(String odontograma) {
+	public void setOdontograma(JsonNode odontograma) {
 		this.odontograma = odontograma;
 	}
 

@@ -1,5 +1,6 @@
 package com.vamosaprogramar.umedicalapi.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.vamosaprogramar.umedicalapi.entity.RegistroOdontologia;
 import com.vamosaprogramar.umedicalapi.entity.result.RegistroOdontologiaResult;
 
@@ -14,4 +15,6 @@ public interface ServicioRegistroOdontologia {
     RegistroOdontologia obtenerRegistroOdontologia(int id);
 
 	String obtenerOdontograma(int pacienteId);
+
+	void cambiarOdontograma(JsonNode odontograma, int pacienteId);
 }

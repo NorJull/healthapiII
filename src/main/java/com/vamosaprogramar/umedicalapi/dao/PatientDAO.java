@@ -1,6 +1,5 @@
 package com.vamosaprogramar.umedicalapi.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -24,6 +23,8 @@ public interface PatientDAO {
 	public void dissociatePatientsFromContract(int contractId);
 
 	public String obtenerOdontograma(int pacienteId);
+
+	public void cambiarOdontograma(String string, int pacienteId);
 	
 	
 }

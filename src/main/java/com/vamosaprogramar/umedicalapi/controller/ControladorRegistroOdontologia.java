@@ -1,5 +1,6 @@
 package com.vamosaprogramar.umedicalapi.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.vamosaprogramar.umedicalapi.entity.RegistroOdontologia;
 import com.vamosaprogramar.umedicalapi.entity.result.RegistroOdontologiaResult;
 import com.vamosaprogramar.umedicalapi.service.ServicioRegistroOdontologia;
@@ -33,5 +34,10 @@ public class ControladorRegistroOdontologia {
 	@GetMapping("/odontograma/{pacienteId}")
 	public String obtenerOdontograma(@PathVariable int pacienteId) {
 		return servicioRegistroOdontologia.obtenerOdontograma(pacienteId);
+	}
+	
+	@PostMapping("/odontograma/{pacienteId}")
+	public void cambiarOdontograma(@RequestBody JsonNode odontograma, @PathVariable int pacienteId) {
+		servicioRegistroOdontologia.cambiarOdontograma(odontograma,pacienteId);
 	}
 }

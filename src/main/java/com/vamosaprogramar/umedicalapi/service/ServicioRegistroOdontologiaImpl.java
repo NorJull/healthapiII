@@ -1,5 +1,6 @@
 package com.vamosaprogramar.umedicalapi.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.vamosaprogramar.umedicalapi.dao.MedicamentoOdontologiaDAO;
 import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOdontologiaDAO;
@@ -100,5 +101,10 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
 	@Override
 	public String obtenerOdontograma(int pacienteId) {
 		return patientDAO.obtenerOdontograma(pacienteId);
+	}
+
+	@Override
+	public void cambiarOdontograma(JsonNode odontograma, int pacienteId) {
+		 patientDAO.cambiarOdontograma(odontograma.toString(), pacienteId);		
 	}
 }
