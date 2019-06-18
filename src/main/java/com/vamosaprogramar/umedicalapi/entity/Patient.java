@@ -167,7 +167,7 @@ public class Patient {
 	private Integer contractId;	
 
 	@Column(name = "odontograma")	
-	private JsonNode odontograma;
+	private String odontograma;
 	
 	public Patient() {
 
@@ -473,7 +473,7 @@ public class Patient {
 		return odontograma.toString();
 	}
 
-	public void setOdontograma(JsonNode odontograma) {
+	public void setOdontograma(String odontograma) {
 		this.odontograma = odontograma;
 	}
 
