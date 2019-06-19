@@ -66,6 +66,9 @@ public class Procedimiento {
 	@Column(name = "valor")
 	private double valor;
 	
+	@Column(name = "es_particular")
+	private String esParticular;
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_historia_clinica_id")
@@ -185,6 +188,15 @@ public class Procedimiento {
 
 	public void setRegistroHistoriaClinica(RegistroHistoriaClinica registroHistoriaClinica) {
 		this.registroHistoriaClinica = registroHistoriaClinica;
+	}
+	
+
+	public String getEsParticular() {
+		return esParticular;
+	}
+
+	public void setEsParticular(String esParticular) {
+		this.esParticular = esParticular;
 	}
 
 	@Override

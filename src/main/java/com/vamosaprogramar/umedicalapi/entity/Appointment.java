@@ -55,6 +55,11 @@ public class Appointment {
 	@JoinColumn(name = "speciality_id")
 	private Especialidad speciality;
 
+	@Column(name = "es_particular")
+	private String esParticular;
+	
+	@Column(name = "cup")
+	private String cup;
 
 	public Appointment() {
 	
@@ -115,6 +120,23 @@ public class Appointment {
 
 	public void setSpeciality(Especialidad speciality) {
 		this.speciality = speciality;
+	}
+
+
+	public String getEsParticular() {
+		return esParticular;
+	}
+
+	public void setEsParticular(String esParticular) {
+		this.esParticular = esParticular;
+	}
+
+	public String getCup() {
+		return cup;
+	}
+
+	public void setCup(String cup) {
+		this.cup = cup;
 	}	
 	
 }

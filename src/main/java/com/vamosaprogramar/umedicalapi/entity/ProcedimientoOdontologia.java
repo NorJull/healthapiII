@@ -56,6 +56,9 @@ public class ProcedimientoOdontologia {
 	@Column(name = "valor")
 	private double valor;
 
+	@Column(name = "es_particular")
+	private String esParticular;
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_odontologia_id")
@@ -176,4 +179,13 @@ public class ProcedimientoOdontologia {
 	public void setRegistroOdontologia(RegistroOdontologia registroOdontologia) {
 		this.registroOdontologia = registroOdontologia;
 	}
+
+	public String getEsParticular() {
+		return esParticular;
+	}
+
+	public void setEsParticular(String esParticular) {
+		this.esParticular = esParticular;
+	}
+	
 }

@@ -92,10 +92,7 @@ public class RegistroHistoriaClinica {
 	
 	@Column(name = "zona")
 	private String zona;
-	
-	@Column(name = "es_particular")
-	private String esParticular;
-	
+		
 	@Column(name = "telefono_acompanante")
 	private String telefonoAcompanante;
 	
@@ -369,14 +366,6 @@ public class RegistroHistoriaClinica {
 
 	public void setZona(String zona) {
 		this.zona = zona;
-	}
-
-	public String getEsParticular() {
-		return esParticular;
-	}
-
-	public void setEsParticular(String esParticular) {
-		this.esParticular = esParticular;
 	}
 
 	public String getTelefonoAcompanante() {

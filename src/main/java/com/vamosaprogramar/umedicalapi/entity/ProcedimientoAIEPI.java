@@ -66,6 +66,9 @@ public class ProcedimientoAIEPI {
 	@Column(name = "valor")
 	private double valor;
 	
+	@Column(name = "es_particular")
+	private String esParticular;
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_aiepi_id")
@@ -185,6 +188,14 @@ public class ProcedimientoAIEPI {
 
 	public void setRegistroAIEPI(RegistroAIEPI registroAIEPI) {
 		this.registroAIEPI = registroAIEPI;
+	}
+
+	public String getEsParticular() {
+		return esParticular;
+	}
+
+	public void setEsParticular(String esParticular) {
+		this.esParticular = esParticular;
 	}
 
 	

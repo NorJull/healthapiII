@@ -166,6 +166,7 @@ public class Patient {
 	@Column(name = "contractId")
 	private Integer contractId;	
 
+	@JsonIgnore
 	@Column(name = "odontograma")	
 	private String odontograma;
 	
