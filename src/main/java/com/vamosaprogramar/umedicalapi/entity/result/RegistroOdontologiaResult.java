@@ -19,9 +19,7 @@ public class RegistroOdontologiaResult {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = TIME_FORMAT)
 	private LocalTime  hora;
-
-	private String esParticular;
-
+	
 	private String motivoConsulta;
 
 	public RegistroOdontologiaResult() {
@@ -57,14 +55,6 @@ public class RegistroOdontologiaResult {
 
 	public void setHora(LocalTime hora) {
 		this.hora = hora;
-	}
-
-	public String getEsParticular() {
-		return esParticular;
-	}
-
-	public void setEsParticular(String esParticular) {
-		this.esParticular = esParticular;
 	}
 
 	public String getMotivoConsulta() {

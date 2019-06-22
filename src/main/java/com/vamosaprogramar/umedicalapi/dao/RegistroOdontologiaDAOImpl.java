@@ -26,7 +26,7 @@ public class RegistroOdontologiaDAOImpl implements RegistroOdontologiaDAO {
             session.beginTransaction();
 
             Query theQuery = session.createQuery(
-              "select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.esParticular as esParticular, mr.motivoConsulta as motivoConsulta from RegistroOdontologia mr where mr.pacienteId = :pacienteId");
+              "select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.motivoConsulta as motivoConsulta from RegistroOdontologia mr where mr.pacienteId = :pacienteId");
             theQuery.setParameter("pacienteId", patientId);
 
             theQuery.setResultTransformer(Transformers.aliasToBean(RegistroOdontologiaResult.class));

@@ -28,7 +28,7 @@ public class RegistroHistoriaClinicaDAOImpl implements RegistroHistoriaClinicaDA
 			session.beginTransaction();
 
 			Query theQuery = session.createQuery(
-					"select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.esParticular as esParticular, mr.motivoConsulta as motivoConsulta from RegistroHistoriaClinica mr where mr.pacienteId = :pacienteId");
+					"select mr.id as id, mr.pacienteId as pacienteId, mr.fechaEntrada as fecha, mr.horaEntrada as hora, mr.motivoConsulta as motivoConsulta from RegistroHistoriaClinica mr where mr.pacienteId = :pacienteId");
 			theQuery.setParameter("pacienteId", pacienteId);
 
 			theQuery.setResultTransformer(Transformers.aliasToBean(RegistroHistoriaClinicaResult.class));
