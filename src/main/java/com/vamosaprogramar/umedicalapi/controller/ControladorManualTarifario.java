@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vamosaprogramar.umedicalapi.entity.TarifaProcedimiento;
-import com.vamosaprogramar.umedicalapi.entity.ProcedureRateId;
-import com.vamosaprogramar.umedicalapi.entity.TipoProcedimiento;
 import com.vamosaprogramar.umedicalapi.entity.ManualTarifario;
 import com.vamosaprogramar.umedicalapi.service.ServicioTarifaProcedimiento;
-import com.vamosaprogramar.umedicalapi.service.ServicioTarifaProcedimientoImpl;
 import com.vamosaprogramar.umedicalapi.service.ServicioManualTarifario;
 
 @RestController

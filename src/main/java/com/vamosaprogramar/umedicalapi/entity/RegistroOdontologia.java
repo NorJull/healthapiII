@@ -259,6 +259,12 @@ public class RegistroOdontologia {
 
 	@Column(name = "codigo_diagnostico_relacionado3")
 	private String codigoDiagnosticoRelacionado3;
+	
+	@Column(name = "procedimiento_consulta")
+	private String procedimientoConsulta;
+	
+	@Column(name = "cup_procedimiento_consulta")
+	private String cupProcedimientoConsulta;
 
 	@OneToMany(mappedBy = "registroOdontologia", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 	CascadeType.REFRESH },fetch = FetchType.EAGER)
@@ -925,6 +931,23 @@ public class RegistroOdontologia {
 
 	public void setMedicamentoOdontologias(List<MedicamentoOdontologia> medicamentoOdontologias) {
 		this.medicamentoOdontologias = medicamentoOdontologias;
+	}
+
+	
+	public String getProcedimientoConsulta() {
+		return procedimientoConsulta;
+	}
+
+	public void setProcedimientoConsulta(String procedimientoConsulta) {
+		this.procedimientoConsulta = procedimientoConsulta;
+	}
+
+	public String getCupProcedimientoConsulta() {
+		return cupProcedimientoConsulta;
+	}
+
+	public void setCupProcedimientoConsulta(String cupProcedimientoConsulta) {
+		this.cupProcedimientoConsulta = cupProcedimientoConsulta;
 	}
 
 	public List<RemisionOdontologia> getRemisionOdontologias() {

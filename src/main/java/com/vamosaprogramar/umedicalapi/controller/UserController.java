@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Schedule;
-import com.vamosaprogramar.umedicalapi.exception.ScheduleException;
 import com.vamosaprogramar.umedicalapi.service.UserService;
 
 

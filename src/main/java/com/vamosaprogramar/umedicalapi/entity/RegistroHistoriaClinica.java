@@ -204,6 +204,12 @@ public class RegistroHistoriaClinica {
 	@Column(name = "codigo_diagnostico_relacionado_3")
 	private String codigoDiagnosticoRelacionado3;
 	
+	@Column(name = "procedimiento_consulta")
+	private String procedimientoConsulta;
+	
+	@Column(name = "cup_procedimiento_consulta")
+	private String cupProcedimientoConsulta;
+	
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<Procedimiento> procedimientos;
@@ -692,6 +698,22 @@ public class RegistroHistoriaClinica {
 
 	public void setMedicamentos(List<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
+	}
+
+	public String getProcedimientoConsulta() {
+		return procedimientoConsulta;
+	}
+
+	public void setProcedimientoConsulta(String procedimientoConsulta) {
+		this.procedimientoConsulta = procedimientoConsulta;
+	}
+
+	public String getCupProcedimientoConsulta() {
+		return cupProcedimientoConsulta;
+	}
+
+	public void setCupProcedimientoConsulta(String cupProcedimientoConsulta) {
+		this.cupProcedimientoConsulta = cupProcedimientoConsulta;
 	}
 
 	public List<Remision> getRemisiones() {

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_SCHEDULED;
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.APPOINTMENT_STATE_CANCELED;
 
-import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.entity.ApplicationUser;
 import com.vamosaprogramar.umedicalapi.entity.Appointment;
 import com.vamosaprogramar.umedicalapi.entity.Patient;

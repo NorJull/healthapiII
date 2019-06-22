@@ -343,6 +343,11 @@ public class RegistroAIEPI {
 	@Column(name = "recomendaciones_buen_trato")
 	private String recomendacionesBuenTrato;
 	
+	@Column(name = "procedimiento_consulta")
+	private String procedimientoConsulta;
+	
+	@Column(name = "cup_procedimiento_consulta")
+	private String cupProcedimientoConsulta;
 	
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH },fetch = FetchType.EAGER)
@@ -1629,6 +1634,30 @@ public class RegistroAIEPI {
 
 	public void setRemisionAIEPIs(List<RemisionAIEPI> remisionAIEPIs) {
 		this.remisionAIEPIs = remisionAIEPIs;
+	}
+
+
+
+	public String getProcedimientoConsulta() {
+		return procedimientoConsulta;
+	}
+
+
+
+	public void setProcedimientoConsulta(String procedimientoConsulta) {
+		this.procedimientoConsulta = procedimientoConsulta;
+	}
+
+
+
+	public String getCupProcedimientoConsulta() {
+		return cupProcedimientoConsulta;
+	}
+
+
+
+	public void setCupProcedimientoConsulta(String cupProcedimientoConsulta) {
+		this.cupProcedimientoConsulta = cupProcedimientoConsulta;
 	}
 
 
