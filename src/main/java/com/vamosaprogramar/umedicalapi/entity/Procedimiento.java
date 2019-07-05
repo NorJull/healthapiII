@@ -69,6 +69,9 @@ public class Procedimiento {
 	@Column(name = "es_particular")
 	private String esParticular;
 	
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_historia_clinica_id")
@@ -197,6 +200,14 @@ public class Procedimiento {
 
 	public void setEsParticular(String esParticular) {
 		this.esParticular = esParticular;
+	}
+	
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
 	}
 
 	@Override

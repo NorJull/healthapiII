@@ -69,6 +69,9 @@ public class ProcedimientoAIEPI {
 	@Column(name = "es_particular")
 	private String esParticular;
 	
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_aiepi_id")
@@ -198,6 +201,13 @@ public class ProcedimientoAIEPI {
 		this.esParticular = esParticular;
 	}
 
-	
-	
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+
+		
 }

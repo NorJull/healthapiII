@@ -59,6 +59,9 @@ public class ProcedimientoOdontologia {
 	@Column(name = "es_particular")
 	private String esParticular;
 	
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
 	@JsonIgnore
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "registro_odontologia_id")
@@ -187,5 +190,13 @@ public class ProcedimientoOdontologia {
 	public void setEsParticular(String esParticular) {
 		this.esParticular = esParticular;
 	}
-	
+
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+		
 }
