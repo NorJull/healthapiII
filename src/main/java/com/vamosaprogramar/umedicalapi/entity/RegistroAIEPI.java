@@ -349,6 +349,9 @@ public class RegistroAIEPI {
 	@Column(name = "cup_procedimiento_consulta")
 	private String cupProcedimientoConsulta;
 	
+	@Column(name = "contrato_id")
+	private Integer contratoId;
+	
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoAIEPI> procedimientosAIEPIs;
@@ -1658,6 +1661,18 @@ public class RegistroAIEPI {
 
 	public void setCupProcedimientoConsulta(String cupProcedimientoConsulta) {
 		this.cupProcedimientoConsulta = cupProcedimientoConsulta;
+	}
+
+
+
+	public Integer getContratoId() {
+		return contratoId;
+	}
+
+
+
+	public void setContratoId(Integer contratoId) {
+		this.contratoId = contratoId;
 	}
 
 
