@@ -7,29 +7,33 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.opencsv.CSVWriter;
 import com.vamosaprogramar.umedicalapi.GeneralConstants;
+import com.vamosaprogramar.umedicalapi.dao.RIPSDAO;
 import com.vamosaprogramar.umedicalapi.entity.result.APResultado;
 
 @Service
 public class ServicioRIPSImpl implements ServicioRIPS {
 
+	@Autowired
+	private RIPSDAO ripsDAO;
+	
 	@Override
 	public File obtenerAP(Integer contratoId,String factura, String fechaInicial, String fechaFinal) throws IOException {
 		
-	    List<APResultado> apResultados = new ArrayList<APResultado>();
-	    APResultado apResultad = new APResultado("1230", "856732", "CC", "1047480954", LocalDate.now(),
-	    		"008456", "A003", "XCD", "SANACION",
-	    		"DOCTOR", "XDCK", "DFS", "",
-	    		"", 2000);		
-	    APResultado apResultad2 = new APResultado("6230", "6732", "CC", "1047650954", LocalDate.now(),
-	    		"008456", "A003", "XCD", "SANACION",
-	    		"DOCTOR", "XDCK", "DFS", "",
-	    		"", 3400);		
-	    apResultados.add(apResultad);
-	    apResultados.add(apResultad2);
+		String dia = fechaInicial.substring(0, 2);
+		String mes = fechaInicial.substring(2, 4);
+		String ano = fechaInicial.substring(4, 8);
+		fechaInicial =  dia+"/"+mes+"/"+ano;
+		dia = fechaFinal.substring(0, 2);
+		mes = fechaFinal.substring(2, 4);
+		ano = fechaFinal.substring(4, 8);
+		fechaFinal =  dia+"/"+mes+"/"+ano;
+		
+		List<APResultado> apResultados = ripsDAO.obtenerAP(contratoId, factura, fechaInicial, fechaFinal);
 	    
 		CSVWriter csvWriter = new CSVWriter(new FileWriter(GeneralConstants.UPLOAD_FOLDER+"AP.csv"), 
 				CSVWriter.DEFAULT_SEPARATOR,

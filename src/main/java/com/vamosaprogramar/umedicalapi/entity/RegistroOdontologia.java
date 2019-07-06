@@ -251,13 +251,13 @@ public class RegistroOdontologia {
 	@Column(name = "codigo_diagnostico_principal")
 	private String codigoDiagnosticoPrincipal;
 
-	@Column(name = "codigo_diagnostico_relacionado1")
+	@Column(name = "codigo_diagnostico_relacionado_1")
 	private String codigoDiagnosticoRelacionado1;
 
-	@Column(name = "codigo_diagnostico_relacionado2")
+	@Column(name = "codigo_diagnostico_relacionado_2")
 	private String codigoDiagnosticoRelacionado2;
 
-	@Column(name = "codigo_diagnostico_relacionado3")
+	@Column(name = "codigo_diagnostico_relacionado_3")
 	private String codigoDiagnosticoRelacionado3;
 	
 	@Column(name = "procedimiento_consulta")

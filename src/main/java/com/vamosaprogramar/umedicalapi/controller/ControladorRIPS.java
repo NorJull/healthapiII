@@ -31,7 +31,6 @@ public class ControladorRIPS {
 	                    .contentType(MediaType.MULTIPART_FORM_DATA)
 	                    .body(fileSystemResource);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
