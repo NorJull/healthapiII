@@ -141,12 +141,12 @@ public class RIPSDAOImpl implements RIPSDAO {
 			session.beginTransaction();
 			SQLQuery sqlQuery = session.createSQLQuery("\r\n" + 
 					"SELECT\r\n" + 
-					"	:factura as numeroFactura,\r\n" + 
-					"	health_entity.reps as codigoPrestador,\r\n" + 
-					"	registro_historia_clinica.tipo_identificacion as tipoIdentificacionPaciente,\r\n" + 
-					"	registro_historia_clinica.documento as documento,\r\n" + 
-					"	registro_historia_clinica.fecha_entrada as fechaConsulta,\r\n" + 
-					"	'' as numeroAutorizacion, \r\n" + 
+					"	:factura as \"numeroFactura\",\r\n" + 
+					"	health_entity.reps as \"codigoPrestador\",\r\n" + 
+					"	registro_historia_clinica.tipo_identificacion as \"tipoIdentificacionPaciente\",\r\n" + 
+					"	registro_historia_clinica.documento as \"documento\",\r\n" + 
+					"	registro_historia_clinica.fecha_entrada as \"fechaConsulta\",\r\n" + 
+					"	'' as \"numeroAutorizacion\", \r\n" + 
 					"	procedimiento.cup as codigoConsulta,\r\n" + 
 					"	procedimiento.finalidad as finalidad,\r\n" + 
 					"	registro_historia_clinica.causa_externa as causaExterna,\r\n" + 
