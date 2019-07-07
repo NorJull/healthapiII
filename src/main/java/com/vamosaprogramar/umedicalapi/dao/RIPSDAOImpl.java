@@ -1,6 +1,7 @@
 package com.vamosaprogramar.umedicalapi.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -118,7 +119,7 @@ public class RIPSDAOImpl implements RIPSDAO {
 			
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(APResultado.class));
 
-			List<APResultado> APResultados = sqlQuery.list();
+			List<APResultado> APResultados = (ArrayList<APResultado>) sqlQuery.list();
 			
 			return APResultados;
 			
@@ -237,7 +238,7 @@ public class RIPSDAOImpl implements RIPSDAO {
 			
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(ACResultado.class));
 			
-			List<ACResultado> acResultados = sqlQuery.list();
+			List<ACResultado> acResultados = (ArrayList<ACResultado>) sqlQuery.list();
 			
 			return acResultados;
 			
