@@ -2,7 +2,7 @@ package com.vamosaprogramar.umedicalapi.entity.result;
 
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,7 +17,7 @@ public class APResultado {
 	private String documentoPaciente;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-	private LocalDate fechaProcedimiento;
+	private Date fechaProcedimiento;
 	
 	private String numeroAutorizacion;
 	
@@ -44,7 +44,7 @@ public class APResultado {
 
 	
 	public APResultado(String factura, String prestador, String tipoDocumentoPaciente, String documentoPaciente,
-			LocalDate fechaProcedimiento, String numeroAutorizacion, String codigoProcedimiento,
+			Date fechaProcedimiento, String numeroAutorizacion, String codigoProcedimiento,
 			String ambitoRealizacionProcedimiento, String finalidadProcedimiento, String personalAtiende,
 			String diagnosticoPrincipal, String diagnosticoRelacionado, String codigoDiagnosticoComplicacion,
 			String formaRealizacionActoQuirurjico, double valorProcedimiento) {
@@ -99,11 +99,11 @@ public class APResultado {
 		this.documentoPaciente = documentoPaciente;
 	}
 
-	public LocalDate getFechaProcedimiento() {
+	public Date getFechaProcedimiento() {
 		return fechaProcedimiento;
 	}
 
-	public void setFechaProcedimiento(LocalDate fechaProcedimiento) {
+	public void setFechaProcedimiento(Date fechaProcedimiento) {
 		this.fechaProcedimiento = fechaProcedimiento;
 	}
 
