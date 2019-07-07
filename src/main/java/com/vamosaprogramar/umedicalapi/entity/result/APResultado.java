@@ -18,8 +18,7 @@ public class APResultado {
 	
 	private String documentoPaciente;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-	private LocalDate fechaProcedimiento;
+	private String fechaProcedimiento;
 	
 	private String numeroAutorizacion;
 	
@@ -46,7 +45,7 @@ public class APResultado {
 
 	
 	public APResultado(String factura, String prestador, String tipoDocumentoPaciente, String documentoPaciente,
-			LocalDate fechaProcedimiento, String numeroAutorizacion, String codigoProcedimiento,
+			String fechaProcedimiento, String numeroAutorizacion, String codigoProcedimiento,
 			String ambitoRealizacionProcedimiento, String finalidadProcedimiento, String personalAtiende,
 			String diagnosticoPrincipal, String diagnosticoRelacionado, String codigoDiagnosticoComplicacion,
 			String formaRealizacionActoQuirurjico, double valorProcedimiento) {
@@ -101,13 +100,12 @@ public class APResultado {
 		this.documentoPaciente = documentoPaciente;
 	}
 
-	public LocalDate getFechaProcedimiento() {
+	public String getFechaProcedimiento() {
 		return fechaProcedimiento;
 	}
 
 	public void setFechaProcedimiento(Date fechaProcedimiento) {
-		String fecha = fechaProcedimiento.toLocalDate().format(GeneralConstants.formatter);
-		this.fechaProcedimiento = LocalDate.parse(fecha, GeneralConstants.formatter);
+		this.fechaProcedimiento = fechaProcedimiento.toLocalDate().format(GeneralConstants.formatter);
 	}
 
 	public String getNumeroAutorizacion() {
@@ -191,7 +189,7 @@ public class APResultado {
 	}
 	
 	public String[] getStringArray() {
-		String[] datos = {factura,prestador,tipoDocumentoPaciente, documentoPaciente, fechaProcedimiento.toString(),
+		String[] datos = {factura,prestador,tipoDocumentoPaciente, documentoPaciente, fechaProcedimiento,
 				numeroAutorizacion,codigoProcedimiento,ambitoRealizacionProcedimiento,finalidadProcedimiento,personalAtiende,
 				diagnosticoPrincipal,diagnosticoRelacionado,codigoDiagnosticoComplicacion,formaRealizacionActoQuirurjico,
 				String.valueOf(valorProcedimiento)};
