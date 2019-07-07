@@ -1,10 +1,7 @@
 package com.vamosaprogramar.umedicalapi.entity.result;
 
-import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
-
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.sql.Date;
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 
 public class ACResultado {
 	
@@ -16,8 +13,7 @@ public class ACResultado {
 	
 	private String documento;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-	private LocalDate fechaConsulta;
+	private String fechaConsulta;
 	
 	private String numeroAutorizacion;
 	
@@ -79,12 +75,12 @@ public class ACResultado {
 		this.documento = documento;
 	}
 
-	public LocalDate getFechaConsulta() {
+	public String getFechaConsulta() {
 		return fechaConsulta;
 	}
 
-	public void setFechaConsulta(LocalDate fechaConsulta) {
-		this.fechaConsulta = fechaConsulta;
+	public void setFechaConsulta(Date fechaConsulta) {
+		this.fechaConsulta = fechaConsulta.toLocalDate().format(GeneralConstants.formatter);
 	}
 
 	public String getNumeroAutorizacion() {
@@ -184,7 +180,7 @@ public class ACResultado {
 	}
 	
 	public String[] getStringArray() {
-		String[] datos = {numeroFactura, codigoPrestador, tipoIdentificacionPaciente, documento, fechaConsulta.toString(),
+		String[] datos = {numeroFactura, codigoPrestador, tipoIdentificacionPaciente, documento, fechaConsulta,
 				numeroAutorizacion, codigoConsulta, finalidad, causaExterna, codigoDiagnosticoPrincipal, codigoDiagnosticoRelacionado1, 
 				codigoDiagnosticoRelacionado2, codigoDiagnosticoRelacionado3, tipoDiagnosticoPrincipal, String.valueOf(valorConsulta),
 				String.valueOf(valorCuotaModeradora), String.valueOf(valorNetoPagar)};

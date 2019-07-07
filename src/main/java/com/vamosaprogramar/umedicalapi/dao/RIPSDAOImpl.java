@@ -1,7 +1,5 @@
 package com.vamosaprogramar.umedicalapi.dao;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -147,17 +145,17 @@ public class RIPSDAOImpl implements RIPSDAO {
 					"	registro_historia_clinica.documento as \"documento\",\r\n" + 
 					"	registro_historia_clinica.fecha_entrada as \"fechaConsulta\",\r\n" + 
 					"	'' as \"numeroAutorizacion\", \r\n" + 
-					"	procedimiento.cup as codigoConsulta,\r\n" + 
-					"	procedimiento.finalidad as finalidad,\r\n" + 
-					"	registro_historia_clinica.causa_externa as causaExterna,\r\n" + 
-					"	registro_historia_clinica.codigo_diagnostico_principal as codigoDiagnosticoPrincipal,\r\n" + 
-					"	registro_historia_clinica.codigo_diagnostico_relacionado_1 as codigoDiagnosticoRelacionado1,\r\n" + 
-					"	registro_historia_clinica.codigo_diagnostico_relacionado_2 as codigoDiagnosticoRelacionado2,\r\n" + 
-					"	registro_historia_clinica.codigo_diagnostico_relacionado_3 as codigoDiagnosticoRelacionado3,\r\n" + 
-					"	registro_historia_clinica.tipo_diagnostico_principal as tipoDiagnosticoPrincipal,\r\n" + 
-					"	procedimiento.valor as valorConsulta, \r\n" + 
-					"	0 as valorCuotaModeradora, \r\n" + 
-					"	procedimiento.valor as valorNetoPagar\r\n" + 
+					"	procedimiento.cup as \"codigoConsulta\",\r\n" + 
+					"	procedimiento.finalidad as \"finalidad\",\r\n" + 
+					"	registro_historia_clinica.causa_externa as \"causaExterna\",\r\n" + 
+					"	registro_historia_clinica.codigo_diagnostico_principal as \"codigoDiagnosticoPrincipal\",\r\n" + 
+					"	registro_historia_clinica.codigo_diagnostico_relacionado_1 as \"codigoDiagnosticoRelacionado1\",\r\n" + 
+					"	registro_historia_clinica.codigo_diagnostico_relacionado_2 as \"codigoDiagnosticoRelacionado2\",\r\n" + 
+					"	registro_historia_clinica.codigo_diagnostico_relacionado_3 as \"codigoDiagnosticoRelacionado3\",\r\n" + 
+					"	registro_historia_clinica.tipo_diagnostico_principal as \"tipoDiagnosticoPrincipal\",\r\n" + 
+					"	procedimiento.valor as \"valorConsulta\", \r\n" + 
+					"	0 as \"valorCuotaModeradora\", \r\n" + 
+					"	procedimiento.valor as \"valorNetoPagar\"\r\n" + 
 					"FROM\r\n" + 
 					"	registro_historia_clinica, procedimiento, tipo_procedimiento, contrato, health_entity\r\n" + 
 					"WHERE\r\n" + 
@@ -172,23 +170,23 @@ public class RIPSDAOImpl implements RIPSDAO {
 					"UNION ALL\r\n" + 
 					"\r\n" + 
 					"SELECT\r\n" + 
-					"	:factura as numeroFactura,\r\n" + 
-					"	health_entity.reps as codigoPrestador,\r\n" + 
-					"	registro_aiepi.tipo_identificacion as tipoIdentificacionPaciente,\r\n" + 
-					"	registro_aiepi.documento as documento,\r\n" + 
-					"	registro_aiepi.fecha_entrada as fechaConsulta,\r\n" + 
-					"	'' as numeroAutorizacion, \r\n" + 
-					"	procedimiento_aiepi.cup as codigoConsulta,\r\n" + 
-					"	procedimiento_aiepi.finalidad as finalidad,\r\n" + 
-					"	registro_aiepi.causa_externa as causaExterna,\r\n" + 
-					"	registro_aiepi.codigo_diagnostico_principal as codigoDiagnosticoPrincipal,\r\n" + 
-					"	registro_aiepi.codigo_diagnostico_relacionado_1 as codigoDiagnosticoRelacionado1,\r\n" + 
-					"	registro_aiepi.codigo_diagnostico_relacionado_2 as codigoDiagnosticoRelacionado2,\r\n" + 
-					"	registro_aiepi.codigo_diagnostico_relacionado_3 as codigoDiagnosticoRelacionado3,\r\n" + 
-					"	registro_aiepi.tipo_diagnostico_principal as tipoDiagnosticoPrincipal,\r\n" + 
-					"	procedimiento_aiepi.valor as valorConsulta, \r\n" + 
-					"	0 as valorCuotaModeradora,\r\n" + 
-					"	procedimiento_aiepi.valor as valorNetoPagar\r\n" + 
+					"	:factura as \"numeroFactura\",\r\n" + 
+					"	health_entity.reps as \"codigoPrestador\",\r\n" + 
+					"	registro_aiepi.tipo_identificacion as \"tipoIdentificacionPaciente\",\r\n" + 
+					"	registro_aiepi.documento as \"documento\",\r\n" + 
+					"	registro_aiepi.fecha_entrada as \"fechaConsulta\",\r\n" + 
+					"	'' as \"numeroAutorizacion\", \r\n" + 
+					"	procedimiento_aiepi.cup as \"codigoConsulta\",\r\n" + 
+					"	procedimiento_aiepi.finalidad as \"finalidad\",\r\n" + 
+					"	registro_aiepi.causa_externa as \"causaExterna\",\r\n" + 
+					"	registro_aiepi.codigo_diagnostico_principal as \"codigoDiagnosticoPrincipal\",\r\n" + 
+					"	registro_aiepi.codigo_diagnostico_relacionado_1 as \"codigoDiagnosticoRelacionado1\",\r\n" + 
+					"	registro_aiepi.codigo_diagnostico_relacionado_2 as \"codigoDiagnosticoRelacionado2\",\r\n" + 
+					"	registro_aiepi.codigo_diagnostico_relacionado_3 as \"codigoDiagnosticoRelacionado3\",\r\n" + 
+					"	registro_aiepi.tipo_diagnostico_principal as \"tipoDiagnosticoPrincipal\",\r\n" + 
+					"	procedimiento_aiepi.valor as \"valorConsulta\", \r\n" + 
+					"	0 as \"valorCuotaModeradora\",\r\n" + 
+					"	procedimiento_aiepi.valor as \"valorNetoPagar\"\r\n" + 
 					"FROM\r\n" + 
 					"	registro_aiepi, procedimiento_aiepi, tipo_procedimiento, contrato, health_entity\r\n" + 
 					"WHERE\r\n" + 
@@ -203,23 +201,23 @@ public class RIPSDAOImpl implements RIPSDAO {
 					"UNION ALL\r\n" + 
 					"\r\n" + 
 					"SELECT\r\n" + 
-					"	:factura as numeroFactura,\r\n" + 
-					"	health_entity.reps as codigoPrestador,\r\n" + 
-					"	registro_odontologia.tipo_identificacion as tipoIdentificacionPaciente,\r\n" + 
-					"	registro_odontologia.documento as documento,\r\n" + 
-					"	registro_odontologia.fecha_entrada as fechaConsulta,\r\n" + 
-					"	'' as numeroAutorizacion, \r\n" + 
-					"	procedimiento_odontologia.cup as codigoConsulta,\r\n" + 
-					"	procedimiento_odontologia.finalidad as finalidad,\r\n" + 
-					"	registro_odontologia.causa_externa as causaExterna,\r\n" + 
-					"	registro_odontologia.codigo_diagnostico_principal as codigoDiagnosticoPrincipal,\r\n" + 
-					"	registro_odontologia.codigo_diagnostico_relacionado_1 as codigoDiagnosticoRelacionado1,\r\n" + 
-					"	registro_odontologia.codigo_diagnostico_relacionado_2 as codigoDiagnosticoRelacionado2,\r\n" + 
-					"	registro_odontologia.codigo_diagnostico_relacionado_3 as codigoDiagnosticoRelacionado3,\r\n" + 
-					"	registro_odontologia.tipo_diagnostico_principal as tipoDiagnosticoPrincipal,\r\n" + 
-					"	procedimiento_odontologia.valor as valorConsulta, \r\n" + 
-					"	0 as valorCuotaModeradora, \r\n" + 
-					"	procedimiento_odontologia.valor as valorNetoPagar\r\n" + 
+					"	:factura as \"numeroFactura\",\r\n" + 
+					"	health_entity.reps as \"codigoPrestador\",\r\n" + 
+					"	registro_odontologia.tipo_identificacion as \"tipoIdentificacionPaciente\",\r\n" + 
+					"	registro_odontologia.documento as \"documento\",\r\n" + 
+					"	registro_odontologia.fecha_entrada as \"fechaConsulta\",\r\n" + 
+					"	'' as \"numeroAutorizacion\", \r\n" + 
+					"	procedimiento_odontologia.cup as \"codigoConsulta\",\r\n" + 
+					"	procedimiento_odontologia.finalidad as \"finalidad\",\r\n" + 
+					"	registro_odontologia.causa_externa as \"causaExterna\",\r\n" + 
+					"	registro_odontologia.codigo_diagnostico_principal as \"codigoDiagnosticoPrincipal\",\r\n" + 
+					"	registro_odontologia.codigo_diagnostico_relacionado_1 as \"codigoDiagnosticoRelacionado1\",\r\n" + 
+					"	registro_odontologia.codigo_diagnostico_relacionado_2 as \"codigoDiagnosticoRelacionado2\",\r\n" + 
+					"	registro_odontologia.codigo_diagnostico_relacionado_3 as \"codigoDiagnosticoRelacionado3\",\r\n" + 
+					"	registro_odontologia.tipo_diagnostico_principal as \"tipoDiagnosticoPrincipal\",\r\n" + 
+					"	procedimiento_odontologia.valor as \"valorConsulta\", \r\n" + 
+					"	0 as \"valorCuotaModeradora\", \r\n" + 
+					"	procedimiento_odontologia.valor as \"valorNetoPagar\"\r\n" + 
 					"FROM\r\n" + 
 					"	registro_odontologia, procedimiento_odontologia, tipo_procedimiento, contrato, health_entity\r\n" + 
 					"WHERE\r\n" + 
@@ -238,8 +236,7 @@ public class RIPSDAOImpl implements RIPSDAO {
 			
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(ACResultado.class));
 			
-			List<ACResultado> acResultados = (ArrayList<ACResultado>) sqlQuery.list();
-			
+			List acResultados =  sqlQuery.list();			
 			
 			return acResultados;
 			

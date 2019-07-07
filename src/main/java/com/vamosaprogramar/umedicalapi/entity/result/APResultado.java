@@ -1,11 +1,5 @@
 package com.vamosaprogramar.umedicalapi.entity.result;
-
-import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
-
 import java.sql.Date;
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vamosaprogramar.umedicalapi.GeneralConstants;
 
 public class APResultado {
