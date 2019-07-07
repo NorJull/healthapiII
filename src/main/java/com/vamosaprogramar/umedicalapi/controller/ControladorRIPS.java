@@ -35,4 +35,20 @@ public class ControladorRIPS {
 		}
 		return null;
 	}
+	
+	@GetMapping("/AC/{contratoId}/{factura}/{fechaInicial}/{fechaFinal}")
+	public ResponseEntity<Resource> obtenerAC(@PathVariable Integer contratoId,@PathVariable String factura,@PathVariable String fechaInicial,@PathVariable String fechaFinal) {
+	
+		try {
+			File file = servicioRIPS.obtenerAC(contratoId, factura, fechaInicial, fechaFinal);
+			Resource fileSystemResource = new FileSystemResource(file);
+			 return ResponseEntity.ok()
+	                    .contentType(MediaType.MULTIPART_FORM_DATA)
+	                    .body(fileSystemResource);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; 
+	}
+
 }
