@@ -119,7 +119,7 @@ public class RIPSDAOImpl implements RIPSDAO {
 			
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(APResultado.class));
 
-			List<APResultado> APResultados = (ArrayList<APResultado>) sqlQuery.list();
+			List APResultados = sqlQuery.list();
 			
 			return APResultados;
 			
@@ -239,6 +239,7 @@ public class RIPSDAOImpl implements RIPSDAO {
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(ACResultado.class));
 			
 			List<ACResultado> acResultados = (ArrayList<ACResultado>) sqlQuery.list();
+			
 			
 			return acResultados;
 			
