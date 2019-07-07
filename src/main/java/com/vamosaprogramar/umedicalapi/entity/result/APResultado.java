@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
 
 public class APResultado {
 	
@@ -105,7 +106,8 @@ public class APResultado {
 	}
 
 	public void setFechaProcedimiento(Date fechaProcedimiento) {
-		this.fechaProcedimiento = fechaProcedimiento.toLocalDate();
+		String fecha = fechaProcedimiento.toLocalDate().format(GeneralConstants.formatter);
+		this.fechaProcedimiento = LocalDate.parse(fecha, GeneralConstants.formatter);
 	}
 
 	public String getNumeroAutorizacion() {

@@ -1,5 +1,7 @@
 package com.vamosaprogramar.umedicalapi;
 
+import java.time.format.DateTimeFormatter;
+
 public class GeneralConstants {
 
 	public static String APPOINTMENT_STATE_SCHEDULED = "R";
@@ -19,7 +21,8 @@ public class GeneralConstants {
 	
 	//Formato de fecha 
 	public static final String DATE_FORMAT = "dd/MM/yyyy";
-
+	public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+	
 	//Formato de hora
 	public static final String TIME_FORMAT = "HH:mm";
 	
