@@ -17,6 +17,7 @@ public interface ProcedureRateDAO {
 	public boolean procedureRateExist(int manualId, String cup, Session session);
 
 	public List<TarifaProcedimiento> getProcedureRatesByManual(int manualId);
-
+	
+	public Double obtenerValorProcedimeinto(Integer contratoId, String cup);
 
 }

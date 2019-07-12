@@ -1,11 +1,12 @@
 package com.vamosaprogramar.umedicalapi.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.validator.internal.constraintvalidators.bv.MaxValidatorForNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -127,6 +128,43 @@ public class ProcedureRateDAOImpl implements ProcedureRateDAO {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public Double obtenerValorProcedimeinto(Integer contratoId, String cup) {
+		Session session=null;
+		
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			
+			SQLQuery sqlQuery = session.createSQLQuery("SELECT\r\n" + 
+					"	tarifa_procedimiento.valor as valor\r\n" + 
+					"FROM\r\n" + 
+					"	contrato, manual_tarifario, tarifa_procedimiento, tipo_procedimiento\r\n" + 
+					"WHERE\r\n" + 
+					"	contrato.id = :contratoId\r\n" + 
+					"AND contrato.manual_tarifario_id = manual_tarifario.id\r\n" + 
+					"AND manual_tarifario.id = tarifa_procedimiento.rate_manual_id\r\n" + 
+					"AND tipo_procedimiento.cup = :cup\r\n" + 
+					"AND tarifa_procedimiento.procedure_type_id = tipo_procedimiento.id");
+			sqlQuery.setParameter("contratoId", contratoId);
+			sqlQuery.setParameter("cup", cup);
+			
+			double v = (double) sqlQuery.uniqueResult();
+			
+			Optional<Double> valor = Optional.of(v);
+			
+			return valor.orElse(0D);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session.isOpen()) {
+				session.close();
+			}
+		}
+		return 0D;
 	}
 
 }

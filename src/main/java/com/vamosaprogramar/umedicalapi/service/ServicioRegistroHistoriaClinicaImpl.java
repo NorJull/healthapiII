@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.vamosaprogramar.umedicalapi.dao.MedicamentoDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOrdenadoDAO;
+import com.vamosaprogramar.umedicalapi.dao.ProcedureRateDAO;
 import com.vamosaprogramar.umedicalapi.dao.RegistroHistoriaClinicaDAO;
 import com.vamosaprogramar.umedicalapi.dao.RemisionDAO;
 import com.vamosaprogramar.umedicalapi.entity.Medicamento;
@@ -31,6 +32,8 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 	private ProcedimientoOrdenadoDAO procedimientoOrdenadoDAO;
 	@Autowired
 	private RemisionDAO remsionDAO;
+	@Autowired
+	private ProcedureRateDAO procedureRateDAO;
 	
 	@Override
 	public List<RegistroHistoriaClinicaResult> obtenerRegistroHistoriaClinicasPorPaciente(int pacienteId) {
@@ -74,6 +77,8 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 		//Guardar procedimientos, procedimintos ordenados, remisiones y medicamentos
 
 		for (Procedimiento procedimiento : procedimientos) {
+				Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
+				procedimiento.setValor(valor);
 				procedimientoDAO.crearProcedimiento(procedimiento, registroHistoriaClinicaId);
 		}
 		
