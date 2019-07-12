@@ -95,7 +95,7 @@ public class ServicioRIPSImpl implements ServicioRIPS {
 
 	@Override
 	public File obtenerUS(Integer contratoId) throws IOException {
-		List<USResultado> usResultados = null;
+		List<USResultado> usResultados = ripsDAO.obtenerUS(contratoId);
 		
 		CSVWriter csvWriter = new CSVWriter(new FileWriter(GeneralConstants.UPLOAD_FOLDER + "US.csv"),
 				CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,

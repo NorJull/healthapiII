@@ -49,6 +49,21 @@ public class ControladorRIPS {
 			e.printStackTrace();
 		}
 		return null; 
-	}  
+	}
+	
+	@GetMapping("/US/{contratoId}/")
+	public ResponseEntity<Resource> obtenerUS(@PathVariable Integer contratoId) {
+	
+		try {
+			File file = servicioRIPS.obtenerUS(contratoId);
+			Resource fileSystemResource = new FileSystemResource(file);
+			 return ResponseEntity.ok()
+	                    .contentType(MediaType.MULTIPART_FORM_DATA)
+	                    .body(fileSystemResource);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; 
+	}
 
 }

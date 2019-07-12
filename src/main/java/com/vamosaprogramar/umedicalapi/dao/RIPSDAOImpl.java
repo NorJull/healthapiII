@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vamosaprogramar.umedicalapi.entity.result.ACResultado;
 import com.vamosaprogramar.umedicalapi.entity.result.APResultado;
+import com.vamosaprogramar.umedicalapi.entity.result.USResultado;
 
 
 @Repository
@@ -241,6 +242,50 @@ public class RIPSDAOImpl implements RIPSDAO {
 			return acResultados;
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		return null;
+	}
+	@Override
+	public List<USResultado> obtenerUS(Integer contratoId) {
+		Session session = null;
+		try {
+
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			SQLQuery sqlQuery = session.createSQLQuery("select \r\n" + 
+					"patient.document_type as \"tipoDocumento\",\r\n" + 
+					"patient.document as \"documento\",\r\n" + 
+					"health_entity.reps as \"prestador\", \r\n" + 
+					"'2' as \"tipoUsuario\",\r\n" + 
+					"patient.last_name_1 as \"primerApellido\",\r\n" + 
+					"patient.last_name_2 as \"segundoApellido\",\r\n" + 
+					"patient.name_1 as \"primerNombre\",\r\n" + 
+					"patient.name_2 as \"segundoNombre\",\r\n" + 
+					"patient.age as \"edad\", \r\n" + 
+					"'1' as \"unidadMedidaEdad\",\r\n" + 
+					"patient.gender as \"sexo\",\r\n" + 
+					"patient.departament_id as \"departamento\",\r\n" + 
+					"patient.town_id as \"municipio\",\r\n" + 
+					"patient.zone as \"zona\"\r\n" + 
+					"from patient, contrato, health_entity\r\n" + 
+					"where\r\n" + 
+					"patient.contract_id = :contrato and \r\n" + 
+					"contrato.id = :contrato and \r\n" + 
+					"contrato.health_entity_id = health_entity.id");
+			
+			sqlQuery.setParameter("contrato", contratoId);
+			
+			sqlQuery.setResultTransformer(Transformers.aliasToBean(USResultado.class));
+			
+			List usResultados = sqlQuery.list();
+			
+			return usResultados;	
+		}  catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session != null) {
