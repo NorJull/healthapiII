@@ -213,6 +213,9 @@ public class RegistroHistoriaClinica {
 	@Column(name = "contrato_id")
 	private Integer contratoId;
 	
+	@Column(name = "appointment_id")
+	private int appointmentId;
+	
 	@OneToMany(mappedBy = "registroHistoriaClinica", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<Procedimiento> procedimientos;
@@ -736,6 +739,13 @@ public class RegistroHistoriaClinica {
 	public void setContratoId(Integer contratoId) {
 		this.contratoId = contratoId;
 	}
-	
-	
+
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+		
 }

@@ -390,5 +390,31 @@ public class AppointmentDAOImpl implements AppointmentDAO {
 		return null;
 	}
 
+	@Override
+	public void cambiarEstado(int appointmentId, String aPPOINTMENT_STATE_FINISHED) {
+		Session session = null;
+		try {
+
+			session = sessionFactory.openSession();
+
+			session.beginTransaction();
+
+			Appointment appointment = session.get(Appointment.class, appointmentId);
+
+			appointment.setState(aPPOINTMENT_STATE_FINISHED);
+
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+
+		}
+		
+	}
+
 	
 }

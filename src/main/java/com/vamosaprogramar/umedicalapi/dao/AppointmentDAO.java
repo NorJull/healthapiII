@@ -29,4 +29,6 @@ public interface AppointmentDAO {
 	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayAllDoctors(LocalDate today);
 
 	public List<Appointment> getRegisteredAppointmentsOfTheCurrentDayPerDoctor(LocalDate today, int doctorId, int specialityId);
+
+	public void cambiarEstado(int appointmentId, String aPPOINTMENT_STATE_FINISHED);
 }

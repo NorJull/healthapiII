@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
+import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.dao.MedicamentoAIEPIDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimentoAIEPIDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOrdenadoAIEPIDAO;
@@ -31,7 +33,8 @@ public class ServicioRegistroAIEPIImpl implements ServicioRegistroAIEPI {
 	private ProcedimientoOrdenadoAIEPIDAO procedimientoOrdenadoAIEPIDAO;	
 	@Autowired
 	private RemisionAIEPIDAO remisionAIEPIDAO;
-	
+	@Autowired
+	private AppointmentDAO appointmentDAO;
 	
 	@Override
 	public List<RegistroAIEPIResult> obtenerRegistroSAIEPIsPorPaciente(int patientId) {
@@ -84,6 +87,9 @@ public class ServicioRegistroAIEPIImpl implements ServicioRegistroAIEPI {
 		for (MedicamentoAIEPI medicamentoAIEPI : medicamentoAIEPIs) {
 			medicamentoAIEPIDAO.crearMedicamantoAIEPI(medicamentoAIEPI, registroAIEPIId);
 		}
+		//Finalizar cita
+		appointmentDAO.cambiarEstado(registroAIEPI.getAppointmentId(), GeneralConstants.APPOINTMENT_STATE_FINISHED);
+		
 	}
 
 	

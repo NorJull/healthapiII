@@ -1,6 +1,8 @@
 package com.vamosaprogramar.umedicalapi.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
+import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.dao.MedicamentoOdontologiaDAO;
 import com.vamosaprogramar.umedicalapi.dao.PatientDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOdontologiaDAO;
@@ -35,6 +37,9 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
     
     @Autowired
     private PatientDAO patientDAO;
+    
+    @Autowired
+    private AppointmentDAO appointmentDAO;
     
     @Override
     public List<RegistroOdontologiaResult> obtenerRegistroOdontologiaResultPorPaciente(int pacienteId) {
@@ -90,6 +95,8 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
 			medicamentoOdontologiaDAO.crearMedicamentoOdontologia(medicamentoOdontologia, registroOdontologiaId);
 		}
 		
+		//Finalizar cita 
+		appointmentDAO.cambiarEstado(registroOdontologia.getAppointmentId(), GeneralConstants.APPOINTMENT_STATE_FINISHED);
        
     }
 

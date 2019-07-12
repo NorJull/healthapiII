@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vamosaprogramar.umedicalapi.GeneralConstants;
+import com.vamosaprogramar.umedicalapi.dao.AppointmentDAO;
 import com.vamosaprogramar.umedicalapi.dao.MedicamentoDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoDAO;
 import com.vamosaprogramar.umedicalapi.dao.ProcedimientoOrdenadoDAO;
@@ -34,6 +36,8 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 	private RemisionDAO remsionDAO;
 	@Autowired
 	private ProcedureRateDAO procedureRateDAO;
+	@Autowired
+	private AppointmentDAO appointmentDAO;
 	
 	@Override
 	public List<RegistroHistoriaClinicaResult> obtenerRegistroHistoriaClinicasPorPaciente(int pacienteId) {
@@ -93,6 +97,8 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 			medicamentoDAO.crearMedicamento(medicamento, registroHistoriaClinicaId);
 		}
 		
+		//Finalizar la cita
+		appointmentDAO.cambiarEstado(registroHistoriaClinica.getAppointmentId(), GeneralConstants.APPOINTMENT_STATE_FINISHED);
 	}
 
 	@Override

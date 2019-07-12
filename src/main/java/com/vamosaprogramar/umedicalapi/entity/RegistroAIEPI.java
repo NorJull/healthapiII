@@ -352,6 +352,9 @@ public class RegistroAIEPI {
 	@Column(name = "contrato_id")
 	private Integer contratoId;
 	
+	@Column(name = "appointment_id")
+	private int appointmentId;
+	
 	@OneToMany(mappedBy = "registroAIEPI", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REFRESH },fetch = FetchType.EAGER)
 	private List<ProcedimientoAIEPI> procedimientosAIEPIs;
@@ -1676,4 +1679,12 @@ public class RegistroAIEPI {
 	}
 
 
+	public int getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+		
 }
