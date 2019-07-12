@@ -15,6 +15,7 @@ import com.vamosaprogramar.umedicalapi.GeneralConstants;
 import com.vamosaprogramar.umedicalapi.dao.RIPSDAO;
 import com.vamosaprogramar.umedicalapi.entity.result.ACResultado;
 import com.vamosaprogramar.umedicalapi.entity.result.APResultado;
+import com.vamosaprogramar.umedicalapi.entity.result.USResultado;
 
 @Service
 public class ServicioRIPSImpl implements ServicioRIPS {
@@ -90,6 +91,30 @@ public class ServicioRIPSImpl implements ServicioRIPS {
 		File acFile = new File(GeneralConstants.UPLOAD_FOLDER + "AC.csv");
 
 		return acFile;
+	}
+
+	@Override
+	public File obtenerUS(Integer contratoId) throws IOException {
+		List<USResultado> usResultados = null;
+		
+		CSVWriter csvWriter = new CSVWriter(new FileWriter(GeneralConstants.UPLOAD_FOLDER + "US.csv"),
+				CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+				CSVWriter.DEFAULT_LINE_END);
+		
+		String[] encabezado = {"TIPO ID", "#DOC", "COD EPS", "TIPO US",
+				"APE1", "APE2", "NOM1", "NOM2", "EDAD", "UNIDAD MEDIDAD EDAD", "SEXO", "DPTO", "MUN", "ZONA"};
+		
+		csvWriter.writeNext(encabezado);
+		
+		for(USResultado usResultado : usResultados) {
+			String[] datos = usResultado.getStringArray();
+			csvWriter.writeNext(datos);
+		}
+		csvWriter.close();
+		
+		File usFile = new File(GeneralConstants.UPLOAD_FOLDER + "US.csv");
+
+		return usFile;
 	}
 
 }
