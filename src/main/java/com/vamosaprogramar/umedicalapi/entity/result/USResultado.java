@@ -101,8 +101,8 @@ public class USResultado {
 		return edad;
 	}
 
-	public void setEdad(String edad) {
-		this.edad = edad;
+	public void setEdad(int edad) {
+		this.edad = String.valueOf(edad);
 	}
 
 	public String getUnidadMedidaEdad() {
