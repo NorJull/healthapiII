@@ -67,7 +67,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 					"WHERE \r\n" + 
 					"rhc.paciente_id = :paciente AND\r\n" + 
 					"po.registro_historia_clinica_id = rhc.id AND\r\n" + 
-					"po.fue_ejecutado = \"O\"\r\n" + 
+					"po.fue_ejecutado = 'O'\r\n" + 
 					"UNION ALL\r\n" + 
 					"SELECT \r\n" + 
 					"poa.id AS \"id\", \r\n" + 
@@ -83,7 +83,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 					"WHERE \r\n" + 
 					"ra.paciente_id = :paciente AND\r\n" + 
 					"poa.registro_aiepi_id = ra.id AND\r\n" + 
-					"poa.fue_ejecutado = \"O\"\r\n" + 
+					"poa.fue_ejecutado = 'O'\r\n" + 
 					"UNION ALL\r\n" + 
 					"SELECT \r\n" + 
 					"poo.id AS \"id\", \r\n" + 
@@ -99,7 +99,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 					"WHERE \r\n" + 
 					"ro.paciente_id = :paciente AND\r\n" + 
 					"poo.registro_odontologia_id = ro.id AND\r\n" + 
-					"poo.fue_ejecutado = \"O\"");
+					"poo.fue_ejecutado = 'O'");
 			
 			sqlQuery.setParameter("paciente", pacienteId);
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(ProcedimientoOrdenado.class));
