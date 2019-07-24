@@ -28,10 +28,8 @@ public class ProcedimientoOrdenadoAIEPI {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name="fecha")
-	@Convert(converter = LocalDateConverter.class)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-	private LocalDate fecha;
+	@Column(name = "fecha")
+	private String fecha;
 	
 	@Column(name = "numero_autorizacion")
 	private String numeroAutorizacion;
@@ -77,11 +75,11 @@ public class ProcedimientoOrdenadoAIEPI {
 		this.id = id;
 	}
 
-	public LocalDate getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
