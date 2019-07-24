@@ -87,6 +87,7 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 		}
 		
 		for (ProcedimientoOrdenado procedimientosOrdenado : procedimientosOrdenados) {
+			procedimientosOrdenado.setFueEjecutado(GeneralConstants.ORDENADO);
 			procedimientoOrdenadoDAO.crearProcedimientoOrdenado(procedimientosOrdenado, registroHistoriaClinicaId);
 		}
 		

@@ -56,6 +56,15 @@ public class ProcedimientoOrdenado {
 	@JoinColumn(name = "registro_historia_clinica_id")
 	private RegistroHistoriaClinica registroHistoriaClinica;
 	
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
+	@Column(name = "fue_ejecutado")
+	private String fueEjecutado;
+	
+	@Column(name = "url_resultados")
+	private String urlResultados;
+	
 	public ProcedimientoOrdenado() {
 	
 	}
@@ -132,4 +141,28 @@ public class ProcedimientoOrdenado {
 		this.registroHistoriaClinica = registroHistoriaClinica;
 	}
 
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+
+	public String getFueEjecutado() {
+		return fueEjecutado;
+	}
+
+	public void setFueEjecutado(String fueEjecutado) {
+		this.fueEjecutado = fueEjecutado;
+	}
+
+	public String getUrlResultados() {
+		return urlResultados;
+	}
+
+	public void setUrlResultados(String urlResultados) {
+		this.urlResultados = urlResultados;
+	}
+	
 }

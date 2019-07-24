@@ -84,6 +84,7 @@ public class ServicioRegistroOdontologiaImpl implements ServicioRegistroOdontolo
 		}
 		
 		for (ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia : procedimientosOrdenadoOdontologias) {
+			procedimientoOrdenadoOdontologia.setFueEjecutado(GeneralConstants.ORDENADO);
 			procedimientoOrdenadoOdontologiaDAO.crearProcedimientoOrdenadoOdontologia(procedimientoOrdenadoOdontologia, registroOdontologiaId);
 		}
 		

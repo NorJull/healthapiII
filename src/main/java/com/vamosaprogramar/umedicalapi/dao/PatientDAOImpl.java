@@ -109,7 +109,6 @@ public class PatientDAOImpl implements PatientDAO {
 			patientQuery.setParameter("documentT", documentType);
 			Patient patient = (Patient) patientQuery.uniqueResult();
 
-			session.getTransaction().commit();
 
 			return patient;
 

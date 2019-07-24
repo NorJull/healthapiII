@@ -36,6 +36,8 @@ public class GeneralConstants {
 	//Folder donde se suben los documentos
 	public static final String UPLOAD_FOLDER = ".//src//main//resources//myFiles//";
 	
+	//Folder donde se suben 
+	
 	//Tipos de procesos
 	public static final String SUBIDA_DE_PACIENTES = "SUBIDA DE PACIENTES";
 	
@@ -60,5 +62,7 @@ public class GeneralConstants {
 	public static final char PARTICULAR = 'S';
 	public static final char NO_PARTICULAR = 'N';
 	
-	
+	//Estados de procedimientos ordenados
+	public static final String EJECUTADO = "E";
+	public static final String ORDENADO = "O";
 }

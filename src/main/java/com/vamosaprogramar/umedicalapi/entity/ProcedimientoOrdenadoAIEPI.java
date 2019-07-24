@@ -56,6 +56,15 @@ public class ProcedimientoOrdenadoAIEPI {
 	@JoinColumn(name = "registro_aiepi_id")
 	private RegistroAIEPI registroAIEPI;
 	
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
+	@Column(name = "fue_ejecutado")
+	private String fueEjecutado;
+	
+	@Column(name = "url_resultados")
+	private String urlResultados;
+	
 	public ProcedimientoOrdenadoAIEPI() {
 	
 	}
@@ -132,6 +141,29 @@ public class ProcedimientoOrdenadoAIEPI {
 		this.registroAIEPI = registroAIEPI;
 	}
 
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+
+	public String getFueEjecutado() {
+		return fueEjecutado;
+	}
+
+	public void setFueEjecutado(String fueEjecutado) {
+		this.fueEjecutado = fueEjecutado;
+	}
+
+	public String getUrlResultados() {
+		return urlResultados;
+	}
+
+	public void setUrlResultados(String urlResultados) {
+		this.urlResultados = urlResultados;
+	}
 
 
 	

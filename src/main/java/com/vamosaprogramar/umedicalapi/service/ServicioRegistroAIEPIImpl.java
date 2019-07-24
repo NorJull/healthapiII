@@ -77,6 +77,7 @@ public class ServicioRegistroAIEPIImpl implements ServicioRegistroAIEPI {
 		}
 		
 		for (ProcedimientoOrdenadoAIEPI procedimientoOrdenadoAIEPI : procedimientoOrdenadoAIEPIs) {
+			procedimientoOrdenadoAIEPI.setFueEjecutado(GeneralConstants.ORDENADO);
 			procedimientoOrdenadoAIEPIDAO.crearProcedimientoOrdenadoAIEPI(procedimientoOrdenadoAIEPI, registroAIEPIId);
 		}
 		

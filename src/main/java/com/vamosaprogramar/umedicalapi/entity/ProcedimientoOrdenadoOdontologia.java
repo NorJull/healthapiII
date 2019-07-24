@@ -46,6 +46,15 @@ public class ProcedimientoOrdenadoOdontologia {
 	@JoinColumn(name = "registro_odontologia_id")
 	private RegistroOdontologia registroOdontologia;
 
+	@Column(name = "contract_id")
+	private Integer contractId;	 
+	
+	@Column(name = "fue_ejecutado")
+	private String fueEjecutado;
+	
+	@Column(name = "url_resultados")
+	private String urlResultados;
+	
 	public ProcedimientoOrdenadoOdontologia() {
 	
 	}
@@ -121,4 +130,29 @@ public class ProcedimientoOrdenadoOdontologia {
 	public void setRegistroOdontologia(RegistroOdontologia registroOdontologia) {
 		this.registroOdontologia = registroOdontologia;
 	}
+
+	public Integer getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(Integer contractId) {
+		this.contractId = contractId;
+	}
+
+	public String getFueEjecutado() {
+		return fueEjecutado;
+	}
+
+	public void setFueEjecutado(String fueEjecutado) {
+		this.fueEjecutado = fueEjecutado;
+	}
+
+	public String getUrlResultados() {
+		return urlResultados;
+	}
+
+	public void setUrlResultados(String urlResultados) {
+		this.urlResultados = urlResultados;
+	}
+	
 }
