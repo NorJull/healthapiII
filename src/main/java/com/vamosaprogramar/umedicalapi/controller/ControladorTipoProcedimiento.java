@@ -45,7 +45,7 @@ public class ControladorTipoProcedimiento {
 	} 
 	
 
-	@PostMapping(path = "/subirArchivo", consumes = { "multipart/form-data" })
+	@PostMapping(path = "/subirArchivo", consumes = {"multipart/form-data" })
 	public Integer subirArchivoTiposProcedimientos(@RequestParam("file") MultipartFile archivoTiposProcedimientos){
 
 		if(archivoTiposProcedimientos.isEmpty()) {

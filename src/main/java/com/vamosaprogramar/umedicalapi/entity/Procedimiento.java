@@ -80,7 +80,19 @@ public class Procedimiento {
 	public Procedimiento() {
 		
 	}
-
+	
+	public Procedimiento(ProcedimientoOrdenado procedimientoOrdenado) {
+		this.fecha = LocalDate.now();
+		this.numeroAutorizacion= procedimientoOrdenado.getNumeroAutorizacion();
+		this.cup = procedimientoOrdenado.getCup();
+		this.ambitoRealizacion = procedimientoOrdenado.getAmbitoRealizacion();
+		this.finalidad = procedimientoOrdenado.getFinalidad(); 
+		this.codigoDiagnosticoPrincipal = procedimientoOrdenado.getCodigoDiagnosticoPrincipal();
+		this.codigoDiagnosticoRelacionado = procedimientoOrdenado.getCodigoDiagnosticoRelacionado();
+		this.contractId = procedimientoOrdenado.getContractId();
+		this.registroHistoriaClinica = procedimientoOrdenado.getRegistroHistoriaClinica();
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -220,6 +232,6 @@ public class Procedimiento {
 				+ ", formaRealizacion=" + formaRealizacion + ", valor=" + valor + "]";
 	}
 	
-		
+	
 	
 }

@@ -6,6 +6,7 @@ import com.vamosaprogramar.umedicalapi.LocalDateConverter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static com.vamosaprogramar.umedicalapi.GeneralConstants.DATE_FORMAT;
 
@@ -69,6 +70,17 @@ public class ProcedimientoOdontologia {
 
 	public ProcedimientoOdontologia() {
 		
+	}
+
+	public ProcedimientoOdontologia(ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia) {
+		this.fecha = LocalDate.now();
+		this.numeroAutorizacion = procedimientoOrdenadoOdontologia.getNumeroAutorizacion();
+		this.cup = procedimientoOrdenadoOdontologia.getCup();
+		this.ambitoRealizacion = procedimientoOrdenadoOdontologia.getAmbitoRealizacion();
+		this.finalidad = procedimientoOrdenadoOdontologia.getFinalidad();
+		this.codigoDiagnosticoPrincipal = procedimientoOrdenadoOdontologia.getCodigoDiagnosticoPrincipal();
+		this.codigoDiagnosticoRelacionado = procedimientoOrdenadoOdontologia.getCodigoDiagnosticoRelacionado();
+		this.contractId = procedimientoOrdenadoOdontologia.getContractId();
 	}
 
 	public int getId() {

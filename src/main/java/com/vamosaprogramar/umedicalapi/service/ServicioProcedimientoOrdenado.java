@@ -11,7 +11,7 @@ public interface ServicioProcedimientoOrdenado {
 	
 	public List<ProcedimientoOrdenado> obtenerProcedimientosOrdenados(String documento, String tipoDocumento);
 
-	public void subirResultados(MultipartFile resultados, int procedimientoOrdenadoId);
+	public void subirResultados(MultipartFile resultados, int procedimientoOrdenadoId, String tipoHistoria);
 	
 	public File descargarResultados(int procedimientoOrdenadoId);
 }

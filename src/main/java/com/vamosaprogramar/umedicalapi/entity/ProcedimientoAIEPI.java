@@ -81,6 +81,18 @@ public class ProcedimientoAIEPI {
 		
 	}
 
+	public ProcedimientoAIEPI(ProcedimientoOrdenadoAIEPI procedimientoOrdenadoAIEPI) {
+		this.fecha = LocalDate.now();
+		this.numeroAutorizacion = procedimientoOrdenadoAIEPI.getNumeroAutorizacion();
+		this.cup = procedimientoOrdenadoAIEPI.getCup();
+		this.ambitoRealizacion = procedimientoOrdenadoAIEPI.getAmbitoRealizacion();
+		this.finalidad = procedimientoOrdenadoAIEPI.getFinalidad();
+		this.codigoDiagnosticoPrincipal = procedimientoOrdenadoAIEPI.getCodigoDiagnosticoPrincipal();
+		this.codigoDiagnosticoRelacionado = procedimientoOrdenadoAIEPI.getCodigoDiagnosticoRelacionado();
+		this.contractId = procedimientoOrdenadoAIEPI.getContractId();
+		this.registroAIEPI = procedimientoOrdenadoAIEPI.getRegistroAIEPI();
+	}
+
 	public int getId() {
 		return id;
 	}

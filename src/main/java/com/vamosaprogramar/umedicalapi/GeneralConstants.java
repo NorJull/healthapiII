@@ -36,6 +36,11 @@ public class GeneralConstants {
 	//Folder donde se suben los documentos
 	public static final String UPLOAD_FOLDER = ".//src//main//resources//myFiles//";
 	
+	//Folder donde se suben los documentos de bacteriologia
+	public static final String BACTE_UPLOAD_FOLDER = ".//src//main//resources//myFiles//bacteriologia//";
+		
+	
+	
 	//Folder donde se suben 
 	
 	//Tipos de procesos
@@ -65,4 +70,12 @@ public class GeneralConstants {
 	//Estados de procedimientos ordenados
 	public static final String EJECUTADO = "E";
 	public static final String ORDENADO = "O";
+	
+	//Tipos de historias 
+
+	public static final String HISTORIA_CLINICA_NORMAL = "HCN";
+	public static final String HISTORIA_CLINICA_AIEPI = "HCA";
+	public static final String HISTORIA_CLINICA_ODONTOLOGIA = "HCO";
+	
+	
 }
