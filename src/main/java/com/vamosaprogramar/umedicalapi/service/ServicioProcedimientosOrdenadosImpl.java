@@ -68,9 +68,9 @@ public class ServicioProcedimientosOrdenadosImpl implements ServicioProcedimient
 				
 				RegistroHistoriaClinica registroHistoriaClinica = procedimientoOrdenadoDAO.obtenerRegistroHistoriaClinica(procedimientoOrdenadoId);
 				
-				Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
+			//	Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
 				
-				procedimiento.setValor(valor);
+			//	procedimiento.setValor(valor);
 				
 				procedimientoDAO.crearProcedimiento(procedimiento, registroHistoriaClinica.getId());
 				

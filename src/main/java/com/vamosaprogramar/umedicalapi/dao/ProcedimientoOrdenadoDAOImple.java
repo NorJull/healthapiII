@@ -267,12 +267,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query query = session.createQuery("from ProcedimientoOrdenado where id = :procedimientoOrdenadoId");
-			
-			query.setParameter("procedimientoOrdenadoId", procedimientoOrdenadoId);
-			
-		    ProcedimientoOrdenado procedimientoOrdenado = (ProcedimientoOrdenado) query.uniqueResult();
-		    
+		    ProcedimientoOrdenado procedimientoOrdenado = session.get(ProcedimientoOrdenado.class, procedimientoOrdenadoId);
 		    procedimientoOrdenado.setFueEjecutado(ejecutado);
 		    
 		    procedimientoOrdenado.setUrlResultados(pathString);
@@ -298,11 +293,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query query = session.createQuery("from ProcedimientoOrdenadoOdontologia where id = :procedimientoOrdenadoId");
-			
-			query.setParameter("procedimientoOrdenadoId", procedimientoOrdenadoId);
-			
-		    ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia = (ProcedimientoOrdenadoOdontologia) query.uniqueResult();
+		    ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia = session.get(ProcedimientoOrdenadoOdontologia.class, procedimientoOrdenadoId);
 		    
 		    procedimientoOrdenadoOdontologia.setFueEjecutado(ejecutado);
 		    
@@ -330,11 +321,7 @@ public class ProcedimientoOrdenadoDAOImple implements ProcedimientoOrdenadoDAO {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			
-			Query query = session.createQuery("from ProcedimientoOrdenadoAIEPI where id = :procedimientoOrdenadoId");
-			
-			query.setParameter("procedimientoOrdenadoId", procedimientoOrdenadoId);
-			
-		    ProcedimientoOrdenadoAIEPI procedimientoOrdenadoAIEPI = (ProcedimientoOrdenadoAIEPI) query.uniqueResult();
+		    ProcedimientoOrdenadoAIEPI procedimientoOrdenadoAIEPI = session.get(ProcedimientoOrdenadoAIEPI.class, procedimientoOrdenadoId);
 		    
 		    procedimientoOrdenadoAIEPI.setFueEjecutado(ejecutado);
 		    
