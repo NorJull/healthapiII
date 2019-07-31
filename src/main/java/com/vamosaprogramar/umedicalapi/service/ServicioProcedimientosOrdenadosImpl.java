@@ -58,7 +58,8 @@ public class ServicioProcedimientosOrdenadosImpl implements ServicioProcedimient
 	@Override
 	public void subirResultados(MultipartFile resultados, int procedimientoOrdenadoId, String tipoHistoria) {
 
-		String pathString = GeneralConstants.BACTE_UPLOAD_FOLDER +"result"+UUID.randomUUID().toString()+".pdf";
+		String randonString = "result"+UUID.randomUUID().toString();
+		String pathString = GeneralConstants.BACTE_UPLOAD_FOLDER +randonString+".pdf";
 		
 		try {
 			if(tipoHistoria.equals(GeneralConstants.HISTORIA_CLINICA_NORMAL)) {
@@ -68,13 +69,13 @@ public class ServicioProcedimientosOrdenadosImpl implements ServicioProcedimient
 				
 				RegistroHistoriaClinica registroHistoriaClinica = procedimientoOrdenadoDAO.obtenerRegistroHistoriaClinica(procedimientoOrdenadoId);
 				
-			//	Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
+				Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
 				
-			//	procedimiento.setValor(valor);
+				procedimiento.setValor(valor);
 				
 				procedimientoDAO.crearProcedimiento(procedimiento, registroHistoriaClinica.getId());
 				
-				procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenado(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, pathString);
+				procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenado(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, randonString);
 				
 			}else if(tipoHistoria.equals(GeneralConstants.HISTORIA_CLINICA_ODONTOLOGIA)) {
 					ProcedimientoOrdenadoOdontologia procedimientoOrdenadoOdontologia = procedimientoOrdenadoDAO.obtenerProcedimientoOrdenadoOdontologia(procedimientoOrdenadoId);
@@ -89,7 +90,7 @@ public class ServicioProcedimientosOrdenadosImpl implements ServicioProcedimient
 					
 					procedimientoOdontologiaDAO.crearProcedimientoOdontologia(procedimientoOdontologia, registroOdontologia.getId());
 					
-					procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenadoOdontologia(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, pathString);
+					procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenadoOdontologia(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, randonString);
 
 					
 				}else if(tipoHistoria.equals(GeneralConstants.HISTORIA_CLINICA_AIEPI)) {
@@ -105,7 +106,7 @@ public class ServicioProcedimientosOrdenadosImpl implements ServicioProcedimient
 					
 					procedimentoAIEPIDAO.crearProcedimientoAIEPI(procedimientoAIEPI, registroAIEPI.getId());
 					
-					procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenadoAIEPI(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, pathString);
+					procedimientoOrdenadoDAO.cambiarEstadoURLProcedimientoOrdenadoAIEPI(procedimientoOrdenadoId, GeneralConstants.EJECUTADO, randonString);
 
 				}
 			

@@ -79,13 +79,13 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 		Integer registroHistoriaClinicaId = medicalRecordDAO.crearRegistroHistoriaClinica(registroHistoriaClinica);	
 		
 		//Guardar procedimientos, procedimintos ordenados, remisiones y medicamentos
-		/*
+		
 		for (Procedimiento procedimiento : procedimientos) {
 				Double valor = procedureRateDAO.obtenerValorProcedimeinto(registroHistoriaClinica.getContratoId(), procedimiento.getCup());
 				procedimiento.setValor(valor);
 				procedimientoDAO.crearProcedimiento(procedimiento, registroHistoriaClinicaId);
 		}
-		*/
+		
 		for (ProcedimientoOrdenado procedimientosOrdenado : procedimientosOrdenados) {
 			procedimientosOrdenado.setFueEjecutado(GeneralConstants.ORDENADO);
 			procedimientoOrdenadoDAO.crearProcedimientoOrdenado(procedimientosOrdenado, registroHistoriaClinicaId);
@@ -99,7 +99,7 @@ public class ServicioRegistroHistoriaClinicaImpl implements ServicioRegistroHist
 		}
 		
 		//Finalizar la cita
-	//	appointmentDAO.cambiarEstado(registroHistoriaClinica.getAppointmentId(), GeneralConstants.APPOINTMENT_STATE_FINISHED);
+		appointmentDAO.cambiarEstado(registroHistoriaClinica.getAppointmentId(), GeneralConstants.APPOINTMENT_STATE_FINISHED);
 	}
 
 	@Override
